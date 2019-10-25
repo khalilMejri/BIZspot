@@ -58,7 +58,7 @@ When thinking of business capabilities, our elegant application you will need th
 
 ## Watch the Video
 
-[![](https://img.ybe.com/vi/1F1EnnMrsZ8/0.jpg)](unavailble)
+[![](https://i.vimeocdn.com/video/825713314.webp?mw=1400&mh=787)](https://vimeo.com/368913922)
 
 ## Setup
 
