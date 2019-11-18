@@ -1,6 +1,6 @@
 [![Build Status](https://travis-ci.org/IBM/innovate-digital-bank.svg?branch=master)]("")
 
-# Building A Local Business Recommendation Platform with Node.js, Loopback, MySQL, MongoDB & Angular
+# Building A Local Business Recommendation Platform with Loopback.io, MySQL, MongoDB & Angular
 
 [BIZspot]("") is a web application that serves as a network of prospect users and business owners in order to ease their business access to the community.
 
