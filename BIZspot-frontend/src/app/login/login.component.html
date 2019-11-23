@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<title>Login in</title>
+	</head>
+<body>
+	<main>
+		<div class="row signin">
+			<div class="col-2-of-3 signin-left" >
+
+			</div>
+			<div class="col-1-of-3 signin-right">
+				<div class="signin-right-textbox">
+					<h1 class="signin-heading">Log In</h1>
+					<div class="signin-account-box">
+						<div class="signin-avatar">
+							
+						</div>
+						<p class="signin-add">
+						</p>
+					</div>
+				</div>
+				<form [formGroup]="loginForm" (submit)="onSubmit()" class="signin-form">
+					<input type="email" placeholder="jobs@bizspot.com" class="signin-input" formControlName="email" >
+					<input type="password" placeholder="**********" class="signin-input" formControlName="password" >
+					<input type="submit" value="Log in" class="btn btn--green ">
+				</form>
+				<h3 class="u-margin-bottom-top">Need an account? <a class="link-text" routerLink='/signup' >sign up</a></h3>
+
+			</div>
+		</div>
+	</main>
+</body>
+</html>
