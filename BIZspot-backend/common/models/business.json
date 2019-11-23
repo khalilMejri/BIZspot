@@ -40,7 +40,40 @@
     }
   },
   "validations": [],
-  "relations": {},
+  "relations": {
+    "reviews": {
+      "type": "hasMany",
+      "model": "review",
+      "foreignKey": "businessId",
+      "options": {
+        "nestRemoting": true
+      }
+    },
+    "users": {
+      "type": "hasOne",
+      "model": "user",
+      "foreignKey": "creatorId",
+      "options": {
+        "nestRemoting": true
+      }
+    },
+    "categories": {
+      "type": "hasOne",
+      "model": "category",
+      "foreignKey": "categoryId",
+      "options": {
+        "nestRemoting": true
+      }
+    },
+    "locations": {
+      "type": "hasOne",
+      "model": "location",
+      "foreignKey": "locationId",
+      "options": {
+        "nestRemoting": true
+      }
+    }
+  },
   "acls": [],
   "methods": {}
 }

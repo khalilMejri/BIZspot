@@ -20,7 +20,24 @@
     }
   },
   "validations": [],
-  "relations": {},
+  "relations": {
+    "business": {
+      "type": "belongsTo",
+      "model": "business",
+      "foreignKey": "businessId",
+      "options": {
+        "nestRemoting": true
+      }
+    },
+    "user": {
+      "type": "belongsTo",
+      "model": "user",
+      "foreignKey": "userId",
+      "options": {
+        "nestRemoting": true
+      }
+    }
+  },
   "acls": [],
   "methods": {}
 }

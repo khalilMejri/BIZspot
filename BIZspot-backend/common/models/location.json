@@ -23,7 +23,16 @@
     }
   },
   "validations": [],
-  "relations": {},
+  "relations": {
+    "users": {
+      "type": "hasAndBelongsToMany",
+      "model": "user",
+      "foreignKey": "userLocationId",
+      "options": {
+        "nestRemoting": true
+      }
+    }
+  },
   "acls": [],
   "methods": {}
 }

@@ -21,10 +21,18 @@
   },
   "validations": [],
   "relations": {
-    "locations": {
+    "businesses": {
       "type": "hasOne",
-      "model": "location",
-      "foreignKey": "locationId",
+      "model": "business",
+      "foreignKey": "mBusinessId",
+      "options": {
+        "nestRemoting": true
+      }
+    },
+    "paiements": {
+      "type": "hasMany",
+      "model": "paiement",
+      "foreignKey": "userId",
       "options": {
         "nestRemoting": true
       }
