@@ -23,9 +23,7 @@
       "required": true
     },
     "openingHours": {
-      "type": [
-        "object"
-      ],
+      "type": ["object"],
       "required": true
     },
     "level": {
@@ -33,9 +31,7 @@
       "required": true
     },
     "members": {
-      "type": [
-        "object"
-      ],
+      "type": ["object"],
       "required": true
     }
   },
@@ -52,23 +48,15 @@
     "users": {
       "type": "hasOne",
       "model": "user",
-      "foreignKey": "creatorId",
+      "foreignKey": "mBusinessId",
       "options": {
         "nestRemoting": true
       }
     },
-    "categories": {
-      "type": "hasOne",
+    "category": {
+      "type": "belongsTo",
       "model": "category",
       "foreignKey": "categoryId",
-      "options": {
-        "nestRemoting": true
-      }
-    },
-    "locations": {
-      "type": "hasOne",
-      "model": "location",
-      "foreignKey": "locationId",
       "options": {
         "nestRemoting": true
       }

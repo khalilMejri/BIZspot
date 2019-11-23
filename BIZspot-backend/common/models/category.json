@@ -16,7 +16,16 @@
     }
   },
   "validations": [],
-  "relations": {},
+  "relations": {
+    "businesses": {
+      "type": "hasAndBelongsToMany",
+      "model": "business",
+      "foreignKey": "bizCategoryId",
+      "options": {
+        "nestRemoting": true
+      }
+    }
+  },
   "acls": [],
   "methods": {}
 }

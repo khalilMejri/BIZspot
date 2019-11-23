@@ -24,7 +24,7 @@
     "businesses": {
       "type": "hasOne",
       "model": "business",
-      "foreignKey": "mBusinessId",
+      "foreignKey": "creatorId",
       "options": {
         "nestRemoting": true
       }

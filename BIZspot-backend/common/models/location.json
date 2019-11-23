@@ -31,6 +31,14 @@
       "options": {
         "nestRemoting": true
       }
+    },
+    "businesses": {
+      "type": "hasAndBelongsToMany",
+      "model": "business",
+      "foreignKey": "locationId",
+      "options": {
+        "nestRemoting": true
+      }
     }
   },
   "acls": [],
