@@ -14,25 +14,58 @@
     ]
   },
   "User": {
-    "dataSource": "db"
+    "dataSource": "db",
+    "public": false
   },
   "AccessToken": {
-    "dataSource": "db",
+    "dataSource": "atlasMongo",
     "public": false
   },
   "ACL": {
-    "dataSource": "db",
+    "dataSource": "atlasMongo",
     "public": false
   },
   "RoleMapping": {
-    "dataSource": "db",
+    "dataSource": "atlasMongo",
     "public": false,
     "options": {
       "strictObjectIDCoercion": true
     }
   },
   "Role": {
-    "dataSource": "db",
-    "public": false
+    "dataSource": "atlasMongo",
+    "public": true
+  },
+  "location": {
+    "dataSource": "atlasMongo",
+    "public": true
+  },
+  "user": {
+    "dataSource": "atlasMongo",
+    "public": true
+  },
+  "settings": {
+    "dataSource": "atlasMongo",
+    "public": true
+  },
+  "paiement": {
+    "dataSource": "atlasMongo",
+    "public": true
+  },
+  "subscription": {
+    "dataSource": "atlasMongo",
+    "public": true
+  },
+  "review": {
+    "dataSource": "atlasMongo",
+    "public": true
+  },
+  "business": {
+    "dataSource": "atlasMongo",
+    "public": true
+  },
+  "category": {
+    "dataSource": "atlasMongo",
+    "public": true
   }
 }
