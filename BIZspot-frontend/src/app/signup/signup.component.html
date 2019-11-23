@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+	</head>
+<body>
+	<main class="signup">
+		<div class="row signup-container">
+			<h1 class="signup-heading">Sign Up</h1>
+			<form [formGroup]="signupForm" (submit)="onSubmit()">
+				<input type="text" value="" placeholder="First Name" class="signin-input signin-input-1_2" formControlName="firstName">
+				<input type="text" value="" placeholder="Last Name"class="signin-input signin-input-1_2" formControlName="lastName">
+				<input type="email" value="" placeholder="foulen.benfalten@host"class="signin-input" formControlName="email">
+				<input type="password" value="" placeholder="********"class="signin-input" formControlName="password">
+				<input type="text" rows="5" placeholder="Describe yourself" class="signin-input" formControlName="description">
+				<input type="submit" value="Sign up" class="btn  btn--green signup-button" >
+				
+			</form>
+			<h3 class="u-margin-bottom-top">Have an account? <a routerLink='/login' class="link-text">login in</a></h3>
+		</div>
+	</main>
+</body>
+</html>

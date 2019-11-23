@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<title>Bizspot</title>
+	</head>
+
+	<body>
+		<div class="navigation">
+
+			<div class="header__logo-box">
+				<img src="assets/img/second_colored.png" alt="Logo" class="header__logo">
+			</div>
+			<div class="navigation__nav">
+				<ul class="navigation__list">
+					<li class="navigation__item">
+						<a href="#top" class="navigation__link">Top</a>
+					</li>
+					<li class="navigation__item">
+						<a href="#story" class="navigation__link">Story</a>
+					</li>
+					<li class="navigation__item">
+						<a href="#pricing" class="navigation__link">Pricing</a>
+					</li>
+					<li class="navigation__item">
+						<a href="#contact" class="navigation__link">Contact</a>
+					</li>
+					<li class="navigation__item">
+						<a routerLink='/login' class="btn btn--green btn--animated">Log in</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<header class="header">
+			<div class="bg-video">
+				<video class="bg-video__content" autoplay muted loop>
+					<source src="assets/img/video.mp4" type="video/mp4">
+				</video>
+			</div>
+			<div class="header__text-box">
+
+				<h1 class="heading-primary">
+					<span class="heading-primary--main">Bizspot</span>
+					<span class="heading-primary--sub">making your life easier</span>
+				</h1>
+				<a routerLink='/signup' class="btn btn--white btn--animated">Sign Up!</a>
+			</div>
+		</header>
+		<main>
+			<section id="top" class="section-top">
+				<div class="row">
+					<div class="col-1-of-3">
+						<div class="topspot">
+							<figure class="topspot__shape u-margin-bottom-small">
+								<img src="assets/img/face1.jpg" class="topspot__img" alt="person on tour">
+							</figure>
+							<div class="topspot__text">
+								<h3 class="heading-tertiary ">
+									Mary smith
+								</h3>
+								<span class="topspot__star">&#9733;</span>
+								<span class="topspot__star">&#9733;</span>
+								<span class="topspot__star">&#9733;</span>
+							</div>
+
+						</div>
+					</div>
+					<div class="col-1-of-3">
+						<div class="topspot">
+							<figure class="topspot__shape u-margin-bottom-small">
+								<img src="assets/img/face2.jpg" class="topspot__img" alt="person on tour">
+							</figure>
+							<div class="topspot__text">
+								<h3 class="heading-tertiary ">
+									Mary smith
+								</h3>
+								<span class="topspot__star">&#9733;</span>
+								<span class="topspot__star">&#9733;</span>
+								<span class="topspot__star">&#9733;</span>
+								<span class="topspot__star">&#9733;</span>
+								<span class="topspot__star">&#9733;</span>
+							</div>
+
+						</div>
+					</div>
+					<div class="col-1-of-3">
+						<div class="topspot">
+							<figure class="topspot__shape u-margin-bottom-small">
+								<img src="assets/img/face3.jpg" class="topspot__img" alt="person on tour">
+							</figure>
+							<div class="topspot__text">
+								<h3 class="heading-tertiary">
+									Mary smith
+								</h3>
+								<span class="topspot__star">&#9733;</span>
+								<span class="topspot__star">&#9733;</span>
+								<span class="topspot__star">&#9733;</span>
+								<span class="topspot__star">&#9733;</span>
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</section>
+			<section id="story" class="section-story">
+				<div class="row">
+
+					<div class="col-2-of-3">
+						<div class="section-story__left">
+							<h3 class="heading-tertiary u-margin-bottom-small">
+								You're going to fall in love with nature
+							</h3>
+							<p class="paragraph">
+								Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti ad vitae, molestias atque, quam eum quos, totam eaque earum
+								error eligendi harum voluptatibus qui dolore. In, iste! Impedit, architecto vel!
+							</p>
+							<h3 class="heading-tertiary u-margin-bottom-small">
+								live adventure like you never have before
+							</h3>
+							<p class="paragraph">
+								Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptate deleniti architecto ullam aliquid ut!
+							</p>
+							<a href="#" class="btn  btn--blue">Learn more &nbsp; &rarr; </a>
+						</div>
+					</div>
+					<div class="col-1-of-3">
+						<div class="section-story__right">
+							&nbsp;
+						</div>
+					</div>
+				</div>
+			</section>
+			<section id="pricing" class="section-pricing">
+				<div class="row">
+					<div class="col-1-of-3">
+						<div class="card">
+							<div class="card__side card__side--front card__side--front-1">
+
+								<h4 class="card__heading">
+									<span class="card__heading-span ">
+										Silver
+									</span>
+								</h4>
+								<div class="card__details">
+									<ul>
+										<li>3 day tours</li>
+										<li>Up to 30 people</li>
+									</ul>
+								</div>
+							</div>
+							<div class="card__side card__side--back card__side--back-1">
+								<div class="card__cta">
+									<div class="card__price-box">
+										<p class="card__price-only">
+											only
+										</p>
+										<p class="card__price-value">
+											15$
+										</p>
+									</div>
+									<a href="#popup" class="btn btn--white">details</a>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-1-of-3">
+						<div class="card">
+							<div class="card__side card__side--front card__side--front-2">
+
+								<h4 class="card__heading">
+									<span class="card__heading-span ">
+										Gold
+									</span>
+								</h4>
+								<div class="card__details">
+									<ul>
+										<li>3 day tours</li>
+										<li>Up to 30 people</li>
+										<li>2 tour guides</li>
+
+									</ul>
+								</div>
+							</div>
+							<div class="card__side card__side--back card__side--back-2">
+								<div class="card__cta">
+									<div class="card__price-box">
+										<p class="card__price-only">
+											only
+										</p>
+										<p class="card__price-value">
+											30$
+										</p>
+									</div>
+									<a href="#popup" class="btn btn--white">details</a>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-1-of-3">
+						<div class="card">
+							<div class="card__side card__side--front card__side--front-3">
+
+								<h4 class="card__heading">
+									<span class="card__heading-span ">
+										Platinum
+									</span>
+								</h4>
+								<div class="card__details">
+									<ul>
+										<li>3 day tours</li>
+										<li>Up to 30 people</li>
+										<li>2 tour guides</li>
+										<li>Sleep in cozy hotel</li>
+										<li>Level easy</li>
+									</ul>
+								</div>
+							</div>
+							<div class="card__side card__side--back card__side--back-3">
+								<div class="card__cta">
+									<div class="card__price-box">
+										<p class="card__price-only">
+											only
+										</p>
+										<p class="card__price-value">
+											50$
+										</p>
+									</div>
+									<a href="#popup" class="btn btn--white">details</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+		</main>
+		<footer class="footer">
+
+			<div class="footer__navigation">
+				<ul class="footer__list">
+					<li class="footer__item">
+						<a href="#" class="footer__link">Top</a>
+					</li>
+					<li class="footer__item">
+						<a href="#" class="footer__link">Story</a>
+					</li>
+					<li class="footer__item">
+						<a href="#" class="footer__link">Pricing</a>
+					</li>
+					<li class="footer__item">
+						<a href="#" class="footer__link">Contact</a>
+					</li>
+				</ul>
+			</div>
+			<p class="footer__copyright">
+					Copyrights &copy; Bizsop , All rights are reserved ! 
+			</p>
+
+		</footer>
+	</body>
+
+</html>
