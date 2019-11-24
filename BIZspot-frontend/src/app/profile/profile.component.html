@@ -1,0 +1,31 @@
+<main class="profile">
+
+	<div class="row">
+		<div class="col-1-of-4 profile-left">
+			<div class="profile-btn-box">
+				<div class="profile-btn"></div>
+				Subscription
+			</div>
+		</div>
+		<div class="col-2-of-4 profile-mid">
+			<div class="profile-avatar">
+
+			</div>
+			<form [formGroup]="profileForm" class="profile-form" (submit)="onSubmit()">
+				<input type="text" class="signin-input" placeholder="First Name" formControlName="firstName">
+				<input type="text" class="signin-input" placeholder="Last Name" formControlName="lastName">
+				<input type="date" class="signin-input" placeholder="dd/mm/yyyy" formControlName="date">
+				<input type="password" class="signin-input" placeholder="Current password" formControlName="oldPassword">
+				<input type="password" class="signin-input" placeholder="New password" formControlName="newPassword">
+
+				<input type="submit" class="btn btn--green signup-button" value="Save Changes!">
+			</form>
+		</div>
+		<div class="col-1-of-4 profile-right">
+			<div class="profile-btn-box">
+				<div class="profile-btn"></div>
+				Settings
+			</div>
+		</div>
+	</div>
+</main>
