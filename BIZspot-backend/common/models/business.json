@@ -23,7 +23,9 @@
       "required": true
     },
     "openingHours": {
-      "type": ["object"],
+      "type": [
+        "object"
+      ],
       "required": true
     },
     "level": {
@@ -31,7 +33,9 @@
       "required": true
     },
     "members": {
-      "type": ["object"],
+      "type": [
+        "object"
+      ],
       "required": true
     }
   },
@@ -62,6 +66,13 @@
       }
     }
   },
-  "acls": [],
+  "acls": [
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "$unauthenticated",
+      "permission": "DENY"
+    }
+  ],
   "methods": {}
 }
