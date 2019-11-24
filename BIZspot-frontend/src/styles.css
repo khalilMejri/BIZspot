@@ -871,7 +871,29 @@ body {
       background-color: #2d3a71; }
   .profile-left, .profile-right {
     min-height: 100vh; }
-
+    .creation {
+      min-height: 80vh;
+      max-width: 100vw;
+      margin: 0; }
+      .creation-box {
+        min-height: 70%;
+        width: 90%; }
+      .creation-image {
+        width: 100%;
+        min-height: 70vh;
+        background-size: cover;
+        background-image: url(assets/img/business.jpg); }
+      .creation-btn {
+        cursor: pointer;
+        height: 50%;
+        width: 100%;
+        color: #2d3a71;
+        border: none;
+        background-color: #5be89b; }
+      .creation-right, .creation-left {
+        padding: 5rem 1rem; }
+      .creation-mid {
+        padding-top: 80vh; }
 .section-top {
   background-color: #f7f7f7;
   padding: 10rem 0; }
