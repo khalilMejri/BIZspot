@@ -2,9 +2,5 @@
   "db": {
     "name": "db",
     "connector": "memory"
-  },
-  "atlasMongo": {
-    "name": "atlasMongo",
-    "connector": "mongodb"
   }
 }

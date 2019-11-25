@@ -1,21 +1,26 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-import { LandingComponent } from './landing/landing.component';
-import { LoginComponent } from './login/login.component';
-import { SignupComponent } from './signup/signup.component';
-import { ProfileComponent } from './profile/profile.component';
-import { BusinessCreationComponent } from './business-creation/business-creation.component';
+import { AuthGuard } from "./services/auth-guard";
+import { NgModule } from "@angular/core";
+import { RouterModule, Routes } from "@angular/router";
+import { LandingComponent } from "./landing/landing.component";
+import { LoginComponent } from "./login/login.component";
+import { SignupComponent } from "./signup/signup.component";
+import { ProfileComponent } from "./profile/profile.component";
+import { BusinessCreationComponent } from "./business-creation/business-creation.component";
 
 const routes: Routes = [
-  { path: '', component: LandingComponent },
-  { path: 'login', component: LoginComponent },
-  { path: 'signup', component: SignupComponent },
-  { path: 'profile', component: ProfileComponent },
-  { path: 'create', component: BusinessCreationComponent },
+  { path: "", component: LandingComponent },
+  { path: "login", component: LoginComponent },
+  { path: "signup", component: SignupComponent },
+  { path: "profile", component: ProfileComponent, canActivate: [AuthGuard] },
+  {
+    path: "create",
+    component: BusinessCreationComponent,
+    canActivate: [AuthGuard]
+  }
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
