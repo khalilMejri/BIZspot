@@ -28,8 +28,11 @@
 					<li class="navigation__item">
 						<a href="#contact" class="navigation__link">Contact</a>
 					</li>
-					<li class="navigation__item">
+					<li *ngIf="!isLogged()" class="navigation__item">
 						<a routerLink='/login' class="btn btn--green btn--animated">Log in</a>
+					</li>
+					<li *ngIf="isLogged()" class="navigation__item">
+						<a class="btn btn--green btn--animated" (click)="logout()">Log out</a>
 					</li>
 				</ul>
 			</div>
@@ -46,7 +49,11 @@
 					<span class="heading-primary--main">Bizspot</span>
 					<span class="heading-primary--sub">making your life easier</span>
 				</h1>
-				<a routerLink='/signup' class="btn btn--white btn--animated">Sign Up!</a>
+				<a *ngIf="!isLogged()" 
+					routerLink='/signup' 
+					class="btn btn--white btn--animated">
+					Sign Up!
+				</a>
 			</div>
 		</header>
 		<main>

@@ -6,10 +6,11 @@ import { LoginComponent } from "./login/login.component";
 import { SignupComponent } from "./signup/signup.component";
 import { ProfileComponent } from "./profile/profile.component";
 import { BusinessCreationComponent } from "./business-creation/business-creation.component";
+import { LogoutGuard } from './services/logout-guard';
 
 const routes: Routes = [
   { path: "", component: LandingComponent },
-  { path: "login", component: LoginComponent },
+  { path: "login", component: LoginComponent, canActivate: [LogoutGuard] },
   { path: "signup", component: SignupComponent },
   { path: "profile", component: ProfileComponent, canActivate: [AuthGuard] },
   {

@@ -9,6 +9,9 @@
 	</head>
 <body>
 	<main class="signup">
+		<div *ngIf="errorMessage" class="alert alert-danger">
+			{{errorMessage}}
+		</div>
 		<div class="row signup-container">
 			<h1 class="signup-heading">Sign Up</h1>
 			<form [formGroup]="signupForm" (submit)="onSubmit()">

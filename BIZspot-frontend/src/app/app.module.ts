@@ -12,6 +12,7 @@ import { AppRoutingModule } from "./app-routing.module";
 import { ProfileComponent } from "./profile/profile.component";
 import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { BusinessCreationComponent } from "./business-creation/business-creation.component";
+import { LogoutGuard } from './services/logout-guard';
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,6 +30,7 @@ import { BusinessCreationComponent } from "./business-creation/business-creation
   ],
   providers: [
     AuthGuard,
+    LogoutGuard,
     UserService,
     AuthInterceptor,
     {
