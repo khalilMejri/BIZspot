@@ -25,7 +25,7 @@ export class AuthInterceptor implements HttpInterceptor {
     req.headers.set("Access-Control-Allow-Methods", "GET");
     req.headers.set("Access-Control-Allow-Origin", "*");
     console.log(req);
-    if (req.url.includes("/login")) {
+    if (req.url.includes("/login") || ( req.url.endsWith('/users') && req.method == "POST" )) {
       let clonedReq = req.clone({
         headers: new HttpHeaders({
           "Access-Control-Allow-Headers": "Content-Type",

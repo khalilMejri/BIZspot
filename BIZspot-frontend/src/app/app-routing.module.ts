@@ -11,7 +11,7 @@ import { LogoutGuard } from './services/logout-guard';
 const routes: Routes = [
   { path: "", component: LandingComponent },
   { path: "login", component: LoginComponent, canActivate: [LogoutGuard] },
-  { path: "signup", component: SignupComponent },
+  { path: "signup", component: SignupComponent, canActivate: [LogoutGuard] },
   { path: "profile", component: ProfileComponent, canActivate: [AuthGuard] },
   {
     path: "create",

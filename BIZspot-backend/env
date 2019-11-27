@@ -1,2 +1,0 @@
-MONGODB_URL_DEV=mongodb://owner:root@cluster01-shard-00-00-eivwz.mongodb.net:27017,cluster01-shard-00-01-eivwz.mongodb.net:27017,cluster01-shard-00-02-eivwz.mongodb.net:27017/bizspot?ssl=true&replicaSet=Cluster01-shard-0&authSource=admin&retryWrites=true&w=majority
-MONGODB_URL_PROD=mongodb://owner:root@cluster01-shard-00-00-eivwz.mongodb.net:27017,cluster01-shard-00-01-eivwz.mongodb.net:27017,cluster01-shard-00-02-eivwz.mongodb.net:27017/bizspot?ssl=true&replicaSet=Cluster01-shard-0&authSource=admin&retryWrites=true&w=majority

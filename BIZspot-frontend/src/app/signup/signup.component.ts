@@ -9,8 +9,9 @@ import { Router } from '@angular/router';
 })
 export class SignupComponent implements OnInit {
   signupForm = new FormGroup({
-    firstName: new FormControl(''),
-    lastName: new FormControl(''),
+    fname: new FormControl(''),
+    lname: new FormControl(''),
+    age: new FormControl(''),
     email: new FormControl(''),
     password: new FormControl(''),
     description: new FormControl(''),
@@ -32,9 +33,12 @@ export class SignupComponent implements OnInit {
       (response) => {
         const link = ['login'];
         this.router.navigate(link);
+        console.log('response level my friend');
       },
       (error) => {
         this.errorMessage = 'Cannot connect to server';
+        console.log('error level my friend');
+        console.log(this.signupForm.value);
         console.log(error);
       }
     );

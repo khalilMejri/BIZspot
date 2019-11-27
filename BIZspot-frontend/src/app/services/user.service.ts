@@ -73,9 +73,10 @@ export class UserService {
     let headers: HttpHeaders = new HttpHeaders();
     headers.append("No-Auth", "True");
 
-    return this.client.post(this.apiUrl, user, {
-      headers
-    });
+    return this.client.post<User>(this.apiUrl, user, 
+      {
+        headers
+      });
   }
 
   isLogged() {
