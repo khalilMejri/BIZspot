@@ -11,11 +11,14 @@
 			<div class="profile-avatar">
 
 			</div>
+			<div *ngIf="errorMessage" class="alert alert-danger">
+				{{errorMessage}}
+			</div>
 			<form [formGroup]="profileForm" class="profile-form" (submit)="onSubmit()">
-				<input type="text" class="signin-input" placeholder="First Name" formControlName="firstName">
-				<input type="text" class="signin-input" placeholder="Last Name" formControlName="lastName">
-				<input type="date" class="signin-input" placeholder="dd/mm/yyyy" formControlName="date">
-				<input type="password" class="signin-input" placeholder="Current password" formControlName="oldPassword">
+				<input type="text" class="signin-input" placeholder="First Name" formControlName="fname" value="{{currentUser?.fname}}">
+				<input type="text" class="signin-input" placeholder="Family Name" formControlName="lname" value="{{currentUser?.lname}}">
+				<input type="age" class="signin-input" placeholder="Age" formControlName="age" value="{{currentUser?.age}}">
+				<input type="text" class="signin-input" placeholder="Old password" formControlName="oldPassword">
 				<input type="password" class="signin-input" placeholder="New password" formControlName="newPassword">
 
 				<input type="submit" class="btn btn--green signup-button" value="Save Changes!">

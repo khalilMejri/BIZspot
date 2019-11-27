@@ -21,7 +21,10 @@ export class LoginComponent implements OnInit {
   constructor(private loginService: UserService, private router: Router) {
     this.user = {
       email: "",
-      password: ""
+      password: "",
+      fname: "",
+      lname: "",
+      age: ""
     };
   }
 
@@ -39,6 +42,7 @@ export class LoginComponent implements OnInit {
           localStorage.setItem("currentUser", user.fname + " " + user.lname);
           localStorage.setItem("role", user.role);
           localStorage.setItem("email", user.email);
+          localStorage.setItem("currentUserId", _loginToken.userId); // we need to store the id so that we can get it directly from localStorage to use getUserById
           const token = localStorage.getItem("token");
           if (token === "") {
             console.log("You cannot connect now! server unavailable");
