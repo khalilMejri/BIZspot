@@ -13,6 +13,9 @@ import { ProfileComponent } from "./profile/profile.component";
 import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { BusinessCreationComponent } from "./business-creation/business-creation.component";
 import { LogoutGuard } from './services/logout-guard';
+import { FeedComponent } from './feed/feed.component';
+import { SearchComponent } from './search/search.component';
+import { BusinessComponent } from './business/business.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -20,7 +23,10 @@ import { LogoutGuard } from './services/logout-guard';
     LoginComponent,
     SignupComponent,
     ProfileComponent,
-    BusinessCreationComponent
+    BusinessCreationComponent,
+    FeedComponent,
+    SearchComponent,
+    BusinessComponent
   ],
   imports: [
     BrowserModule,

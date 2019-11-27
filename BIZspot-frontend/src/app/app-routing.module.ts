@@ -7,12 +7,16 @@ import { SignupComponent } from "./signup/signup.component";
 import { ProfileComponent } from "./profile/profile.component";
 import { BusinessCreationComponent } from "./business-creation/business-creation.component";
 import { LogoutGuard } from './services/logout-guard';
+import { SearchComponent } from './search/search.component';
+import { FeedComponent } from './feed/feed.component';
 
 const routes: Routes = [
   { path: "", component: LandingComponent },
   { path: "login", component: LoginComponent, canActivate: [LogoutGuard] },
   { path: "signup", component: SignupComponent, canActivate: [LogoutGuard] },
   { path: "profile", component: ProfileComponent, canActivate: [AuthGuard] },
+  { path: "search", component: SearchComponent, canActivate: [AuthGuard] },
+  { path: "feed", component: FeedComponent, canActivate: [AuthGuard] },
   {
     path: "create",
     component: BusinessCreationComponent,
