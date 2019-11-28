@@ -9,6 +9,7 @@ import { BusinessCreationComponent } from "./business-creation/business-creation
 import { LogoutGuard } from './services/logout-guard';
 import { SearchComponent } from './search/search.component';
 import { FeedComponent } from './feed/feed.component';
+import { BusinessDetailsComponent } from './business-details/business-details.component';
 
 const routes: Routes = [
   { path: "", component: LandingComponent },
@@ -17,6 +18,7 @@ const routes: Routes = [
   { path: "profile", component: ProfileComponent, canActivate: [AuthGuard] },
   { path: "search", component: SearchComponent, canActivate: [AuthGuard] },
   { path: "feed", component: FeedComponent, canActivate: [AuthGuard] },
+  { path: "business/:id", component: BusinessDetailsComponent, canActivate: [AuthGuard] },
   {
     path: "create",
     component: BusinessCreationComponent,

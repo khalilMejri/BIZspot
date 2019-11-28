@@ -16,6 +16,7 @@ import { LogoutGuard } from './services/logout-guard';
 import { FeedComponent } from './feed/feed.component';
 import { SearchComponent } from './search/search.component';
 import { BusinessComponent } from './business/business.component';
+import { BusinessDetailsComponent } from './business-details/business-details.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,7 +27,8 @@ import { BusinessComponent } from './business/business.component';
     BusinessCreationComponent,
     FeedComponent,
     SearchComponent,
-    BusinessComponent
+    BusinessComponent,
+    BusinessDetailsComponent
   ],
   imports: [
     BrowserModule,
