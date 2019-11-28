@@ -31,13 +31,31 @@ export class SignupComponent implements OnInit {
 
     this.userService.signup(this.signupForm.value).subscribe(
       (response) => {
-        const link = ['login'];
-        this.router.navigate(link);
-        console.log('response level my friend');
+        console.log('response: ',response);
+        console.log('sign up completed, you will be logged in in a sec');
+        // as soon as a user signs up he'll be logged in directly
+        this.userService.login(this.signupForm.value).subscribe(
+          _loginToken => {
+            localStorage.setItem("token", _loginToken.id);
+            this.userService.getUserById(_loginToken.userId).subscribe(user => {
+              // authorization required !!
+              localStorage.setItem("currentUser", user.fname + " " + user.lname);
+              localStorage.setItem("role", user.role);
+              localStorage.setItem("email", user.email);
+              localStorage.setItem("currentUserId", _loginToken.userId); // we need to store the id so that we can get it directly from localStorage to use getUserById
+              sessionStorage.setItem("password", this.signupForm.value.password); // we need the password since we can't update a user later without a pwd in case he didn't change it
+              const token = localStorage.getItem("token");
+              if (token === "") {
+                console.log("You cannot connect now! server unavailable");
+              }
+              this.router.navigateByUrl("profile");
+            });
+          }
+        );
       },
       (error) => {
         this.errorMessage = 'Cannot connect to server';
-        console.log('error level my friend');
+        console.log('could not sign up');
         console.log(this.signupForm.value);
         console.log(error);
       }

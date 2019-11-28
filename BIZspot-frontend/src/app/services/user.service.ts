@@ -39,10 +39,10 @@ export class UserService {
     return this.client.post(this.apiUrl, user);
   }
 
-  updateUser(user: User) {
+  updateUser(user: User, id: string) {
     const headers = new Headers({ "Content-Type": "application/json" });
 
-    return this.client.put(this.apiUrl, user);
+    return this.client.post(this.apiUrl + `/${id}/replace`, user);
   }
 
   login(user: User) {

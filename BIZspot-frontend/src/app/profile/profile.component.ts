@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators} from '@angular/forms';
 import { UserService } from '../services/user.service';
 import { User } from '../models/user';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -20,13 +21,15 @@ export class ProfileComponent implements OnInit {
   errorMessage: string;
 
   constructor(
-    private userService: UserService
+    private userService: UserService,
+    private router: Router
   ) { }
 
   ngOnInit() {
     this.userService.getUserById(localStorage.getItem('currentUserId')).subscribe(
       (user) => {
         this.currentUser = user;
+        this.currentUser.password = sessionStorage.getItem("password");
       },
       (error) => {
         this.errorMessage = 'Cannot connect to server';
@@ -36,14 +39,18 @@ export class ProfileComponent implements OnInit {
     );
   }
   onSubmit(){
-    console.log("Profile changed ",this.profileForm.value);
+    // these tests are essential since if we won't change any field's value, it'll be an empty string
+    // even though we did initialize them
     if(this.profileForm.value.fname) this.currentUser.fname = this.profileForm.value.fname;
     if(this.profileForm.value.lname) this.currentUser.lname = this.profileForm.value.lname;
     if(this.profileForm.value.age) this.currentUser.age = this.profileForm.value.age;
+    if(this.profileForm.value.newPassword) this.currentUser.password = this.profileForm.value.newPassword;
 
-    this.userService.updateUser(this.currentUser).subscribe(
+    this.userService.updateUser(this.currentUser, localStorage.getItem("currentUserId")).subscribe(
       (user) => {
         console.log('updated user: \n', user);
+        const link = ['feed'];
+        this.router.navigate(link);
       },
       (error) => {
         console.log('no update, error');

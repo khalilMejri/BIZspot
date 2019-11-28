@@ -43,11 +43,12 @@ export class LoginComponent implements OnInit {
           localStorage.setItem("role", user.role);
           localStorage.setItem("email", user.email);
           localStorage.setItem("currentUserId", _loginToken.userId); // we need to store the id so that we can get it directly from localStorage to use getUserById
+          sessionStorage.setItem("password", this.loginForm.value.password); // we need the password since we can't update a user later without a pwd in case he didn't change it
           const token = localStorage.getItem("token");
           if (token === "") {
             console.log("You cannot connect now! server unavailable");
           }
-          this.router.navigateByUrl("profile");
+          this.router.navigateByUrl("feed");
         });
       },
       error => {
