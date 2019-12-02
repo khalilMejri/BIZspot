@@ -17,6 +17,7 @@ import { FeedComponent } from './feed/feed.component';
 import { SearchComponent } from './search/search.component';
 import { BusinessComponent } from './business/business.component';
 import { BusinessDetailsComponent } from './business-details/business-details.component';
+import { AgmCoreModule, GoogleMapsAPIWrapper } from '@agm/core';
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,7 +35,10 @@ import { BusinessDetailsComponent } from './business-details/business-details.co
     BrowserModule,
     ReactiveFormsModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyBRCcgt6Ct94G_vxqMTDJZHmyPvePv0dHE'
+    })
   ],
   providers: [
     AuthGuard,
@@ -45,7 +49,8 @@ import { BusinessDetailsComponent } from './business-details/business-details.co
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
       multi: true
-    }
+    },
+    GoogleMapsAPIWrapper
   ],
   bootstrap: [AppComponent]
 })

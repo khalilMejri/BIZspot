@@ -4,6 +4,7 @@ import { LoginToken } from "./../models/loginToken";
 import { User } from "./../models/user";
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
+import { LatLng } from '@agm/core';
 
 @Injectable({
   providedIn: "root"
@@ -87,4 +88,18 @@ export class UserService {
       return false;
     }
   }
+
+  getLocation(): LatLng {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition((position) => {
+        const latitude = position.coords.latitude;
+        const longitude = position.coords.longitude;
+        return {lat: latitude, lng: longitude};
+      });
+    } else {
+      console.log("No support for geolocation");
+      return null;
+    }
+  }
+
 }

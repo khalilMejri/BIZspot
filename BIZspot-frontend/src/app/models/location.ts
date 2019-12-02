@@ -1,7 +1,11 @@
 export interface Location {
-	id:string,
+	id?:string,
 	number?:number,
-	street: string,
-	city: string,
+	locality: string,
 	country: string,
+	postal_code: string,
+	state: string,
+	latitude?: number,
+	longitude?: number,
+	marker?: Marker
 }
