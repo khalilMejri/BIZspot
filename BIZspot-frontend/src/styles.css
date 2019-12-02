@@ -1574,3 +1574,87 @@ only screen and (hover: none) {
   padding-top: 1.5rem;
   display: block;
 }
+.business-page {
+  display: block;
+  width: 100vw;
+  height: 100vh; }
+  .business-page-picture {
+    max-height: 20vh;
+    max-width: 65vw;
+    display: block;
+    margin: 0 auto;
+    border-radius: 1rem;
+    overflow: hidden;
+    background-color: #252d2f; }
+    .business-page-picture > img {
+      height: auto;
+      width: 100%; }
+  .business-page-details {
+    padding: 2rem;
+    max-width: 60vw;
+    min-height: 20vh;
+    margin: 0 auto;
+    display: grid;
+    align-items: center;
+    grid-template-columns: 1fr 2fr 1fr;
+    grid-template-rows: 1fr; }
+  .business-page-data {
+    color: #000;
+    text-decoration-style: none;
+    list-style: none; }
+    .business-page-data > li {
+      list-style: none; }
+  .business-page-description {
+    color: #000; }
+  .business-page-actions {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around; }
+  .business-page-btn--main, .business-page-btn--main:active, .business-page-btn--main:visited, .business-page-btn--second, .business-page-btn--second:active, .business-page-btn--second:visited {
+    transition: all .2s;
+    border-radius: 8rem;
+    background-color: #5be89b;
+    color: #000;
+    text-align: center;
+    text-decoration: none;
+    padding: 0.5rem 1.5rem;
+    width: 10rem; }
+  .business-page-btn--main::after, .business-page-btn--second::after {
+    content: "";
+    display: inline-block;
+    height: 100%;
+    width: 100%;
+    border-radius: 10rem;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    transition: all .4s; }
+  .business-page-btn--main:hover, .business-page-btn--second:hover {
+    transform: translateY(-0.3rem);
+    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2); }
+    .business-page-btn--main:hover::after, .business-page-btn--second:hover::after {
+      transform: scaleX(1.4) scaleY(1.6);
+      opacity: 0; }
+  .business-page-btn--main:active, .business-page-btn--main:focus, .business-page-btn--second:active, .business-page-btn--second:focus {
+    outline: none;
+    transform: translateY(-0.1rem);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2); }
+  .business-page-btn--second, .business-page-btn--second:active, .business-page-btn--second:visited {
+    width: 7rem;
+    background-color: #2d3a71;
+    color: #fff; }
+  .business-page-map {
+    padding: 1rem;
+    min-height: 60vh;
+    max-width: 80vw;
+    border-radius: 1rem;
+    overflow: hidden;
+    display: block;
+    margin: 0 auto;
+    background-color: #5be89b; }
+    .business-page-map > img {
+      height: auto;
+      width: 100%; }

@@ -1,6 +1,6 @@
 <main class="creation">
 	<div class="row">
-		<form [formGroup]="businessCreationForm" (submit)="onSubmit()" >
+		<form [formGroup]="businessCreationForm" >
 		<div class="col-2-of-5 creation-left">
 				<input type="text" class="signin-input" formControlName="name" placeholder="Business name">
 				<select type="" class="signin-input" formControlName="category" placeholder="Choose category">
@@ -10,13 +10,15 @@
 					<option value="Fast food">Fast food </option>
 				</select>
 				<input type="text" class="signin-input" formControlName="description" placeholder="Business Decription">
-				<input type="text" class="signin-input" formControlName="number" placeholder="Phone number">
-				<input type="text" class="signin-input" formControlName="street" placeholder="Street name">
-				<input type="text" class="signin-input" formControlName="city" placeholder="City">
+				<input type="number" class="signin-input" formControlName="number" placeholder="Phone number">
 				<input type="text" class="signin-input" formControlName="country" placeholder="Country">
+				<input type="text" class="signin-input" formControlName="city" placeholder="City">
+				<input type="text" class="signin-input" formControlName="street" placeholder="Street name">
 			</div>
 			<div class="col-1-of-5 creation-mid">
-				<input type="submit" value="Create" class="btn btn--green">
+				<input type="button" (click)="onSubmit('silver')" value="Join Silver Plan" class="btn btn--green">
+				<input type="button" (click)="onSubmit('gold')" value="Join Gold Plan" class="btn btn--green">
+				<input type="button" (click)="onSubmit('platinum')" value="Join Platinum Plan" class="btn btn--green">
 			</div>
 		</form>
 		<div class="col-2-of-5 creation-right">

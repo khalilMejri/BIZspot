@@ -1,1 +1,41 @@
-<p>business works!</p>
+<div class="business">
+	<div class="business-box">
+
+		<div class="business-picture">
+			<img src="assets/img/business.jpg" alt="" >
+		</div>
+		<div class="business-data">
+			<h2 class="business-title">
+				Restaurant
+			</h2>
+			<p class="business-description">
+				Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+				tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+				quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+				consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse					
+			</p>
+			<a href="#" class="business-btn" *ngIf="showDetails" >Details</a>
+		</div>
+	</div>
+	<div *ngIf="isReviewsLoaded">
+		
+		<div class="review" >
+			<div class="review-header">
+				<div class="review-avatar"></div>
+				<h3 class="review-name"> Uncle joe</h3>
+				<div class="review-feedback">
+					<span class="review-star">&#9733;</span>
+					<span class="review-star">&#9733;</span>
+					<span class="review-star">&#9733;</span>
+					<span class="review-star">&#9734;</span>
+					<span class="review-star">&#9734;</span>
+				</div>
+			</div>
+			<p class="review-text">
+				Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+				tempor incididunt ut labore
+			</p>
+		</div>
+		<a href="" class="review-btn" *ngIf="checkReviews">&#17;</a>
+	</div>
+</div>
