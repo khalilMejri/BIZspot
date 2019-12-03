@@ -23,9 +23,7 @@
       "required": true
     },
     "openingHours": {
-      "type": [
-        "object"
-      ],
+      "type": ["object"],
       "required": true
     },
     "level": {
@@ -33,9 +31,11 @@
       "required": true
     },
     "members": {
-      "type": [
-        "object"
-      ],
+      "type": ["object"],
+      "required": true
+    },
+    "about": {
+      "type": "string",
       "required": true
     }
   },

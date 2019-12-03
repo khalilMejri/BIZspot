@@ -18,6 +18,9 @@
               <p class="signin-add"></p>
             </div>
           </div>
+          <!-- Notifications -->
+          <p-messages [(value)]="msgs"></p-messages>
+
           <form
             [formGroup]="loginForm"
             (submit)="onSubmit()"

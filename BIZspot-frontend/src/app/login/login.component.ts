@@ -1,3 +1,4 @@
+import { Message } from "primeng/api";
 import { Router } from "@angular/router";
 import { User } from "./../models/user";
 import { UserService } from "./../services/user.service";
@@ -17,6 +18,8 @@ export class LoginComponent implements OnInit {
   });
   user: User;
   _this;
+
+  msgs: Message[] = [];
 
   constructor(private loginService: UserService, private router: Router) {
     this.user = {
@@ -47,6 +50,11 @@ export class LoginComponent implements OnInit {
           const token = localStorage.getItem("token");
           if (token === "") {
             console.log("You cannot connect now! server unavailable");
+            this.msgs.push({
+              severity: "error",
+              summary: "Error Message",
+              detail: "You cannot connect now! server unavailable"
+            });
           }
           this.router.navigateByUrl("feed");
         });
@@ -57,8 +65,19 @@ export class LoginComponent implements OnInit {
           console.log(
             "Unrecognized user, You can check your email first or contact our support"
           );
+          this.msgs.push({
+            severity: "info",
+            summary: "Message",
+            detail:
+              "Unrecognized user, You can check your email first or contact our support"
+          });
         } else {
           console.log("A problem occurred, try again later");
+          this.msgs.push({
+            severity: "error",
+            summary: "Error Message",
+            detail: "A problem occurred, try again later"
+          });
         }
       }
     );

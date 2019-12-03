@@ -12,11 +12,17 @@ import { AppRoutingModule } from "./app-routing.module";
 import { ProfileComponent } from "./profile/profile.component";
 import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { BusinessCreationComponent } from "./business-creation/business-creation.component";
-import { LogoutGuard } from './services/logout-guard';
-import { FeedComponent } from './feed/feed.component';
-import { SearchComponent } from './search/search.component';
-import { BusinessComponent } from './business/business.component';
-import { BusinessDetailsComponent } from './business-details/business-details.component';
+import { LogoutGuard } from "./services/logout-guard";
+import { FeedComponent } from "./feed/feed.component";
+import { SearchComponent } from "./search/search.component";
+import { BusinessComponent } from "./business/business.component";
+import { BusinessDetailsComponent } from "./business-details/business-details.component";
+
+import { MessagesModule } from "primeng/messages";
+import { MessageModule } from "primeng/message";
+
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,7 +40,10 @@ import { BusinessDetailsComponent } from './business-details/business-details.co
     BrowserModule,
     ReactiveFormsModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    MessagesModule,
+    MessageModule,
+    BrowserAnimationsModule
   ],
   providers: [
     AuthGuard,
