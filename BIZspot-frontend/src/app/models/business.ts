@@ -1,5 +1,5 @@
 export interface Business {
-	id:string,
+	id?:string,
 	title: string,
 	status: string,
 	email: string,

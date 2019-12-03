@@ -2,8 +2,8 @@
 	<div class="row">
 		<form [formGroup]="businessCreationForm" >
 		<div class="col-2-of-5 creation-left">
-				<input type="text" class="signin-input" formControlName="name" placeholder="Business name">
-				<select type="" class="signin-input" formControlName="category" placeholder="Choose category">
+				<input type="text" class="signin-input" formControlName="title" placeholder="Business name">
+				<select type="" class="signin-input" formControlName="category" placeholder="Choose category" (change)="onChangeCategory($event)">
 					<option value="Tech">Tech</option>
 					<option value="Mechanical">Mechanical</option>
 					<option value="Doctor">Doctor</option>
@@ -11,9 +11,13 @@
 				</select>
 				<input type="text" class="signin-input" formControlName="description" placeholder="Business Decription">
 				<input type="number" class="signin-input" formControlName="number" placeholder="Phone number">
+				<input type="text" class="signin-input" formControlName="locality" placeholder="Locality">
 				<input type="text" class="signin-input" formControlName="country" placeholder="Country">
-				<input type="text" class="signin-input" formControlName="city" placeholder="City">
-				<input type="text" class="signin-input" formControlName="street" placeholder="Street name">
+				<input type="text" class="signin-input" formControlName="postal_code" placeholder="Postal Code">
+				<input type="text" class="signin-input" formControlName="state" placeholder="State">
+				<input type="email" class="signin-input" formControlName="email" placeholder="Email">
+				<input type="time" class="signin-input" formControlName="openingHour" placeholder="Opening Hour">
+				<input type="time" class="signin-input" formControlName="closingHour" placeholder="Closing Hour">
 			</div>
 			<div class="col-1-of-5 creation-mid">
 				<input type="button" (click)="onSubmit('silver')" value="Join Silver Plan" class="btn btn--green">

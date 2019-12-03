@@ -4,6 +4,9 @@ import { PaiementService } from '../services/paiement.service';
 
 import { environment } from '../../environments/environment';
 import { ActivatedRoute } from '@angular/router';
+import { BusinessService } from '../services/business.service';
+import { Location } from '../models/location';
+import { Business } from '../models/business';
 declare var Stripe;
 @Component({
   selector: 'app-business-creation',
@@ -19,50 +22,87 @@ export class BusinessCreationComponent implements OnInit {
   publicKey = "pk_test_SwjnCGmvTyeon0cnSCyguKaX00yCDpMTBP";
 
   businessCreationForm = new FormGroup({
-    name: new FormControl(''),
+    title: new FormControl(''),
     category: new FormControl(''),
     description: new FormControl(''),
     number: new FormControl(''),
-    street: new FormControl(''),
-    city: new FormControl(''),
+    locality: new FormControl(''),
     country: new FormControl(''),
-  })
-  constructor(private paiementService: PaiementService,private router:ActivatedRoute) { }
+    postal_code: new FormControl(''),
+    state: new FormControl(''),
+    email: new FormControl(''),
+    openingHour: new FormControl(''),
+    closingHour: new FormControl('')
+  });
+
+  location: Location;
+  newBusiness: Business;
+  categoryId: string;
+  selectedCategory: string;
+  constructor(
+              private paiementService: PaiementService,
+              private router:ActivatedRoute,
+              private businessService: BusinessService
+              ) { }
 
   ngOnInit() {
 
       
     var hasSessionId = this.router.snapshot.queryParamMap.has('session_id');
     console.log('this is a redirection ? ', hasSessionId);
+    console.log(this.selectedCategory);
   }
+
+  onChangeCategory($event) {
+    this.selectedCategory = $event.target.options[$event.target.options.selectedIndex].text;
+  }
+
   onSubmit(planName: string) {
-    var stripe = Stripe(this.publicKey);
-    var planId;
-    switch (planName) {
-      case 'silver':
-        planId = this.planIdsKeys.silverPlan
-        break;
-      case 'gold':
-        planId = this.planIdsKeys.goldPlan
-        break;
-      case 'platinum':
-        planId = this.planIdsKeys.platinumPlan
-        break;
-    }
-    console.log('user choice is ', planName);
-    const id = localStorage.getItem('currentUserId');
-    // here must load the paiement
-    console.log("current user id ", id)
-    console.log("Creating a business ", this.businessCreationForm.value);
-    this.paiementService.createPaiementSession(planId)
-      .subscribe(sessionId => {
-        stripe.redirectToCheckout({
-          sessionId
-        }).then((result) => {
-          // handling error of redirecting
-          console.log('problem in redirecting to the checkout page');
-          console.log(result)
-        });
-      })
+    this.location = {
+      "country": this.businessCreationForm.value.country,
+      "locality": this.businessCreationForm.value.locality,
+      "postal_code": this.businessCreationForm.value.postal_code,
+      "state": this.businessCreationForm.value.state 
+    };
+
+    // get chosen category id first
+    this.businessService.findCategory(this.selectedCategory).subscribe(
+      (category) => {
+        this.categoryId = category.id;
+        console.log("category id: ", this.categoryId);
+      },
+      (error) => {
+        console.log("error, couldn't get category id: ", error);
+      }
+    );
+    this.businessService.createBusinessLocation(this.location).subscribe(
+      (location) => {
+        console.log("location id: ", location.id);
+        // location created, we need to retrieve its id
+        this.newBusiness = {
+          "locationId": location.id,
+          "email": this.businessCreationForm.value.email,
+          "members": [{"id": localStorage.getItem('currentUserId')}],
+          "number": this.businessCreationForm.value.number,
+          "openingHours": [{ "openingHour": this.businessCreationForm.value.openingHour},{ "closingHour": this.businessCreationForm.value.closingHour}],
+          "title": this.businessCreationForm.value.title,
+          "status": "Unverified",
+          "categoryId": this.categoryId,
+          "level": 0
+        };
+        console.log(this.newBusiness);
+        this.businessService.createBusiness(this.newBusiness).subscribe(
+          (business) => {
+            console.log("Business Created: \n", business);
+          },
+          (error) => {
+            console.log("Couldn't create business: ", error);
+          }
+        )
+      },
+      (error) => {
+        console.log("couldn't create location : ", error);
+      }
+    );
   }
 }

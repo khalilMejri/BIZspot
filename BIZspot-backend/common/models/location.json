@@ -9,15 +9,19 @@
     "number": {
       "type": "number"
     },
-    "street": {
+    "postal_code": {
       "type": "string",
       "required": true
     },
-    "city": {
+    "locality": {
       "type": "string",
       "required": true
     },
     "country": {
+      "type": "string",
+      "required": true
+    },
+    "state": {
       "type": "string",
       "required": true
     }

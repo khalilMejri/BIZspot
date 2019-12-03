@@ -22,6 +22,7 @@ import { MessagesModule } from "primeng/messages";
 import { MessageModule } from "primeng/message";
 
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { AgmCoreModule, GoogleMapsAPIWrapper } from "@agm/core";
 
 @NgModule({
   declarations: [
@@ -43,7 +44,10 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
     HttpClientModule,
     MessagesModule,
     MessageModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    AgmCoreModule.forRoot({
+      apiKey: "AIzaSyBRCcgt6Ct94G_vxqMTDJZHmyPvePv0dHE"
+    })
   ],
   providers: [
     AuthGuard,
@@ -54,7 +58,8 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
       multi: true
-    }
+    },
+    GoogleMapsAPIWrapper
   ],
   bootstrap: [AppComponent]
 })
