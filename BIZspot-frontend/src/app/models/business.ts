@@ -8,5 +8,6 @@ export interface Business {
 	level: number,
 	members: Object[],
 	categoryId: string,
-	locationId: string
+	locationId: string,
+	about: string
 }

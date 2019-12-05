@@ -7,14 +7,20 @@
 					<option value="Tech">Tech</option>
 					<option value="Mechanical">Mechanical</option>
 					<option value="Doctor">Doctor</option>
-					<option value="Fast food">Fast food </option>
+					<option value="Fast food">Fast Food </option>
 				</select>
 				<input type="text" class="signin-input" formControlName="description" placeholder="Business Decription">
-				<input type="number" class="signin-input" formControlName="number" placeholder="Phone number">
+				<input type="text" name="test" class="signin-input" formControlName="number" placeholder="Phone number" value = "{{selectedCountry?.phone_code}}">
 				<input type="text" class="signin-input" formControlName="locality" placeholder="Locality">
-				<input type="text" class="signin-input" formControlName="country" placeholder="Country">
+				<!-- <input type="text" class="signin-input" formControlName="country" placeholder="Country"> -->
+				<select class="signin-input" formControlName="country" placeholder="Country" (change)="onChangeCountry($event)">
+					<option [value]="country.name" *ngFor="let country of this.countriesList"> {{country.name}}</option>
+				</select>
 				<input type="text" class="signin-input" formControlName="postal_code" placeholder="Postal Code">
-				<input type="text" class="signin-input" formControlName="state" placeholder="State">
+				<!-- <input type="text" class="signin-input" formControlName="state" placeholder="State"> -->
+				<select class="signin-input" formControlName="state" placeholder="State">
+					<option [value]="state" *ngFor="let state of selectedCountry?.states"> {{state}}</option>
+				</select>
 				<input type="email" class="signin-input" formControlName="email" placeholder="Email">
 				<input type="time" class="signin-input" formControlName="openingHour" placeholder="Opening Hour">
 				<input type="time" class="signin-input" formControlName="closingHour" placeholder="Closing Hour">
