@@ -37,6 +37,10 @@
     "about": {
       "type": "string",
       "required": true
+    },
+    "thumbnail": {
+      "type": "string",
+      "required": true
     }
   },
   "validations": [],

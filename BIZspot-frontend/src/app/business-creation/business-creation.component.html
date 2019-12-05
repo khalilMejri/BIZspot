@@ -12,12 +12,10 @@
 				<input type="text" class="signin-input" formControlName="description" placeholder="Business Decription">
 				<input type="text" name="test" class="signin-input" formControlName="number" placeholder="Phone number" value = "{{selectedCountry?.phone_code}}">
 				<input type="text" class="signin-input" formControlName="locality" placeholder="Locality">
-				<!-- <input type="text" class="signin-input" formControlName="country" placeholder="Country"> -->
 				<select class="signin-input" formControlName="country" placeholder="Country" (change)="onChangeCountry($event)">
 					<option [value]="country.name" *ngFor="let country of this.countriesList"> {{country.name}}</option>
 				</select>
 				<input type="text" class="signin-input" formControlName="postal_code" placeholder="Postal Code">
-				<!-- <input type="text" class="signin-input" formControlName="state" placeholder="State"> -->
 				<select class="signin-input" formControlName="state" placeholder="State">
 					<option [value]="state" *ngFor="let state of selectedCountry?.states"> {{state}}</option>
 				</select>
@@ -35,7 +33,9 @@
 			<div class="creation-box">
 				<div class="creation-image">
 				</div>
-				<input type="submit" value="Choose a picture" class="creation-btn">
+				<label for="file" class="creation-btn">Choose Thumbnail</label>
+				<input id="file" type="file" value="Choose a picture" class="creation-btn" style="visibility:hidden;" (change)="showPreviewImage($event)">
+				<img [src]="thumbnail_path" *ngIf="thumbnail_path" class="imgPlaceholder" height="200" width="200">
 			</div>
 		</div>
 	</div>

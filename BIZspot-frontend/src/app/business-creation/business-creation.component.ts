@@ -44,6 +44,8 @@ export class BusinessCreationComponent implements OnInit {
   selectedCountry;
   countriesList;
   strippedNumber: string;
+  thumbnail_path: string;
+
   constructor(
               private paiementService: PaiementService,
               private router:ActivatedRoute,
@@ -122,7 +124,8 @@ export class BusinessCreationComponent implements OnInit {
       "status": "Unverified",
       "categoryId": this.categoryId,
       "level": 0,
-      "about": this.businessCreationForm.value.description
+      "about": this.businessCreationForm.value.description,
+      "thumbnail": this.thumbnail_path
     };
   }
 
@@ -165,6 +168,16 @@ export class BusinessCreationComponent implements OnInit {
     );
   }
 
+  showPreviewImage(event: any) {
+    if (event.target.files && event.target.files[0]) {
+      var reader = new FileReader();
+      reader.onload = (event: any) => {
+        this.thumbnail_path = event.target.result;
+      }
+      reader.readAsDataURL(event.target.files[0]);
+    }
+  }
+
   onSubmit(planName: string) {
     // stripping all characters except '+' and digits from our phone number
     this.strippedNumber = this.businessCreationForm.get('number').value;
@@ -176,6 +189,8 @@ export class BusinessCreationComponent implements OnInit {
     {
       // store location which is our new biz' location
       this.storeLocation();
+      // we put a default biz image if the user didn't select one
+      if (this.thumbnail_path == undefined) this.thumbnail_path = "../assets/img/business.jpg";
       // now create the new location then create the new biz
       this.createLocationThenBusiness();
     }
