@@ -25,11 +25,10 @@ export class ProfileComponent implements OnInit {
     private router: Router
   ) { }
 
-  ngOnInit() {
+  getUserById() {
     this.userService.getUserById(localStorage.getItem('currentUserId')).subscribe(
       (user) => {
         this.currentUser = user;
-        this.currentUser.password = sessionStorage.getItem("password");
       },
       (error) => {
         this.errorMessage = 'Cannot connect to server';
@@ -38,14 +37,21 @@ export class ProfileComponent implements OnInit {
       }
     );
   }
-  onSubmit(){
+
+  ngOnInit() {
+    this.getUserById();
+  }
+
+  applyUpdateLocally() {
     // these tests are essential since if we won't change any field's value, it'll be an empty string
     // even though we did initialize them
-    if(this.profileForm.value.fname) this.currentUser.fname = this.profileForm.value.fname;
-    if(this.profileForm.value.lname) this.currentUser.lname = this.profileForm.value.lname;
-    if(this.profileForm.value.age) this.currentUser.age = this.profileForm.value.age;
-    if(this.profileForm.value.newPassword) this.currentUser.password = this.profileForm.value.newPassword;
+    if (this.profileForm.value.fname) this.currentUser.fname = this.profileForm.value.fname;
+    if (this.profileForm.value.lname) this.currentUser.lname = this.profileForm.value.lname;
+    if (this.profileForm.value.age) this.currentUser.age = this.profileForm.value.age;
+    if (this.profileForm.value.newPassword) this.currentUser.password = this.profileForm.value.newPassword;
+  }
 
+  updateUser() {
     this.userService.updateUser(this.currentUser, localStorage.getItem("currentUserId")).subscribe(
       (user) => {
         console.log('updated user: \n', user);
@@ -56,5 +62,10 @@ export class ProfileComponent implements OnInit {
         console.log('no update, error');
       }
     );
+  }
+
+  onSubmit(){
+    this.applyUpdateLocally();
+    this.updateUser();
   }
 }

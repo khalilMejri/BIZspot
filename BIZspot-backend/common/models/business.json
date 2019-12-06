@@ -19,7 +19,7 @@
       "required": true
     },
     "number": {
-      "type": "number",
+      "type": "string",
       "required": true
     },
     "openingHours": {

@@ -173,6 +173,7 @@ export class BusinessCreationComponent implements OnInit {
       var reader = new FileReader();
       reader.onload = (event: any) => {
         this.thumbnail_path = event.target.result;
+        console.log(this.thumbnail_path);
       }
       reader.readAsDataURL(event.target.files[0]);
     }

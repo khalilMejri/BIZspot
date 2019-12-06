@@ -16,15 +16,19 @@ export class BusinessService {
   getBusinesses(){
     return this.httpClient.get<Business[]>(this.apiUrl);
   }
+
   getBusinessById(id:string){
     return this.httpClient.get<Business>(`${this.apiUrl}/${id}`);
   }
+
   getBusinessReviews(id:string){
     return this.httpClient.get<Review[]>(`${this.apiUrl}/${id}/reviews`);
   }
+
   createBusiness(business:Business){
     return this.httpClient.post<Business>(`${this.apiUrl}`, business);
   }
+
   updateBusiness(id:string,business:Business){
     return this.httpClient.put<Business>(`${this.apiUrl}/${id}`,business);
   }
@@ -39,5 +43,9 @@ export class BusinessService {
 
   findCategory(name: string) {
     return this.httpClient.get<Category>(`${this.api}/categories/findOne?filter[where][name]=${name}`);
+  }
+
+  getBusinessCategory(business: Business) {
+    return this.httpClient.get<Category>(`${this.api}/categories/${business.categoryId}`);
   }
 }

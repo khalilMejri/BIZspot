@@ -3,7 +3,7 @@ export interface Business {
 	title: string,
 	status: string,
 	email: string,
-	number: number,
+	number: string,
 	openingHours: Object[],
 	level: number,
 	members: Object[],

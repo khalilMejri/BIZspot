@@ -43,7 +43,7 @@ export class UserService {
   updateUser(user: User, id: string) {
     const headers = new Headers({ "Content-Type": "application/json" });
 
-    return this.client.post(this.apiUrl + `/${id}/replace`, user);
+    return this.client.patch(this.apiUrl + `/${id}`, user);
   }
 
   login(user: User) {
@@ -66,6 +66,11 @@ export class UserService {
     //   null
     // );
     localStorage.removeItem('token');
+    localStorage.removeItem('currentUserId');
+    localStorage.removeItem('currentUser');
+    localStorage.removeItem('email');
+    localStorage.removeItem('role');
+    // localStorage.clear();
     const link = ['login'];
     this.router.navigate(link);
   }

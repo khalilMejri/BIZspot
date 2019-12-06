@@ -1,20 +1,20 @@
 <main class="business-page">
 	<div class="business-page-picture">
-		<img src="assets/img/coffeeshop.jpg" alt="">
+		<img *ngIf="this.business && this.business.thumbnail" [src]="this.business?.thumbnail" alt="">
 	</div>
 	<div class="business-page-details">
 		<ul class="business-page-data">
-			<li>Name</li>
-			<li>Type </li>
-			<li>Address</li>
-			<li>Number</li>
+			<li *ngIf="this.business">Title: {{this.business?.title}}</li>
+			<li *ngIf="this.category">Category: {{this.category?.name}} </li>
+			<li *ngIf="this.location">Country: {{this.location?.country}}</li>
+			<li *ngIf="this.location">State: {{this.location?.state}}</li>
+			<li *ngIf="this.location">Locality: {{this.location?.locality}}</li>
+			<li *ngIf="this.location">Street Number: {{this.location?.number}}</li>
+			<li *ngIf="this.location">Postal Code: {{this.location?.postal_code}}</li>
+			<li *ngIf="this.business">Phone Number: {{this.business?.number}}</li>
 		</ul>
-		<p class="business-page-description">
-				Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-
-				quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-				consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-				
+		<p  *ngIf="this.business" class="business-page-description">
+			About Us: {{this.business?.about}}				
 		</p>
 		<div class="business-page-actions">
 			<a  class="business-page-btn--main" (click)="onSubscribe()">Subscribe</a>
