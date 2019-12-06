@@ -4,6 +4,8 @@ import { BusinessService } from '../services/business.service';
 import { Business } from '../models/business';
 import { Location } from '../models/location';
 import { Category } from '../models/category';
+import { UserService } from '../services/user.service';
+import { Subscription } from '../models/subscription';
 @Component({
   selector: 'app-business-details',
   templateUrl: './business-details.component.html',
@@ -13,12 +15,16 @@ export class BusinessDetailsComponent implements OnInit {
 
   constructor(
     private activatedRoute:ActivatedRoute,
-    private businessService: BusinessService
+    private businessService: BusinessService,
+    private usersService: UserService
     ) { }
   businessId:string;
   business: Business;
   location: Location;
   category: Category;
+  subscription: Subscription;
+  isSubscribed: boolean;
+  currentSubscriptionId: string;
 
   getBusinessById(id: string) {
     this.businessService.getBusinessById(this.businessId).subscribe(
@@ -58,10 +64,57 @@ export class BusinessDetailsComponent implements OnInit {
   ngOnInit() {
     this.businessId = this.activatedRoute.snapshot.paramMap.get('id');
     this.getBusinessById(this.businessId);
+    this.isUserSubscribed();
   }
-  onSubscribe(){
-    console.log("Subscribed to: ",this.businessId);
+
+  prepareSubscription() {
+    this.subscription = {
+      "businessId": this.businessId,
+      "userId": localStorage.getItem('currentUserId'),
+      "created": new Date(),
+      "type": "normal",
+      "view_notify": new Date()
+    }
   }
+
+  onSubscribe() {
+    this.prepareSubscription();
+    this.usersService.createSubscription(this.subscription).subscribe(
+      (subscription) => {
+        console.log("Subscription created successfully: ", subscription);
+        this.isSubscribed = true;
+      },
+      (error) => {
+        console.log("Couldn't create the subscription! ", error);
+      }
+    );
+  }
+
+  onUnsubscribe() {
+    this.usersService.deleteSubscription(this.currentSubscriptionId).subscribe(
+      (success) => {
+        console.log("Subscription deleted!");
+        this.isSubscribed = false;
+      },
+      (error) => {
+        console.log("Couldn't delete subscription!");
+      }
+    );
+  }
+ 
+  isUserSubscribed() {
+    this.usersService.isSubscribed(localStorage.getItem('currentUserId'),this.businessId).subscribe(
+      (subscription) => {
+        console.log("You're subscribed to this business, id = ", subscription.id);
+        this.isSubscribed = true;
+        this.currentSubscriptionId = subscription.id;
+      },
+      (error) => {
+        this.isSubscribed = false;
+      }
+    );
+  }
+
   onReport(){
     console.log("Reported ",this.businessId);
   }

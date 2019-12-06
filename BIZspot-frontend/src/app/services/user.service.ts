@@ -5,12 +5,14 @@ import { User } from "./../models/user";
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { LatLng } from '@agm/core';
+import { Subscription } from '../models/subscription';
 
 @Injectable({
   providedIn: "root"
 })
 export class UserService {
   private apiUrl = "http://localhost:3000/api/users";
+  private api = "http://localhost:3000/api"
 
   constructor(
     private client: HttpClient,
@@ -105,6 +107,18 @@ export class UserService {
       console.log("No support for geolocation");
       return null;
     }
+  }
+
+  createSubscription(subscription: Subscription) {
+    return this.client.post<Subscription>(this.api + "/subscriptions", subscription);
+  }
+
+  deleteSubscription(subscriptionId: string) {
+    return this.client.delete(this.api + "/subscriptions/" + subscriptionId);
+  }
+
+  isSubscribed(userId: string, businessId: string) {
+    return this.client.get<Subscription>(`${this.api}/subscriptions/findOne?filter[where][and][0][userId]=${userId}&filter[where][and][1][businessId]=${businessId}`);
   }
 
 }

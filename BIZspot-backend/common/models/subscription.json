@@ -17,6 +17,14 @@
     "view_notify": {
       "type": "date",
       "required": true
+    },
+    "userId": {
+      "type": "string",
+      "required": true
+    },
+    "businessId": {
+      "type": "string",
+      "required": true
     }
   },
   "validations": [],

@@ -17,8 +17,9 @@
 			About Us: {{this.business?.about}}				
 		</p>
 		<div class="business-page-actions">
-			<a  class="business-page-btn--main" (click)="onSubscribe()">Subscribe</a>
-			<a  class="business-page-btn--second" (click)="onReport()">Report</a>
+			<a *ngIf="!isSubscribed" class="business-page-btn--main" (click)="onSubscribe()">Subscribe</a>
+			<a *ngIf="isSubscribed" class="business-page-btn--main" (click)="onUnsubscribe()">Unsubscribe</a>
+			<a class="business-page-btn--second" (click)="onReport()">Report</a>
 		</div>
 	</div>
 	<div class="business-page-map">
