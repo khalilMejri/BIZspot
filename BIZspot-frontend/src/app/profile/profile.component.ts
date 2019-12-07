@@ -16,6 +16,13 @@ export class ProfileComponent implements OnInit {
     oldPassword: new FormControl(''),
     newPassword: new FormControl(''),
   })
+  settingsForm = new FormGroup({
+    theme:new FormControl(''),
+    font:new FormControl(''),
+    fontSize:new FormControl(''),
+    language:new FormControl(''),
+    
+  })
 
   currentUser: User;
   errorMessage: string;
@@ -67,5 +74,9 @@ export class ProfileComponent implements OnInit {
   onSubmit(){
     this.applyUpdateLocally();
     this.updateUser();
+  }
+
+  onSettingSubmit(){
+    console.log(this.settingsForm.value);
   }
 }

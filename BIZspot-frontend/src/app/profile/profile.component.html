@@ -1,34 +1,83 @@
 <main class="profile">
 
-	<div class="row">
-		<div class="col-1-of-4 profile-left">
+  <div class="row">
+    <div class="col-1-of-4 profile-left">
+		<a routerLink="/subs">
+
 			<div class="profile-btn-box">
 				<div class="profile-btn"></div>
 				Subscription
 			</div>
-		</div>
-		<div class="col-2-of-4 profile-mid">
-			<div class="profile-avatar">
+		</a>
+    </div>
+    <div class="col-2-of-4 profile-mid">
+      <div class="profile-avatar">
 
-			</div>
-			<div *ngIf="errorMessage" class="alert alert-danger">
-				{{errorMessage}}
-			</div>
-			<form [formGroup]="profileForm" class="profile-form" (submit)="onSubmit()">
-				<input type="text" class="signin-input" placeholder="First Name" formControlName="fname" value="{{currentUser?.fname}}">
-				<input type="text" class="signin-input" placeholder="Family Name" formControlName="lname" value="{{currentUser?.lname}}">
-				<input type="age" class="signin-input" placeholder="Age" formControlName="age" value="{{currentUser?.age}}">
-				<input type="password" class="signin-input" placeholder="Old password" formControlName="oldPassword" value="{{currentUser?.password}}">
-				<input type="password" class="signin-input" placeholder="New password" formControlName="newPassword">
+      </div>
+      <div *ngIf="errorMessage" class="alert alert-danger">
+        {{errorMessage}}
+      </div>
+      <form [formGroup]="profileForm" class="profile-form" (submit)="onSubmit()">
+        <input type="text" class="signin-input" placeholder="First Name" formControlName="fname" value="{{currentUser?.fname}}">
+        <input type="text" class="signin-input" placeholder="Family Name" formControlName="lname" value="{{currentUser?.lname}}">
+        <input type="age" class="signin-input" placeholder="Age" formControlName="age" value="{{currentUser?.age}}">
+        <input type="password" class="signin-input" placeholder="Old password" formControlName="oldPassword" value="{{currentUser?.password}}">
+        <input type="password" class="signin-input" placeholder="New password" formControlName="newPassword">
 
-				<input type="submit" class="btn btn--green signup-button" value="Save Changes!">
-			</form>
-		</div>
-		<div class="col-1-of-4 profile-right">
+        <input type="submit" class="btn btn--green signup-button" value="Save Changes!">
+      </form>
+    </div>
+    <div class="col-1-of-4 profile-right">
+		<a href="/profile#popup" >
+
 			<div class="profile-btn-box">
 				<div class="profile-btn"></div>
 				Settings
 			</div>
-		</div>
-	</div>
+		</a>
+    </div>
+  </div>
 </main>
+<!-- popup for the settings -->
+<div class="popup" id="popup">
+  <div class="popup__content">
+    <a href="/profile" class="popup__close">&times;</a>
+
+
+    <form [formGroup]="settingsForm" class="settings__form" (submit)="onSettingSubmit()">
+      <input formGroupName="theme" type="text" placeholder="Theme" class="search-input">
+      <input formGroupName="font" type="text" value="" placeholder="Font" class="search-input">
+      <input formGroupName="fontSize" type="text" value="" placeholder="Font Size" class="search-input">
+
+      <div class="settings__radio">
+        <div class="settings__radio-group">
+
+          <input fromControlName="language" id="english" type="radio" class="settings__radio-input" name="size">
+          <label for="english" class="settings__radio-label">
+            <span class="settings__radio-button"></span>
+            English
+          </label>
+        </div>
+        <div class="settings__radio-group">
+
+          <input fromControlName="language" id="french" type="radio" class="settings__radio-input" name="size">
+          <label for="french" class="settings__radio-label">
+            <span class="settings__radio-button"></span>
+            French
+          </label>
+        </div>
+      </div>
+
+
+      <div class="setting__form-actions">
+
+        <input type="submit" value="Save" class="search-btn">
+        <input type="reset" value="reset" class="search-btn search-btn--notif">
+
+      </div>
+    </form>
+
+
+
+  </div>
+</div>

@@ -13,6 +13,12 @@ export class SearchComponent implements OnInit {
     stars: new FormControl(''),
     reviews: new FormControl(''),
   })
+  locationForm = new FormGroup({
+    number: new FormControl(''),
+    street: new FormControl(''),
+    city: new FormControl(''),
+    country: new FormControl(''),
+  })
   constructor() { }
 
   ngOnInit() {
@@ -20,5 +26,7 @@ export class SearchComponent implements OnInit {
   onSearch(){
     console.log("This criteria was selected ",this.searchForm.value);
   }
-
+  onLocationSubmit(){
+    console.log(this.locationForm.value);
+  }
 }

@@ -7,8 +7,7 @@
 			<input type="text" value="" placeholder="Reviews" class="search-input" formControlName="reviews" >
 			<div class="search-form-actions">
 
-				<input type="button" value="Choose location" class="search-btn search-btn--stroked">
-				<input type="submit" value="Search" class="search-btn">
+				<a href="/search#popup"  class="search-btn search-btn--stroked">Choose location</a>				<input type="submit" value="Search" class="search-btn">
 			</div>
 		</form>
 	</div>
@@ -216,3 +215,29 @@
 		</div>
 	</div>
 </main>
+<!-- The popup for getting the specified location -->
+<div class="popup" id="popup">
+	<a href="/search" class="popup__close">&times;</a>
+	<div class="popup__content">
+
+
+		<form class="popup__form" [formGroup]="locationForm" (submit)="onLocationSubmit()">
+			<input formControlName="number" type="text" placeholder="Number" class="search-input">
+			<input formControlName="street" type="text" value="" placeholder="Street Name" class="search-input">
+			<input formControlName="city" type="text" value="" placeholder="City" class="search-input">
+			<input formControlName="country" type="text" value="" placeholder="Country" class="search-input">
+			<!--<input type="text" value="" placeholder="Search address" class="search-input search-input--secondary">-->
+			<div class="popup__form-actions">
+
+				<input type="button" value="Search" class="search-btn search-btn--stroked">
+				<input type="button" value="Accept Location" class="search-btn">
+				
+			</div>
+		</form>
+
+
+		<div class="business-page-map">
+
+		</div>
+	</div>
+</div>

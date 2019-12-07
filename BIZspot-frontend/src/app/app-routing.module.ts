@@ -11,6 +11,7 @@ import { SearchComponent } from './search/search.component';
 import { FeedComponent } from './feed/feed.component';
 import { BusinessDetailsComponent } from './business-details/business-details.component';
 import { BusinessComponent } from './business/business.component';
+import { SubscriptionsListComponent } from './subscriptions-list/subscriptions-list.component';
 
 const routes: Routes = [
   { path: "", component: LandingComponent },
@@ -19,6 +20,7 @@ const routes: Routes = [
   { path: "profile", component: ProfileComponent, canActivate: [AuthGuard] },
   { path: "search", component: SearchComponent, canActivate: [AuthGuard] },
   { path: "feed", component: FeedComponent, canActivate: [AuthGuard] },
+  { path: "subs", component: SubscriptionsListComponent, canActivate: [AuthGuard] },
   { path: "business/:id", component: BusinessDetailsComponent, canActivate: [AuthGuard] },
   { path: "biz", component: BusinessComponent },
   {

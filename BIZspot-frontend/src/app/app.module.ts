@@ -23,6 +23,8 @@ import { MessageModule } from "primeng/message";
 
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { AgmCoreModule, GoogleMapsAPIWrapper } from "@agm/core";
+import { SubscriptionComponent } from './subscription/subscription.component';
+import { SubscriptionsListComponent } from './subscriptions-list/subscriptions-list.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +37,9 @@ import { AgmCoreModule, GoogleMapsAPIWrapper } from "@agm/core";
     FeedComponent,
     SearchComponent,
     BusinessComponent,
-    BusinessDetailsComponent
+    BusinessDetailsComponent,
+    SubscriptionComponent,
+    SubscriptionsListComponent
   ],
   imports: [
     BrowserModule,
