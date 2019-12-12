@@ -120,5 +120,9 @@ export class UserService {
   isSubscribed(userId: string, businessId: string) {
     return this.client.get<Subscription>(`${this.api}/subscriptions/findOne?filter[where][and][0][userId]=${userId}&filter[where][and][1][businessId]=${businessId}`);
   }
+  
+  getSubscriptions(userId: string) {
+    return this.client.get<Subscription[]>(`${this.api}/subscriptions?filter[where][userId]=${userId}`);
+  }
 
 }

@@ -1,12 +1,24 @@
-<div class="subscription">
+<div *ngIf="this.location" class="subscription">
 	<div class="subscription-image">
-		<img src="assets/img/business.jpg" alt="">
+		<img *ngIf="this.business.thumbnail" [src]="this.business.thumbnail" alt="">
 	</div>
 	<ul class="subscription-data">
-		<li>Business Name</li>
-		<li>Address</li>
-		<li>Phone</li>
-		<li>Email</li>
+		<li>{{this.business.title}}</li>
+		<li *ngIf="this.location.number">
+			{{this.location.country}}, 
+			{{this.location.state}}, 
+			{{this.location.locality}}, 
+			{{this.location.number}}, 
+			{{this.location.postal_code}}
+		</li>
+		<li *ngIf="!this.location.number">
+			{{this.location.country}}, 
+			{{this.location.state}}, 
+			{{this.location.locality}},
+			{{this.location.postal_code}}
+		</li>
+		<li>{{this.business.number}}</li>
+		<li>{{this.business.email}}</li>
 
 	</ul>
 	<div class="subscription-box">
@@ -20,8 +32,8 @@
 		<div class="subscription-actions">
 
 
-			<a href="" class="search-btn">Details</a>
-			<a href="" class="search-btn search-btn-small search-btn--danger">X</a>
+			<a (click)="onDetails()" class="search-btn">Details</a>
+			<a (click)="onUnsubscribe()" class="search-btn search-btn-small search-btn--danger">X</a>
 
 		</div>
 	</div>

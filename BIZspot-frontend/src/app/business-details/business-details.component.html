@@ -1,19 +1,19 @@
-<main class="business-page">
+<main *ngIf="this.business && this.location && this.category" class="business-page">
 	<div class="business-page-picture">
-		<img *ngIf="this.business && this.business.thumbnail" [src]="this.business?.thumbnail" alt="">
+		<img *ngIf="this.business.thumbnail" [src]="this.business?.thumbnail" alt="">
 	</div>
 	<div class="business-page-details">
 		<ul class="business-page-data">
-			<li *ngIf="this.business">Title: {{this.business?.title}}</li>
-			<li *ngIf="this.category">Category: {{this.category?.name}} </li>
-			<li *ngIf="this.location">Country: {{this.location?.country}}</li>
-			<li *ngIf="this.location">State: {{this.location?.state}}</li>
-			<li *ngIf="this.location">Locality: {{this.location?.locality}}</li>
-			<li *ngIf="this.location">Street Number: {{this.location?.number}}</li>
-			<li *ngIf="this.location">Postal Code: {{this.location?.postal_code}}</li>
-			<li *ngIf="this.business">Phone Number: {{this.business?.number}}</li>
+			<li>Title: {{this.business?.title}}</li>
+			<li>Category: {{this.category?.name}} </li>
+			<li>Country: {{this.location?.country}}</li>
+			<li>State: {{this.location?.state}}</li>
+			<li>Locality: {{this.location?.locality}}</li>
+			<li>Street Number: {{this.location?.number}}</li>
+			<li>Postal Code: {{this.location?.postal_code}}</li>
+			<li>Phone Number: {{this.business?.number}}</li>
 		</ul>
-		<p  *ngIf="this.business" class="business-page-description">
+		<p class="business-page-description">
 			About Us: {{this.business?.about}}				
 		</p>
 		<div class="business-page-actions">
