@@ -25,6 +25,9 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { AgmCoreModule, GoogleMapsAPIWrapper } from "@agm/core";
 import { SubscriptionComponent } from './subscription/subscription.component';
 import { SubscriptionsListComponent } from './subscriptions-list/subscriptions-list.component';
+import { ReviewComponent } from './review/review.component';
+import { ReviewListComponent } from './review-list/review-list.component';
+import { NavbarComponent } from './navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +42,10 @@ import { SubscriptionsListComponent } from './subscriptions-list/subscriptions-l
     BusinessComponent,
     BusinessDetailsComponent,
     SubscriptionComponent,
-    SubscriptionsListComponent
+    SubscriptionsListComponent,
+    ReviewComponent,
+    ReviewListComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,

@@ -19,23 +19,7 @@
 	</div>
 	<div *ngIf="isReviewsLoaded">
 		
-		<div class="review" >
-			<div class="review-header">
-				<div class="review-avatar"></div>
-				<h3 class="review-name"> Uncle joe</h3>
-				<div class="review-feedback">
-					<span class="review-star">&#9733;</span>
-					<span class="review-star">&#9733;</span>
-					<span class="review-star">&#9733;</span>
-					<span class="review-star">&#9734;</span>
-					<span class="review-star">&#9734;</span>
-				</div>
-			</div>
-			<p class="review-text">
-				Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-				tempor incididunt ut labore
-			</p>
-		</div>
+		<app-review></app-review>
 		<a href="" class="review-btn" *ngIf="checkReviews">&#17;</a>
 	</div>
 </div>

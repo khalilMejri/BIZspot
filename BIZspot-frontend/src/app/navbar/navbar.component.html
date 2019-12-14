@@ -1,0 +1,61 @@
+<div class="navigation" *ngIf="!userService.isLogged()">
+
+  <div class="header__logo-box">
+		<a routerLink='/'>
+			<img src="assets/img/second_colored.png" alt="Logo" class="header__logo">
+		</a>
+  </div>
+  <div class="navigation__nav">
+    <ul class="navigation__list">
+      <li class="navigation__item">
+        <a href="#top" class="navigation__link">Top</a>
+      </li>
+      <li class="navigation__item">
+        <a href="#story" class="navigation__link">Story</a>
+      </li>
+      <li class="navigation__item">
+        <a href="#pricing" class="navigation__link">Pricing</a>
+      </li>
+      <li class="navigation__item">
+        <a href="#contact" class="navigation__link">Contact</a>
+      </li>
+      <li *ngIf="!userService.isLogged()" class="navigation__item">
+        <a routerLink='/login' class="btn btn--green btn--animated">Log in</a>
+      </li>
+      
+    </ul>
+
+  </div>
+</div>
+
+<div class="navigation" *ngIf="userService.isLogged()">
+
+  <div class="header__logo-box">
+	  <a routerLink='/'>
+		<img src="assets/img/icon_colored.png" alt="Logo" class="header__logo">
+	</a>
+  </div>
+  <div class="navigation__nav ">
+    <ul class="navigation__list ">
+      <li class="navigation__item">
+        <a routerLink='/search' class="navigation__link">
+          <i class="fas fa-globe-africa"></i>
+        </a>
+      </li>
+      <li class="navigation__item">
+        <a routerLink='/feed' class="navigation__link">
+          <i class="fas fa-rss"></i>
+        </a>
+      </li>
+      <li class="navigation__item">
+        <a routerLink='/profile' class="navigation__link">
+          <i class="fas fa-user"></i>
+        </a>
+      </li>
+
+      <li class="navigation__item">
+        <a class="btn btn--green btn--animated" (click)="userService.logout()">Log out</a>
+      </li>
+    </ul>
+  </div>
+</div>

@@ -9,34 +9,7 @@
 	</head>
 
 	<body>
-		<div class="navigation">
-
-			<div class="header__logo-box">
-				<img src="assets/img/second_colored.png" alt="Logo" class="header__logo">
-			</div>
-			<div class="navigation__nav">
-				<ul class="navigation__list">
-					<li class="navigation__item">
-						<a href="#top" class="navigation__link">Top</a>
-					</li>
-					<li class="navigation__item">
-						<a href="#story" class="navigation__link">Story</a>
-					</li>
-					<li class="navigation__item">
-						<a href="#pricing" class="navigation__link">Pricing</a>
-					</li>
-					<li class="navigation__item">
-						<a href="#contact" class="navigation__link">Contact</a>
-					</li>
-					<li *ngIf="!isLogged()" class="navigation__item">
-						<a routerLink='/login' class="btn btn--green btn--animated">Log in</a>
-					</li>
-					<li *ngIf="isLogged()" class="navigation__item">
-						<a class="btn btn--green btn--animated" (click)="logout()">Log out</a>
-					</li>
-				</ul>
-			</div>
-		</div>
+		
 		<header class="header">
 			<div class="bg-video">
 				<video class="bg-video__content" autoplay muted loop>

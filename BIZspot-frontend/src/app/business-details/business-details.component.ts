@@ -6,6 +6,7 @@ import { Location } from '../models/location';
 import { Category } from '../models/category';
 import { UserService } from '../services/user.service';
 import { Subscription } from '../models/subscription';
+import { FormGroup,FormControl } from '@angular/forms';
 @Component({
   selector: 'app-business-details',
   templateUrl: './business-details.component.html',
@@ -25,7 +26,9 @@ export class BusinessDetailsComponent implements OnInit {
   subscription: Subscription;
   isSubscribed: boolean;
   currentSubscriptionId: string;
-
+  reviewForm= new FormGroup({
+    "review":new FormControl('')
+  })
   getBusinessById(id: string) {
     this.businessService.getBusinessById(this.businessId).subscribe(
       (business) => {
@@ -76,7 +79,9 @@ export class BusinessDetailsComponent implements OnInit {
       "view_notify": new Date()
     }
   }
-
+  onReviewSubmit(){
+    console.log("review submited",this.reviewForm.value)
+  }
   onSubscribe() {
     this.prepareSubscription();
     this.usersService.createSubscription(this.subscription).subscribe(
