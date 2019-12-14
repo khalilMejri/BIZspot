@@ -36,9 +36,12 @@
       <span class="review-star">&#9734;</span>
       <span class="review-star">&#9734;</span>
     </div>
-    <form class="business-page-review-form" [formGroup]="reviewForm">
+    <form 
+      class="business-page-review-form" 
+      [formGroup]="reviewForm"
+      (submit)="onReviewSubmit()">
       <input formControlName="review" type="text" name="review" placeholder="What's on your mind?">
     </form>
   </div>
-  <app-review-list></app-review-list>
+  <app-review-list *ngIf="this.reviews" [reviews]="this.reviews"></app-review-list>
 </main>

@@ -4,4 +4,6 @@ export interface Review {
 	lastEdited:Date,
 	rating:number,
 	userId:string,
+	businessId: string,
+	id?: string,
 }

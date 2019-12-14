@@ -1,7 +1,7 @@
-<div class="review" >
+<div class="review" *ngIf="this.author && this.review && !this.deleted">
 	<div class="review-header">
 		<div class="review-avatar"></div>
-		<h3 class="review-name"> Uncle joe</h3>
+		<h3 class="review-name"> {{this.author.fname | titlecase}} {{this.author.lname | titlecase}} </h3>
 		<div class="review-feedback">
 			<span class="review-star">&#9733;</span>
 			<span class="review-star">&#9733;</span>
@@ -11,7 +11,7 @@
 		</div>
 	</div>
 	<p class="review-text">
-		Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-		tempor incididunt ut labore
+		{{this.review.content}}
 	</p>
+	<button class="btn-danger" *ngIf="this.isAllowedToDelete" (click)="deleteReview()">X</button>
 </div>

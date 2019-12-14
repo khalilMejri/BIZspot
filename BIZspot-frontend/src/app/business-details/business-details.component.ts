@@ -7,6 +7,8 @@ import { Category } from '../models/category';
 import { UserService } from '../services/user.service';
 import { Subscription } from '../models/subscription';
 import { FormGroup,FormControl } from '@angular/forms';
+import { Review } from '../models/review';
+import { ReviewService } from '../services/review.service';
 @Component({
   selector: 'app-business-details',
   templateUrl: './business-details.component.html',
@@ -17,7 +19,8 @@ export class BusinessDetailsComponent implements OnInit {
   constructor(
     private activatedRoute:ActivatedRoute,
     private businessService: BusinessService,
-    private usersService: UserService
+    private usersService: UserService,
+    private reviewService: ReviewService
     ) { }
   businessId:string;
   business: Business;
@@ -26,15 +29,19 @@ export class BusinessDetailsComponent implements OnInit {
   subscription: Subscription;
   isSubscribed: boolean;
   currentSubscriptionId: string;
+  reviews: Review[] = null;
+  newReview: Review;
   reviewForm= new FormGroup({
-    "review":new FormControl('')
-  })
+    "review": new FormControl('')
+  });
+
   getBusinessById(id: string) {
     this.businessService.getBusinessById(this.businessId).subscribe(
       (business) => {
         this.business = business;
         this.getBusinessLocation(this.business);
         this.getBusinessCategory(this.business);
+        this.getBusinessReviews(id);
       },
       (error) => {
         console.log("Couldn't get business, please verify the entered id!\n", error);
@@ -64,10 +71,23 @@ export class BusinessDetailsComponent implements OnInit {
     )
   }
 
+  getBusinessReviews(businessId: string) {
+    this.businessService.getBusinessReviews(businessId).subscribe(
+      (reviews) => {
+        this.reviews = reviews;
+        console.log(this.reviews);
+      },
+      (error) => {
+        console.log("Couldn't get business reviews! \n", error);
+      }
+    );
+  }
+
   ngOnInit() {
     this.businessId = this.activatedRoute.snapshot.paramMap.get('id');
     this.getBusinessById(this.businessId);
     this.isUserSubscribed();
+    //this.getBusinessReviews(this.businessId);
   }
 
   prepareSubscription() {
@@ -79,9 +99,7 @@ export class BusinessDetailsComponent implements OnInit {
       "view_notify": new Date()
     }
   }
-  onReviewSubmit(){
-    console.log("review submited",this.reviewForm.value)
-  }
+
   onSubscribe() {
     this.prepareSubscription();
     this.usersService.createSubscription(this.subscription).subscribe(
@@ -120,7 +138,34 @@ export class BusinessDetailsComponent implements OnInit {
     );
   }
 
-  onReport(){
+  onReport() {
     console.log("Reported ",this.businessId);
+  }
+
+  prepareReview() {
+    this.newReview = {
+      "userId": localStorage.getItem('currentUserId'),
+      "businessId": this.businessId,
+      "content": this.reviewForm.get('review').value,
+      "lastEdited": new Date(),
+      "postedAt": new Date(),
+      "rating": 3
+    }
+  }
+  
+  onReviewSubmit() {
+    this.prepareReview();
+    this.reviewService.createReview(this.newReview).subscribe(
+      (review) => {
+        console.log("Review created successfully! :]\n", review);
+        // shows the inserted review dynamically :]
+        //this.getBusinessReviews(this.businessId); 
+        this.reviews.push(review); // this one is faster, no need to load all the previous reviews
+        this.reviewForm.get('review').setValue(''); // make review input empty
+      },  
+      (error) => {
+        console.log("Couldn't create review!\n", error);
+      }
+    );
   }
 }

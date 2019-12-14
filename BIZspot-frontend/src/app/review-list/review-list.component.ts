@@ -7,10 +7,13 @@ import { Review } from 'src/app/models/review';
   styleUrls: ['./review-list.component.css']
 })
 export class ReviewListComponent implements OnInit {
-  @Input() reviews:Review[]
+  
+  @Input() reviews: Review[];
+  
   constructor() { }
 
   ngOnInit() {
+    console.log("Reviews : \n", this.reviews);
   }
 
 }

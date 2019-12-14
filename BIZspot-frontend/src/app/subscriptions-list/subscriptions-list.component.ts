@@ -55,7 +55,6 @@ export class SubscriptionsListComponent implements OnInit {
   ngOnInit() {
     this.currentUserId = localStorage.getItem("currentUserId");
     this.getBusinessesandSubsIds();
-    //this.loadBusinesses();
   }
 
 }
