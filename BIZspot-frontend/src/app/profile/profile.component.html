@@ -11,7 +11,8 @@
 		</a>
     </div>
     <div class="col-2-of-4 profile-mid">
-      <img *ngIf="currentUser?.profile_pic" [src]="currentUser?.profile_pic" alt="" class="profile-avatar">
+      <img *ngIf="!currentUser?.profile_pic" src="assets/img/avatar.jpg" class="profile_avatar">
+      <img *ngIf="currentUser?.profile_pic" [src]="currentUser?.profile_pic" class="profile_avatar">
       <div *ngIf="errorMessage" class="alert alert-danger">
         {{errorMessage}}
       </div>

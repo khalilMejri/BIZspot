@@ -1228,7 +1228,7 @@ only screen and (hover: none) {
   height: 20rem;
   width: 20rem;
   border-radius: 50%;
-  background-image: url(assets/img/avatar.jpg);
+  /*background-image: url(assets/img/avatar.jpg);*/
   background-size: cover;
 }
 
@@ -1385,7 +1385,7 @@ only screen and (hover: none) {
 
 .review-avatar {
   display: inline-block;
-  background-image: url(assets/img/avatar.jpg);
+  /*background-image: url(assets/img/avatar.jpg);*/
   height: 5rem;
   width: 5rem;
   border-radius: 50%;

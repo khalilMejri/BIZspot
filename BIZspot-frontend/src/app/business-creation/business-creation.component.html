@@ -31,8 +31,8 @@
 		</form>
 		<div class="col-2-of-5 creation-right">
 			<div class="creation-box">
-					<img src="assets/img/business.jpg" *ngIf="!thumbnail_path" class="creation-image">
-					<img [src]="thumbnail_path" *ngIf="thumbnail_path" class="creation-image">
+				<img src="assets/img/business.jpg" *ngIf="!thumbnail_path" class="creation-image">
+				<img [src]="thumbnail_path" *ngIf="thumbnail_path" class="creation-image">
 			
 				<label for="file" class="creation-btn">Choose Thumbnail</label>
 				<input id="file" type="file" value="Choose a picture" class="creation-btn" style="visibility:hidden;" (change)="showPreviewImage($event)">
