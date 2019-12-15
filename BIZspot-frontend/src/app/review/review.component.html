@@ -1,6 +1,6 @@
 <div class="review" *ngIf="this.author && this.review && !this.deleted">
 	<div class="review-header">
-		<div class="review-avatar"></div>
+		<img *ngIf="this.author.profile_pic" [src]="this.author.profile_pic" alt="" class="review-avatar">
 		<h3 class="review-name"> {{this.author.fname | titlecase}} {{this.author.lname | titlecase}} </h3>
 		<div class="review-feedback">
 			<span class="review-star">&#9733;</span>

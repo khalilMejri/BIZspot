@@ -16,6 +16,14 @@
 
         <h1 class="signup-heading">Sign Up</h1>
         <form [formGroup]="signupForm" (submit)="onSubmit()">
+          <label for="file" class="creation-btn">
+            Choose Profile Picture
+          </label>
+          <input 
+            id="file" type="file" value="Choose a picture" 
+            class="creation-btn" style="visibility:hidden;"
+            formControlName="profile_pic" (change)="showPreviewImage($event)">
+          <img [src]="profile_pic_path" *ngIf="profile_pic_path" class="imgPlaceholder" height="200" width="200">
           <input
             type="text"
             value=""
@@ -65,7 +73,7 @@
           />
         </form>
         <h3 class="u-margin-bottom-top">
-          Have an account? <a routerLink="/login" class="link-text">login in</a>
+          Have an account? <a routerLink="/login" class="link-text">login</a>
         </h3>
       </div>
     </main>

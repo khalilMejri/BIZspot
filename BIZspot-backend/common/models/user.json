@@ -17,6 +17,9 @@
     "age": {
       "type": "string",
       "required": true
+    },
+    "profile_pic": {
+      "type": "string"
     }
   },
   "validations": [],

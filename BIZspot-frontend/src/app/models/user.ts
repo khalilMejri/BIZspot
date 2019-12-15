@@ -10,4 +10,5 @@ export interface User {
   id?: string;
   role?: string;
   mBusinessId?: string;
+  profile_pic?: string;
 }

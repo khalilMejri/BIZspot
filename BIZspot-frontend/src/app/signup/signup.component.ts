@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { FormGroup, FormControl } from "@angular/forms";
+import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { UserService } from "../services/user.service";
 import { Router } from "@angular/router";
 import { Message } from "primeng/api";
@@ -12,16 +12,19 @@ import { User } from '../models/user';
 })
 export class SignupComponent implements OnInit {
   signupForm = new FormGroup({
-    fname: new FormControl(""),
-    lname: new FormControl(""),
-    age: new FormControl(""),
-    email: new FormControl(""),
-    password: new FormControl(""),
-    description: new FormControl("")
+    fname: new FormControl("", Validators.required),
+    lname: new FormControl("", Validators.required),
+    age: new FormControl("", Validators.required),
+    email: new FormControl("", [Validators.required, Validators.email]),
+    password: new FormControl("", Validators.required),
+    description: new FormControl(""),
+    profile_pic: new FormControl("")
   });
 
   errorMessage: string;
   msgs: Message[] = [];
+  profile_pic_path: string;
+  newUser: User;
 
   constructor(private userService: UserService, private router: Router) {}
 
@@ -60,7 +63,7 @@ export class SignupComponent implements OnInit {
   }
 
   createUser() {
-    this.userService.signup(this.signupForm.value).subscribe(
+    this.userService.signup(this.newUser).subscribe(
       response => {
         console.log("response: ", response);
         console.log("sign up completed, you will be logged in in a sec");
@@ -81,14 +84,43 @@ export class SignupComponent implements OnInit {
         });
 
         console.log("could not sign up");
-        console.log(this.signupForm.value);
+        console.log(this.newUser);
         console.log(error);
       }
     );
   }
 
+  showPreviewImage(event: any) {
+    if (event.target.files && event.target.files[0]) {
+      var reader = new FileReader();
+      reader.onload = (event: any) => {
+        this.profile_pic_path = event.target.result;
+        console.log(this.profile_pic_path);
+      }
+      reader.readAsDataURL(event.target.files[0]);
+    }
+  }
+
+  storeUser() {
+    this.newUser = {
+      "fname": this.signupForm.value.fname,
+      "lname": this.signupForm.value.lname,
+      "age": this.signupForm.value.age,
+      "email": this.signupForm.value.email,
+      "password": this.signupForm.value.password,
+      "profile_pic": this.profile_pic_path
+    }
+  }
+
   onSubmit() {
-    console.log("Signup submited ", this.signupForm.value);
-    this.createUser();
+    if(this.signupForm.valid) {
+      console.log("Signup submited ", this.signupForm.value);
+      if (this.profile_pic_path == undefined) this.profile_pic_path = "../assets/img/avatar.jpg";
+      this.storeUser();
+      this.createUser();
+    }
+    else {
+      console.log("Signup form invalid!");
+    }
   }
 }

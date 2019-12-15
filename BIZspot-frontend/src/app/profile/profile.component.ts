@@ -15,6 +15,7 @@ export class ProfileComponent implements OnInit {
     age: new FormControl('', [Validators.min(1)]),
     oldPassword: new FormControl(''),
     newPassword: new FormControl(''),
+    profile_pic: new FormControl('')
   })
   settingsForm = new FormGroup({
     theme:new FormControl(''),
@@ -26,6 +27,7 @@ export class ProfileComponent implements OnInit {
 
   currentUser: User;
   errorMessage: string;
+  profile_pic_path: string;
 
   constructor(
     private userService: UserService,
@@ -56,6 +58,7 @@ export class ProfileComponent implements OnInit {
     if (this.profileForm.value.lname) this.currentUser.lname = this.profileForm.value.lname;
     if (this.profileForm.value.age) this.currentUser.age = this.profileForm.value.age;
     if (this.profileForm.value.newPassword) this.currentUser.password = this.profileForm.value.newPassword;
+    if (this.profileForm.value.profile_pic) this.currentUser.profile_pic = this.profile_pic_path;
   }
 
   updateUser() {
@@ -78,5 +81,16 @@ export class ProfileComponent implements OnInit {
 
   onSettingSubmit(){
     console.log(this.settingsForm.value);
+  }
+
+  showPreviewImage(event: any) {
+    if (event.target.files && event.target.files[0]) {
+      var reader = new FileReader();
+      reader.onload = (event: any) => {
+        this.profile_pic_path = event.target.result;
+        console.log(this.profile_pic_path);
+      }
+      reader.readAsDataURL(event.target.files[0]);
+    }
   }
 }
