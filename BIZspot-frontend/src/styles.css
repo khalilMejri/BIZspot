@@ -1288,7 +1288,7 @@ only screen and (hover: none) {
   width: 100%;
   min-height: 70vh;
   background-size: cover;
-  background-image: url(assets/img/business.jpg);
+  /* background-image: url(assets/img/business.jpg);*/
 }
 
 .creation-btn {
@@ -1298,6 +1298,9 @@ only screen and (hover: none) {
   color: #2d3a71;
   border: none;
   background-color: #5be89b;
+  display: block;
+  font-size: 1.8rem;
+  text-align: center;
 }
 
 .creation-right,
