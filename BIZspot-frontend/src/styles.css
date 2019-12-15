@@ -31,7 +31,16 @@ $breakpoint argument choices:
   padding: 0;
   box-sizing: inherit;
 }
+input::-webkit-input-placeholder { /* Edge */
+  color: rgb(235, 235, 235) !important;
+}
 
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  color: rgb(235, 235, 235) !important;
+}
+::placeholder{
+  color: rgb(235, 235, 235) !important;
+}
 html {
   font-size: 62.5%;
 }
@@ -2041,8 +2050,8 @@ only screen and (hover: none) {
 }
 
 .business-page-map {
-  max-height: 40vh;
-  max-width: 100vw;
+  height: 50vh;
+  width: 100%;
   overflow: hidden;
 }
 
