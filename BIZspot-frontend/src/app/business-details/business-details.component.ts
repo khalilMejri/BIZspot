@@ -31,6 +31,7 @@ export class BusinessDetailsComponent implements OnInit {
   currentSubscriptionId: string;
   reviews: Review[] = null;
   newReview: Review;
+  rating: Number;
   reviewForm= new FormGroup({
     "review": new FormControl('')
   });
@@ -149,7 +150,7 @@ export class BusinessDetailsComponent implements OnInit {
       "content": this.reviewForm.get('review').value,
       "lastEdited": new Date(),
       "postedAt": new Date(),
-      "rating": 3
+      "rating": this.rating
     }
   }
   
@@ -167,5 +168,11 @@ export class BusinessDetailsComponent implements OnInit {
         console.log("Couldn't create review!\n", error);
       }
     );
+  }
+
+
+  getRate(rating) {
+    this.rating = rating;
+    console.log("rating = ", this.rating);
   }
 }

@@ -17,6 +17,7 @@ import { FeedComponent } from "./feed/feed.component";
 import { SearchComponent } from "./search/search.component";
 import { BusinessComponent } from "./business/business.component";
 import { BusinessDetailsComponent } from "./business-details/business-details.component";
+import { RatingComponent } from "./rating/rating.component";
 
 import { MessagesModule } from "primeng/messages";
 import { MessageModule } from "primeng/message";
@@ -45,7 +46,8 @@ import { NavbarComponent } from './navbar/navbar.component';
     SubscriptionsListComponent,
     ReviewComponent,
     ReviewListComponent,
-    NavbarComponent
+    NavbarComponent,
+    RatingComponent
   ],
   imports: [
     BrowserModule,

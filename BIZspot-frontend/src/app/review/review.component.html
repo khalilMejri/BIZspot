@@ -1,15 +1,9 @@
 <div class="review" *ngIf="this.author && this.review && !this.deleted">
 	<div class="review-header">
-		<img src="assets/img/avatar.jpg" *ngIf="!author?.profile_pic" class="review_avatar">
-		<img [src]="this.author?.profile_pic" *ngIf="this.author?.profile_pic" class="review_avatar">
+		<img src="assets/img/avatar.jpg" *ngIf="!author?.profile_pic" class="review-avatar">
+		<img [src]="this.author?.profile_pic" *ngIf="this.author?.profile_pic" class="review-avatar">
 		<h3 class="review-name"> {{this.author.fname | titlecase}} {{this.author.lname | titlecase}} </h3>
-		<div class="review-feedback">
-			<span class="review-star">&#9733;</span>
-			<span class="review-star">&#9733;</span>
-			<span class="review-star">&#9733;</span>
-			<span class="review-star">&#9734;</span>
-			<span class="review-star">&#9734;</span>
-		</div>
+		<app-rating [rating]="review.rating" [static]="true"></app-rating>
 	</div>
 	<p class="review-text">
 		{{this.review.content}}

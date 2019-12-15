@@ -29,13 +29,7 @@
     <img *ngIf="this.business.thumbnail" [src]="this.business?.thumbnail" alt="">
   </div>
   <div class="business-page-reviews-box">
-    <div class="business-page-review-stars">
-      <span class="review-star">&#9733;</span>
-      <span class="review-star">&#9733;</span>
-      <span class="review-star">&#9733;</span>
-      <span class="review-star">&#9734;</span>
-      <span class="review-star">&#9734;</span>
-    </div>
+  <app-rating [rating]="0" [static]="false" (rateChanged)="getRate($event)"></app-rating>
     <form 
       class="business-page-review-form" 
       [formGroup]="reviewForm"

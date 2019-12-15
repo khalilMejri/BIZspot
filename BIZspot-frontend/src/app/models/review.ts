@@ -2,7 +2,7 @@ export interface Review {
 	content:string,
 	postedAt:Date,
 	lastEdited:Date,
-	rating:number,
+	rating:Number,
 	userId:string,
 	businessId: string,
 	id?: string,

@@ -13,14 +13,14 @@ export class RatingComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    console.log(this.static)
+    console.log(this.static);
+    console.log(this.rating);
   } 
   onClick(rate:Number){
     if(!this.static){
-
       this.rating = rate;
       this.rateChanged.emit(this.rating);
     }
-
   }
 }
+
