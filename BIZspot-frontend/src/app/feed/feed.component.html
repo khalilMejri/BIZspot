@@ -1,100 +1,43 @@
 <div class="feed">
-	<main class="feed-main">
-		<div class="feed-suggestion-box">
-			<div class="feed-suggestion">
-				<img src="assets/img/worker1.jpg" alt="">
-			</div>
-			<div class="feed-suggestion">
-				<img src="assets/img/worker2.jpg" alt="">
-			</div>
-			<div class="feed-suggestion">
-				<img src="assets/img/barber.jpg" alt="">
-			</div>
-			<div class="feed-suggestion">
-				<img src="assets/img/worker1.jpg" alt="">
-			</div>
-			<div class="feed-suggestion">
-				<img src="assets/img/worker2.jpg" alt="">
-			</div>
 
-		</div>
-		<div class="feed-element-box">
-			<div class="business">
-				<div class="business-box">
 
-					<div class="business-picture">
-						<img src="assets/img/business.jpg" alt="">
-					</div>
-					<div class="business-data">
-						<h2 class="business-title">
-							Restaurant
-						</h2>
-						<p class="business-description">
-							Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-							Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis
-							aute irure dolor in reprehenderit in voluptate velit esse
-						</p>
+  <main class="feed-main">
 
-					</div>
-				</div>
+    <div class="feed-element-box">
 
-			</div>
-			<div class="business">
-				<div class="business-box">
 
-					<div class="business-picture">
-						<img src="assets/img/business.jpg" alt="">
-					</div>
-					<div class="business-data">
-						<h2 class="business-title">
-							Restaurant
-						</h2>
-						<p class="business-description">
-							Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-							Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis
-							aute irure dolor in reprehenderit in voluptate velit esse
-						</p>
+		<app-business [showDetails]="false" ></app-business>
+		<app-business [showDetails]="false" ></app-business>
+		<app-business [showDetails]="false" ></app-business>
+		<app-business [showDetails]="false" ></app-business>
+      
+    </div>
+  </main>
+  <section class="feed-section-right">
+		<h3 class="feed-section-left-title">Top Reviewer</h3>
+    <div class="feed-user">
+      <div class="feed-user-avatar">
 
-					</div>
-				</div>
+        <img src="assets/img/avatar.jpg" alt="">
+      </div>
 
-			</div>
-			<div class="business">
-				<div class="business-box">
+    </div>
+    <div class="feed-section-right-text">
+      <h4>last name</h4>
+      <h5>First name</h5>
+    </div>
+  </section>
+  <section class="feed-section-left">
+    <h3 class="feed-section-left-title">Top Rated</h3>
+    <div class="feed-top">
+      <div class="feed-top-avatar">
 
-					<div class="business-picture">
-						<img src="assets/img/business.jpg" alt="">
-					</div>
-					<div class="business-data">
-						<h2 class="business-title">
-							Restaurant
-						</h2>
-						<p class="business-description">
-							Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-							Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis
-							aute irure dolor in reprehenderit in voluptate velit esse
-						</p>
-
-					</div>
-				</div>
-
-			</div>
-		</div>
-	</main>
-	<section class="feed-section">
-		<div class="feed-user">
-			<div class="feed-user-avatar"></div>
-			
-		</div>
-		<ul class="feed-section-fav">
-			<li><a href="">Favorite X</a></li>
-			<li><a href="">Favorite X</a></li>
-			<li><a href="">Favorite X</a></li>
-			<li><a href="">Favorite X</a></li>
-			<li><a href="">Favorite X</a></li>
-			<li><a href="">Favorite X</a></li>
-			<li><a href="">Favorite X</a></li>		
-		</ul>
-	</section>
-
+        <img src="assets/img/worker1.jpg" alt="">
+      </div>
+    </div>
+    <div class="feed-section-left-text">
+      <h4>Name</h4>
+      <h5>Type</h5>
+    </div>
+  </section>
 </div>
