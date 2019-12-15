@@ -31,16 +31,21 @@ $breakpoint argument choices:
   padding: 0;
   box-sizing: inherit;
 }
-input::-webkit-input-placeholder { /* Edge */
+
+input::-webkit-input-placeholder {
+  /* Edge */
   color: rgb(235, 235, 235) !important;
 }
 
-:-ms-input-placeholder { /* Internet Explorer 10-11 */
+:-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
   color: rgb(235, 235, 235) !important;
 }
-::placeholder{
+
+::placeholder {
   color: rgb(235, 235, 235) !important;
 }
+
 html {
   font-size: 62.5%;
 }
@@ -1215,63 +1220,58 @@ only screen and (hover: none) {
 .profile {
   height: 100vh;
   max-width: 100vw;
-  margin: 0px;
-}
-
-.profile-form {
-  padding-top: 5rem;
-}
-
-.profile-avatar {
-  display: block;
-  margin: 2rem auto;
-  height: 20rem;
-  width: 20rem;
-  border-radius: 50%;
-  /*background-image: url(assets/img/avatar.jpg);*/
-  background-size: cover;
-}
-
-.profile-btn {
-  margin: 15rem auto 0 auto;
-  display: block;
-  position: relative;
-  height: 3.5rem;
-  width: 3.5rem;
-  border-radius: 50%;
-  border: 2px solid #2d3a71;
-  transition: transform .2s;
-}
-
-.profile-btn-box {
-  display: block;
-  font-size: 2rem;
-  color: #000;
-  text-align: center;
-  cursor: pointer;
-}
-
-.profile-btn:hover {
-  transform: scale(1.3);
-}
-
-.profile-btn::after {
-  content: "";
-  display: block;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  height: 1.5rem;
-  width: 1.5rem;
-  border-radius: 50%;
-  background-color: #2d3a71;
-}
-
-.profile-left,
-.profile-right {
-  min-height: 100vh;
-}
+  margin: 0px; }
+  .profile-form {
+    padding-top: 5rem; }
+  .profile-avatar {
+    display: block;
+    margin: 2rem auto -2rem auto;
+    height: 20rem;
+    width: 20rem;
+    border-radius: 50%;
+    overflow: hidden; }
+    .profile-avatar > img {
+      width: 100%;
+      height: auto; }
+    .profile-avatar-btn {
+      padding: 0.5rem 1rem;
+      border: none;
+      font-size: 1.6rem;
+      margin: 0 auto; }
+  .profile-btn {
+    margin: 15rem auto 0 auto;
+    display: block;
+    position: relative;
+    height: 3.5rem;
+    width: 3.5rem;
+    border-radius: 50%;
+    border: 2px solid #2d3a71;
+    transition: transform .2s; }
+    .profile-btn-box {
+      display: block;
+      font-size: 2rem;
+      color: #000;
+      text-align: center;
+      cursor: pointer; }
+    .profile-btn:hover {
+      transform: scale(1.3); }
+    .profile-btn::after {
+      content: "";
+      display: block;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      height: 1.5rem;
+      width: 1.5rem;
+      border-radius: 50%;
+      background-color: #2d3a71; }
+  .profile-mid {
+    display: flex;
+    flex-flow: column;
+    justify-content: center; }
+  .profile-left, .profile-right {
+    min-height: 100vh; }
 
 .creation {
   min-height: 80vh;

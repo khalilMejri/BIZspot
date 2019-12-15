@@ -58,15 +58,18 @@ export class ProfileComponent implements OnInit {
     if (this.profileForm.value.lname) this.currentUser.lname = this.profileForm.value.lname;
     if (this.profileForm.value.age) this.currentUser.age = this.profileForm.value.age;
     if (this.profileForm.value.newPassword) this.currentUser.password = this.profileForm.value.newPassword;
-    if (this.profileForm.value.profile_pic) this.currentUser.profile_pic = this.profile_pic_path;
+    //if (this.profileForm.value.profile_pic) this.currentUser.profile_pic = this.profile_pic_path;
   }
 
   updateUser() {
     this.userService.updateUser(this.currentUser, localStorage.getItem("currentUserId")).subscribe(
       (user) => {
         console.log('updated user: \n', user);
-        const link = ['feed'];
+        /*const link = ['feed'];
         this.router.navigate(link);
+        */
+        // we don't navigate to feed just reload the user
+        this.getUserById()
       },
       (error) => {
         console.log('no update, error');
@@ -87,7 +90,7 @@ export class ProfileComponent implements OnInit {
     if (event.target.files && event.target.files[0]) {
       var reader = new FileReader();
       reader.onload = (event: any) => {
-        this.profile_pic_path = event.target.result;
+        this.currentUser.profile_pic = event.target.result;
         console.log(this.profile_pic_path);
       }
       reader.readAsDataURL(event.target.files[0]);

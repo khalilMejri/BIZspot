@@ -11,8 +11,14 @@
 		</a>
     </div>
     <div class="col-2-of-4 profile-mid">
-      <img *ngIf="!currentUser?.profile_pic" src="assets/img/avatar.jpg" class="profile-avatar">
-      <img *ngIf="currentUser?.profile_pic" [src]="currentUser?.profile_pic" class="profile-avatar">
+      <div class="profile-avatar">
+
+        <img *ngIf="currentUser?.profile_pic" [src]="currentUser?.profile_pic" >
+        <img *ngIf="!currentUser?.profile_pic" src="assets/img/avatar.jpg" >
+      </div>
+      <label for="file" class="profile-avatar-btn btn--green">
+          Change Picture
+        </label>
       <div *ngIf="errorMessage" class="alert alert-danger">
         {{errorMessage}}
       </div>
@@ -22,13 +28,9 @@
         <input type="age" class="signin-input" placeholder="Age" formControlName="age" value="{{currentUser?.age}}">
         <input type="password" class="signin-input" placeholder="Old password" formControlName="oldPassword" value="{{currentUser?.password}}">
         <input type="password" class="signin-input" placeholder="New password" formControlName="newPassword">
-        <label for="file" class="creation-btn">
-          Change Profile Picture
-        </label>
+        
         <input id="file" type="file" value="Choose a picture" class="creation-btn" style="visibility:hidden;"
           formControlName="profile_pic" (change)="showPreviewImage($event)">
-        <img [src]="profile_pic_path" *ngIf="profile_pic_path" class="imgPlaceholder" height="200" width="200">
-
         <input type="submit" class="btn btn--green signup-button" value="Save Changes!">
       </form>
     </div>
