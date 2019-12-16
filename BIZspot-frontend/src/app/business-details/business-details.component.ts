@@ -206,6 +206,7 @@ export class BusinessDetailsComponent implements OnInit {
               this.usersService.updateUser(this.author).subscribe(
                 success => {
                   console.log("Author updated successfully!");
+                  // refresh biz level
                   this.businessService
                     .getBusinessById(this.businessId)
                     .subscribe(modifiedBiz => {

@@ -5,22 +5,27 @@ module.exports = function (Business) {
     Business.validatesUniquenessOf('title');
     // [GET] request to fetch all businesses by keywords
     Business.fetchByKeywords = function (keywords, cb) {
-        Business.find(function (err, matches) {
-            var response = [];
+        var keys = keywords.split(' '); // every word is considered seprately
+        console.log(keys); // output keys
+        Business.find(function (err, results) { // consider adding search limit
+            if (err) return cb(err)
+            var matches = [];
             var k = 0;
-            for (var i = 0; i < matches.length; i++) {
+            // loop throught
+            for (var i = 0; i < results.length; i++) {
 
-                for (var j = 0; j < keywords.length; j++)
-                    if (matches[i].title.toLowerCase().includes(keywords[j].toLowerCase()) ||
-                        matches[i].about.toLowerCase().includes(keywords[j].toLowerCase()) ||
-                        matches[i].status.toLowerCase().includes(keywords[j].toLowerCase())) {
-                        response[k++] = matches[i];
+                for (var j = 0; j < keys.length; j++)
+
+                    if (results[i].title.toLowerCase().includes(keys[j].toLowerCase()) ||
+                        results[i].about.toLowerCase().includes(keys[j].toLowerCase()) ||
+                        results[i].status.toLowerCase().includes(keys[j].toLowerCase())) {
+                        matches[k++] = results[i];
                         // list.splice( list.indexOf(match), 1 );
                         break;
                     }
             }
-            console.log(response);
-            cb(null, response);
+            // console.log(matches);
+            return cb(null, matches);
         });
     };
 
