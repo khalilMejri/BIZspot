@@ -54,7 +54,8 @@
           },
           "configurations": {
             "production": {
-              "browserTarget": "BIZspot-frontend:build:production"
+              "browserTarget": "BIZspot-frontend:build:production",
+              "proxyConfig": "src/proxy.conf.json"
             }
           }
         },

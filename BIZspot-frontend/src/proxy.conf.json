@@ -1,0 +1,12 @@
+{
+  "/map/*": {
+    "target": "https://eu1.locationiq.com/v1",
+    "secure": false,
+    "logLevel": "debug",
+	"changeOrigin": true,
+	"pathRewrite": {
+            "^/map": ""
+        }
+    
+  }
+}

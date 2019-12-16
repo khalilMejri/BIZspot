@@ -7,212 +7,29 @@
       <input type="text" value="" placeholder="Reviews" class="search-input" formControlName="reviews">
       <div class="search-form-actions">
 
-        <a href="/search#popup" class="search-btn search-btn--stroked">Choose location</a>
+        <a href="/search#popup" class="search-btn search-btn--stroked" (click)="popupClicked()">Choose location</a>
         <input type="submit" value="Search" class="search-btn">
       </div>
     </form>
   </div>
   <div class="row search-box-down">
     <div class="col-1-of-3">
-
-      <div class="business">
-        <div class="business-box">
-
-          <div class="business-picture">
-            <img src="assets/img/business.jpg" alt="">
-          </div>
-          <div class="business-data">
-            <h2 class="business-title">
-              Restaurant
-            </h2>
-            <p class="business-description">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-              Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-              Duis aute irure dolor in reprehenderit in voluptate velit esse
-            </p>
-            <a href="#" class="business-btn">Details</a>
-          </div>
-        </div>
-        <a href="" class="review-btn">&#17;</a>
-
-      </div>
-
-
-      <div class="business">
-        <div class="business-box">
-
-          <div class="business-picture">
-            <img src="assets/img/business.jpg" alt="">
-          </div>
-          <div class="business-data">
-            <h2 class="business-title">
-              Restaurant
-            </h2>
-            <p class="business-description">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-              Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-              Duis aute irure dolor in reprehenderit in voluptate velit esse
-            </p>
-            <a href="#" class="business-btn">Details</a>
-          </div>
-        </div>
-        <a href="" class="review-btn">&#17;</a>
-
-      </div>
-
-      <div class="business">
-        <div class="business-box">
-
-          <div class="business-picture">
-            <img src="assets/img/business.jpg" alt="">
-          </div>
-          <div class="business-data">
-            <h2 class="business-title">
-              Restaurant
-            </h2>
-            <p class="business-description">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-              Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-              Duis aute irure dolor in reprehenderit in voluptate velit esse
-            </p>
-            <a href="#" class="business-btn">Details</a>
-          </div>
-        </div>
-        <a href="" class="review-btn">&#17;</a>
-
-      </div>
-
-
-      <div class="business">
-        <div class="business-box">
-
-          <div class="business-picture">
-            <img src="assets/img/business.jpg" alt="">
-          </div>
-          <div class="business-data">
-            <h2 class="business-title">
-              Restaurant
-            </h2>
-            <p class="business-description">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-              Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-              Duis aute irure dolor in reprehenderit in voluptate velit esse
-            </p>
-            <a href="#" class="business-btn">Details</a>
-          </div>
-        </div>
-        <a href="" class="review-btn">&#17;</a>
-
-      </div>
+      <app-business [showDetails]="false"></app-business>
+      <app-business></app-business>
+      <app-business></app-business>
+      <app-business></app-business>
+      <app-business></app-business>
+      
     </div>
     <div class="col-1-of-3">
-      <div class="business">
-        <div class="business-box">
-
-          <div class="business-picture">
-            <img src="assets/img/business.jpg" alt="">
-          </div>
-          <div class="business-data">
-            <h2 class="business-title">
-              Restaurant
-            </h2>
-            <p class="business-description">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-              Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-              Duis aute irure dolor in reprehenderit in voluptate velit esse
-            </p>
-            <a href="#" class="business-btn">Details</a>
-          </div>
-        </div>
-        <a href="" class="review-btn">&#17;</a>
-
-      </div>
-      <div class="business">
-        <div class="business-box">
-
-          <div class="business-picture">
-            <img src="assets/img/business.jpg" alt="">
-          </div>
-          <div class="business-data">
-            <h2 class="business-title">
-              Restaurant
-            </h2>
-            <p class="business-description">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-              Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-              Duis aute irure dolor in reprehenderit in voluptate velit esse
-            </p>
-            <a href="#" class="business-btn">Details</a>
-          </div>
-        </div>
-        <a href="" class="review-btn">&#17;</a>
-
-      </div>
-      <div class="business">
-        <div class="business-box">
-
-          <div class="business-picture">
-            <img src="assets/img/business.jpg" alt="">
-          </div>
-          <div class="business-data">
-            <h2 class="business-title">
-              Restaurant
-            </h2>
-            <p class="business-description">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-              Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-              Duis aute irure dolor in reprehenderit in voluptate velit esse
-            </p>
-            <a href="#" class="business-btn">Details</a>
-          </div>
-        </div>
-        <a href="" class="review-btn">&#17;</a>
-
-      </div>
+      <app-business></app-business>
+      <app-business></app-business>
+      <app-business></app-business>
     </div>
     <div class="col-1-of-3">
-      <div class="business">
-        <div class="business-box">
-
-          <div class="business-picture">
-            <img src="assets/img/business.jpg" alt="">
-          </div>
-          <div class="business-data">
-            <h2 class="business-title">
-              Restaurant
-            </h2>
-            <p class="business-description">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-              Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-              Duis aute irure dolor in reprehenderit in voluptate velit esse
-            </p>
-            <a href="#" class="business-btn">Details</a>
-          </div>
-        </div>
-        <a href="" class="review-btn">&#17;</a>
-
-      </div>
-      <div class="business">
-        <div class="business-box">
-
-          <div class="business-picture">
-            <img src="assets/img/business.jpg" alt="">
-          </div>
-          <div class="business-data">
-            <h2 class="business-title">
-              Restaurant
-            </h2>
-            <p class="business-description">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-              Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-              Duis aute irure dolor in reprehenderit in voluptate velit esse
-            </p>
-            <a href="#" class="business-btn">Details</a>
-          </div>
-        </div>
-        <a href="" class="review-btn">&#17;</a>
-
-      </div>
+      <app-business></app-business>
+      <app-business></app-business>
+      <app-business></app-business>
     </div>
   </div>
 </main>
@@ -231,7 +48,9 @@
       <div class="popup__form-actions">
 
         <input type="submit" value="Search" class="search-btn search-btn--stroked">
-        <input type="button" value="Accept Location" class="search-btn">
+        <a href="/search" type="button"  class="search-btn" (click)="locationAccepted()">
+          Accept Location
+        </a>
 
       </div>
     </form>

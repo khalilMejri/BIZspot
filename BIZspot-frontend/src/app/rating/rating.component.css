@@ -31,6 +31,19 @@
 .rating-animated > input:not(:checked) > label:hover:before {
 	content: '★ ';
 }
+.label{
+  cursor: pointer;
+  font-size: 3rem;
+  color: #5be89b;
+}
+.label-start-filled:before{
+  display: inline-block;
+  content: '★ ';
+}
+.label-start-stroked:before{
+  display: inline-block;
+  content: '☆ ';
+}
 
 
 

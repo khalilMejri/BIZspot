@@ -1,4 +1,4 @@
-<div class="rating" [ngClass]="{'rating-animated': !static}">
+<div class="rating rating-animated" *ngIf="!static">
 
   <input type="radio" value="5" [name]="inpustName" [checked]="rating===5" />
   <label class="rating-label" title="Amazing!" (click)='onClick(5)'>
@@ -20,4 +20,8 @@
   <input type="radio" value="1" [name]="inpustName" [checked]="rating===1" />
   <label class="rating-label" title="Bad" (click)='onClick(1)'>
   </label>
+</div>
+<div class="rating" *ngIf="static">
+  <label *ngFor="let i of  [].constructor(5-rating)" class="label label-start-stroked"></label>
+  <label *ngFor="let i of  [].constructor(rating)" class="label label-start-filled"></label>
 </div>

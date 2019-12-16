@@ -9,15 +9,11 @@ export class MapService {
 
   location: Location;
   token = "7aeaca53bde648"
-  geoUrl = "https://eu1.locationiq.com/v1/search.php"
-  reverseUrl="https://eu1.locationiq.com/v1/reverse.php"
-  headers:HttpHeaders
+  geoUrl = "/map/search.php"
+  reverseUrl="/map/reverse.php"
+  
   constructor(private http: HttpClient) {
-    this.headers = new HttpHeaders()
-    this.headers = this.headers.append("Access-Control-Allow-Headers", "*")
-    this.headers = this.headers.append("Access-Control-Allow-Methods", "GET")
-    this.headers = this.headers.append("Access-Control-Allow-Origin", "*")
-   }
+    }
 
   geoCode(locationData) {
     // get a streetnumber , city, country -> return  coords
@@ -28,13 +24,9 @@ export class MapService {
         'format': 'json'
       }
     })
-    console.log("headers ", this.headers.keys())
-    console.log("params ", params.keys())
     
-    this.http.get(this.geoUrl, { headers:this.headers,params:params })
-      .subscribe(res => {
-        console.log(res)
-      })
+    
+    return this.http.get(this.geoUrl, { params:params })
   }
   reverseGeoCode(coords) {
     // get coord -> return location data
@@ -46,10 +38,7 @@ export class MapService {
         'format': 'json'
       }
     })
-    this.http.get(this.reverseUrl, { headers:this.headers,params:params })
-      .subscribe(res => {
-        console.log(res)
-      })
+    return this.http.get(this.reverseUrl, { params:params })
   }
   getPosition(): Promise<any> {
     return new Promise((resolve, reject) => {
@@ -64,7 +53,5 @@ export class MapService {
     });
 
   }
-  findLocation(address: string) {
-
-  }
+ 
 }
