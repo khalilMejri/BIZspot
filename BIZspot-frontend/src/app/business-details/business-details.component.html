@@ -1,40 +1,79 @@
 <!-- *ngIf="this.business && this.location && this.category"  -->
 <!-- i remove it to see the result -->
 <main class="business-page">
-  
-  <agm-map class="business-page-map" [latitude]="location.latitude" [longitude]="location.longitude">
-
-    <agm-marker [latitude]="location.latitude" [longitude]="location.longitude" [label]="'H'"></agm-marker> `
-
+  <agm-map
+    class="business-page-map"
+    [latitude]="location.latitude"
+    [longitude]="location.longitude"
+  >
+    <agm-marker
+      [latitude]="location.latitude"
+      [longitude]="location.longitude"
+      [label]="'H'"
+    ></agm-marker>
+    `
   </agm-map>
   <div class="business-page-details">
     <ul class="business-page-data">
-      <li>Title: {{this.business?.title}}</li>
-      <li>Category: {{this.category?.name}} </li>
-      <li>Country: {{this.location?.country}}</li>
-      <li>State: {{this.location?.state}}</li>
-      <li>Locality: {{this.location?.locality}}</li>
-      <li>Street Number: {{this.location?.number}}</li>
-      <li>Postal Code: {{this.location?.postal_code}}</li>
-      <li>Phone Number: {{this.business?.number}}</li>
+      <li>Title: {{ this.business?.title }}</li>
+      <li>Category: {{ this.category?.name }}</li>
+      <li>Country: {{ this.location?.country }}</li>
+      <li>State: {{ this.location?.state }}</li>
+      <li>Locality: {{ this.location?.locality }}</li>
+      <li>Street Number: {{ this.location?.number }}</li>
+      <li>Postal Code: {{ this.location?.postal_code }}</li>
+      <li>Phone Number: {{ this.business?.number }}</li>
+      <br />
+      <li>Level: {{ this.business?.level }}</li>
     </ul>
     <p class="business-page-description">
-      About Us: {{this.business?.about}}
+      About Us: {{ this.business?.about }}
     </p>
     <div class="business-page-actions">
-      <a *ngIf="!isSubscribed" class="business-page-btn--main" (click)="onSubscribe()">Subscribe</a>
-      <a *ngIf="isSubscribed" class="business-page-btn--main" (click)="onUnsubscribe()">Unsubscribe</a>
+      <a
+        *ngIf="!isSubscribed"
+        class="business-page-btn--main"
+        (click)="onSubscribe()"
+        >Subscribe</a
+      >
+      <a
+        *ngIf="isSubscribed"
+        class="business-page-btn--main"
+        (click)="onUnsubscribe()"
+        >Unsubscribe</a
+      >
       <a class="business-page-btn--second" (click)="onReport()">Report</a>
     </div>
   </div>
   <div class="business-page-pictures">
-    <img *ngIf="this.business.thumbnail" [src]="this.business?.thumbnail" alt="">
+    <img
+      *ngIf="this.business.thumbnail"
+      [src]="this.business?.thumbnail"
+      alt=""
+    />
   </div>
   <div class="business-page-reviews-box">
-    <app-rating [rating]="0" [static]="false" (rateChanged)="getRate($event)"></app-rating>
-    <form class="business-page-review-form" [formGroup]="reviewForm" (submit)="onReviewSubmit()">
-      <input formControlName="review" type="text" name="review" class="signin-input" placeholder="What's on your mind?">
+    <app-rating
+      [rating]="0"
+      [static]="false"
+      (rateChanged)="getRate($event)"
+    ></app-rating>
+    <form
+      class="business-page-review-form"
+      [formGroup]="reviewForm"
+      (submit)="onReviewSubmit()"
+    >
+      <input
+        formControlName="review"
+        type="text"
+        name="review"
+        class="signin-input"
+        placeholder="What's on your mind?"
+      />
     </form>
   </div>
-  <app-review-list *ngIf="this.reviews" [reviews]="this.reviews"></app-review-list>
+  <app-review-list
+    *ngIf="this.reviews"
+    [reviews]="this.reviews"
+  ></app-review-list>
 </main>
