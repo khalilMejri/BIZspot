@@ -48,4 +48,8 @@ export class BusinessService {
   getBusinessCategory(business: Business) {
     return this.httpClient.get<Category>(`${this.api}/categories/${business.categoryId}`);
   }
+
+  findTopBusiness() {
+    return this.httpClient.get<Business>(`${this.apiUrl}?filter[order]=level DESC&filter[limit]=1`);
+  }
 }

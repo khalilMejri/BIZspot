@@ -125,4 +125,8 @@ export class UserService {
     return this.client.get<Subscription[]>(`${this.api}/subscriptions?filter[where][userId]=${userId}`);
   }
 
+  findTopReviewer() {
+    return this.client.get<User>(`${this.apiUrl}?filter[order]=nb_reviews DESC&filter[limit]=1`);
+  }
+
 }

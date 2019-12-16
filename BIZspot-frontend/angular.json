@@ -50,12 +50,12 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "BIZspot-frontend:build"
+            "browserTarget": "BIZspot-frontend:build",
+            "proxyConfig": "src/proxy.conf.json"
           },
           "configurations": {
             "production": {
-              "browserTarget": "BIZspot-frontend:build:production",
-              "proxyConfig": "src/proxy.conf.json"
+              "browserTarget": "BIZspot-frontend:build:production"
             }
           }
         },

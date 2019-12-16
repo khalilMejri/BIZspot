@@ -9,18 +9,18 @@
 
 
   </main>
-  <section class="feed-section-right">
+  <section class="feed-section-right" *ngIf="topReviewer">
 		<h3 class="feed-section-left-title">Top Reviewer</h3>
     <div class="feed-user">
       <div class="feed-user-avatar">
-
-        <img src="assets/img/avatar.jpg" alt="">
+        <img *ngIf="!topReviewer.profile_pic" src="assets/img/avatar.jpg" alt="">
+        <img *ngIf="topReviewer.profile_pic" [src]="topReviewer.profile_pic" alt="">
       </div>
 
     </div>
     <div class="feed-section-right-text">
-      <h4>last name</h4>
-      <h5>First name</h5>
+      <h4>{{topReviewer.lname | titlecase}}</h4>
+      <h5>{{topReviewer.fname | titlecase}}</h5>
     </div>
   </section>
   <section class="feed-section-left">
