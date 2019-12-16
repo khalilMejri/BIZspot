@@ -7,6 +7,7 @@ import { BusinessService } from '../services/business.service';
 import { Location } from '../models/location';
 import { Business } from '../models/business';
 import { countriesList } from '../models/countries';
+import { MapService } from '../services/map.service';
 
 declare var Stripe;
 @Component({
@@ -45,11 +46,16 @@ export class BusinessCreationComponent implements OnInit {
   countriesList;
   strippedNumber: string;
   thumbnail_path: string;
+  coords = {
+    "lat": 0,
+    "lon": 0
+  };
 
   constructor(
               private paiementService: PaiementService,
               private router:ActivatedRoute,
-              private businessService: BusinessService
+              private businessService: BusinessService,
+              private mapService: MapService
               ) { }
 
   ngOnInit() {
@@ -108,7 +114,9 @@ export class BusinessCreationComponent implements OnInit {
       "country": this.businessCreationForm.value.country,
       "locality": this.businessCreationForm.value.locality,
       "postal_code": this.businessCreationForm.value.postal_code,
-      "state": this.businessCreationForm.value.state
+      "state": this.businessCreationForm.value.state,
+      "latitude": this.coords["lat"],
+      "longitude": this.coords["lon"]
     };
   }
 
@@ -188,12 +196,27 @@ export class BusinessCreationComponent implements OnInit {
     // now we can verify if our form is valid or not
     if(this.businessCreationForm.valid)
     {
-      // store location which is our new biz' location
-      this.storeLocation();
-      // we put a default biz image if the user didn't select one
-      if (this.thumbnail_path == undefined) this.thumbnail_path = "../assets/img/business.jpg";
-      // now create the new location then create the new biz
-      this.createLocationThenBusiness();
+      this.mapService.geoCode({
+        "street": this.businessCreationForm.value.locality,
+        "number": this.businessCreationForm.value.postal_code,
+        "country": this.businessCreationForm.value.country,
+        "city": this.businessCreationForm.value.state
+      }).subscribe(
+        (coords) => {
+          console.log("coords :", coords[0]);
+          this.coords["lat"] = Number.parseFloat(coords[0]["lat"]);
+          this.coords["lon"] = Number.parseFloat(coords[0]["lon"]);
+          // store location which is our new biz' location
+          this.storeLocation();
+          // we put a default biz image if the user didn't select one
+          if (this.thumbnail_path == undefined) this.thumbnail_path = "../assets/img/business.jpg";
+          // now create the new location then create the new biz
+          this.createLocationThenBusiness();
+        },
+        (error) => {
+          console.log("Couldn't get coords! \n", error);
+        }
+      );
     }
     // form invalid, we display the invalid controls
     else {

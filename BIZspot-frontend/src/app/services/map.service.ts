@@ -16,7 +16,7 @@ export class MapService {
     }
 
   geoCode(locationData) {
-    // get a streetnumber , city, country -> return  coords
+    // get a street, number , city, country -> return  coords
     var params = new HttpParams({
       fromObject: {
         'key': this.token,
