@@ -3,8 +3,10 @@
 
   <main class="feed-main">
 
-    <div class="feed-element-box" *ngFor="let business of businesses">
-      <app-business [business]="business"></app-business>
+    <div class="feed-element-box" >
+      <div *ngFor="let business of businesses">
+        <app-business [business]="business"></app-business>
+      </div>
     </div>
 
 
@@ -13,7 +15,7 @@
 		<h3 class="feed-section-left-title">Top Reviewer</h3>
     <div class="feed-user">
       <div class="feed-user-avatar">
-        <img *ngIf="!topReviewer.profile_pic" src="assets/img/avatar.jpg" alt="">
+        <img *ngIf="!topReviewer?.profile_pic" src="assets/img/avatar.jpg" alt="">
         <img *ngIf="topReviewer.profile_pic" [src]="topReviewer.profile_pic" alt="">
       </div>
 

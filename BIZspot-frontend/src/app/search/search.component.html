@@ -1,12 +1,11 @@
 <main class="search">
-  <div class="row search-box-up">
+  <div class="search-box-up">
     <form id="searchForm" class="search-form" [formGroup]="searchForm" (submit)="onSearch()">
       <input type="search" value="" placeholder="Search ..." class="search-input search-input--main" formControlName="term">
       <input type="text" value="" placeholder="Category" class="search-input" formControlName="category">
       <input type="text" value="" placeholder="Stars" class="search-input" formControlName="stars">
       <input type="text" value="" placeholder="Reviews" class="search-input" formControlName="reviews">
       <div class="search-form-actions">
-
         <a href="/search#popup" class="search-btn search-btn--stroked" (click)="popupClicked()">Choose location</a>
         <input type="submit" value="Search" class="search-btn">
       </div>
