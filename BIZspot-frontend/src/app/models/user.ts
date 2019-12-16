@@ -11,4 +11,5 @@ export interface User {
   role?: string;
   mBusinessId?: string;
   profile_pic?: string;
+  nb_reviews?: number;
 }

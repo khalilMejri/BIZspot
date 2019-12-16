@@ -108,7 +108,8 @@ export class SignupComponent implements OnInit {
       "age": this.signupForm.value.age,
       "email": this.signupForm.value.email,
       "password": this.signupForm.value.password,
-      "profile_pic": this.profile_pic_path
+      "profile_pic": this.profile_pic_path,
+      "nb_reviews": 0
     }
   }
 

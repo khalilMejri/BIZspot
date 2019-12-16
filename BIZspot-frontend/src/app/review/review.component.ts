@@ -45,6 +45,27 @@ export class ReviewComponent implements OnInit {
       (success) => {
         console.log("Review deleted successfully!");
         this.deleted = true; // hide the deleted review
+        //this.getReviewAuthor();
+
+        this.userService.getUserById(this.review.userId).subscribe(
+          (user) => {
+            this.author = user;
+            this.isAllowedToDelete = this.author.id == this.currentUserId;
+
+            this.author["nb_reviews"] -= 1;
+            this.userService.updateUser(this.author).subscribe(
+              (success) => {
+                console.log("Author updated successfully!\n Now you have ", this.author["nb_reviews"], " reviews");
+              },
+              (error) => {
+                console.log("Couldn't update author! \n", error);
+              }
+            );
+          },
+          (error) => {
+            console.log("Couldn't get the author of this review! \n", error);
+          }
+        );
       },
       (error) => {
         console.log("Couldn't delete review! \n", error);

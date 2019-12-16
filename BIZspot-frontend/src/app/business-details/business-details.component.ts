@@ -9,6 +9,7 @@ import { Subscription } from '../models/subscription';
 import { FormGroup,FormControl } from '@angular/forms';
 import { Review } from '../models/review';
 import { ReviewService } from '../services/review.service';
+import { User } from '../models/user';
 @Component({
   selector: 'app-business-details',
   templateUrl: './business-details.component.html',
@@ -32,6 +33,7 @@ export class BusinessDetailsComponent implements OnInit {
   reviews: Review[] = null;
   newReview: Review;
   rating: Number;
+  author: User;
   reviewForm= new FormGroup({
     "review": new FormControl('')
   });
@@ -143,6 +145,17 @@ export class BusinessDetailsComponent implements OnInit {
     console.log("Reported ",this.businessId);
   }
 
+  getAuthor() {
+    this.usersService.getUserById(localStorage.getItem('currentUserId')).subscribe(
+      (user) => {
+        this.author = user;
+      },
+      (error) => {
+        console.log("Couldn't get author! \n", error);
+      }
+    );
+  }
+
   prepareReview() {
     this.newReview = {
       "userId": localStorage.getItem('currentUserId'),
@@ -163,6 +176,29 @@ export class BusinessDetailsComponent implements OnInit {
         //this.getBusinessReviews(this.businessId); 
         this.reviews.push(review); // this one is faster, no need to load all the previous reviews
         this.reviewForm.get('review').setValue(''); // make review input empty
+        // get current author
+        //this.getAuthor();
+        this.usersService.getUserById(localStorage.getItem('currentUserId')).subscribe(
+          (user) => {
+            this.author = user;
+
+            // increment nb_reviews for user
+            if (this.author["nb_reviews"] != null) this.author["nb_reviews"] += 1;
+            else this.author["nb_reviews"] = 1;
+            console.log("You posted a total of ", this.author["nb_reviews"], " reviews");
+            this.usersService.updateUser(this.author).subscribe(
+              (success) => {
+                console.log("Author updated successfully!");
+              },
+              (error) => {
+                console.log("Couldn't update author! \n", error);
+              }
+            );
+          },
+          (error) => {
+            console.log("Couldn't get author! \n", error);
+          }
+        );
       },  
       (error) => {
         console.log("Couldn't create review!\n", error);

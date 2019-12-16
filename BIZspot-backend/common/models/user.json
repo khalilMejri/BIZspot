@@ -20,6 +20,9 @@
     },
     "profile_pic": {
       "type": "string"
+    },
+    "nb_reviews": {
+      "type": "number"
     }
   },
   "validations": [],

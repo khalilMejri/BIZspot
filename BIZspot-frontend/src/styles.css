@@ -1344,7 +1344,7 @@ only screen and (hover: none) {
 }
 
 .business-btn:visited,
-.business-btn:link {
+.business-btn:link, .business-btn {
   display: inline-block;
   margin-left: 80%;
   position: relative;
@@ -1353,6 +1353,7 @@ only screen and (hover: none) {
   border-radius: 5rem;
   color: #2d3a71;
   text-decoration: none;
+  cursor: pointer;
 }
 
 .review {

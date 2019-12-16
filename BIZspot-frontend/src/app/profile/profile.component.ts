@@ -62,7 +62,7 @@ export class ProfileComponent implements OnInit {
   }
 
   updateUser() {
-    this.userService.updateUser(this.currentUser, localStorage.getItem("currentUserId")).subscribe(
+    this.userService.updateUser(this.currentUser).subscribe(
       (user) => {
         console.log('updated user: \n', user);
         /*const link = ['feed'];

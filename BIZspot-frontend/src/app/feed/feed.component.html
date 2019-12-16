@@ -3,15 +3,11 @@
 
   <main class="feed-main">
 
-    <div class="feed-element-box">
-
-
-		<app-business [showDetails]="false" ></app-business>
-		<app-business [showDetails]="false" ></app-business>
-		<app-business [showDetails]="false" ></app-business>
-		<app-business [showDetails]="false" ></app-business>
-      
+    <div class="feed-element-box" *ngFor="let business of businesses">
+      <app-business [business]="business"></app-business>
     </div>
+
+
   </main>
   <section class="feed-section-right">
 		<h3 class="feed-section-left-title">Top Reviewer</h3>

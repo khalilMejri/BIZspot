@@ -2,19 +2,17 @@
 	<div class="business-box">
 
 		<div class="business-picture">
-			<img src="assets/img/business.jpg" alt="" >
+			<img *ngIf="!business.thumbnail" src="assets/img/business.jpg" alt="" >
+			<img *ngIf="business.thumbnail" [src]="business.thumbnail" alt="">
 		</div>
 		<div class="business-data">
 			<h2 class="business-title">
-				Restaurant
+				{{business.title}}
 			</h2>
 			<p class="business-description">
-				Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-				tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-				quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-				consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse					
+				{{business.about}}				
 			</p>
-			<a href="#" class="business-btn" *ngIf="showDetails" >Details</a>
+			<a class="business-btn" *ngIf="showDetails" (click)="goToDetails()">Details</a>
 		</div>
 	</div>
 	<div *ngIf="isReviewsLoaded">
