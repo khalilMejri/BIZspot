@@ -43,4 +43,7 @@ export class BusinessComponent implements OnInit {
         this.isReviewsLoaded = true;
       })*/
   }
+  checkDetails(){
+    this.router.navigate(['/business',this.business.id]);
+  }
 }

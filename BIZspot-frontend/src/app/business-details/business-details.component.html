@@ -1,10 +1,12 @@
 <!-- *ngIf="this.business && this.location && this.category"  -->
 <!-- i remove it to see the result -->
 <main class="business-page">
-  <div class="business-page-map">
-    <img src="assets/img/business-map.png" alt="">
-  </div>
+  
+  <agm-map class="business-page-map" [latitude]="location.latitude" [longitude]="location.longitude">
 
+    <agm-marker [latitude]="location.latitude" [longitude]="location.longitude" [label]="'H'"></agm-marker> `
+
+  </agm-map>
   <div class="business-page-details">
     <ul class="business-page-data">
       <li>Title: {{this.business?.title}}</li>
@@ -29,12 +31,9 @@
     <img *ngIf="this.business.thumbnail" [src]="this.business?.thumbnail" alt="">
   </div>
   <div class="business-page-reviews-box">
-  <app-rating [rating]="0" [static]="false" (rateChanged)="getRate($event)"></app-rating>
-    <form 
-      class="business-page-review-form" 
-      [formGroup]="reviewForm"
-      (submit)="onReviewSubmit()">
-      <input formControlName="review" type="text" name="review" placeholder="What's on your mind?">
+    <app-rating [rating]="0" [static]="false" (rateChanged)="getRate($event)"></app-rating>
+    <form class="business-page-review-form" [formGroup]="reviewForm" (submit)="onReviewSubmit()">
+      <input formControlName="review" type="text" name="review" class="signin-input" placeholder="What's on your mind?">
     </form>
   </div>
   <app-review-list *ngIf="this.reviews" [reviews]="this.reviews"></app-review-list>

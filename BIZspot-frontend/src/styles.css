@@ -1314,19 +1314,24 @@ only screen and (hover: none) {
 
 .business {
   margin-top: 8rem;
-  height: 30rem;
+  cursor: pointer;
   display: block;
   box-shadow: 0rem 2.5rem 3.5rem rgba(0, 0, 0, 0.5);
 }
 
 .business-box {
   background-color: #f7f7f7;
-  margin: 0;
+ 
 }
 
 .business-picture {
-  height: 10rem;
+  height: 35vh;
   overflow: hidden;
+}
+.business-picture > img{
+  width: 100%;
+  height: auto; 
+  object-fit: cover;
 }
 
 .business-data {
@@ -1609,7 +1614,6 @@ only screen and (hover: none) {
 }
 
 .search-box-up {
-  height: 15vh;
   max-width: 100vw;
   padding: 3rem;
 }
@@ -1924,7 +1928,6 @@ only screen and (hover: none) {
 }
 
 .business-page-review-form>input {
-  color: #252d2f;
   border: none;
   box-shadow: none;
   height: 100%;
