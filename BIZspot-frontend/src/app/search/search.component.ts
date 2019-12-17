@@ -33,7 +33,7 @@ export class SearchComponent implements OnInit {
 
   onSearch() {
     console.log("This criteria was selected ", this.searchForm.value);
-    // step1 : filter with keywords
+    // step 1 : filter with keywords
     this.businessService
       .searchByKeywords(this.searchForm.value.term || "")
       .subscribe(
