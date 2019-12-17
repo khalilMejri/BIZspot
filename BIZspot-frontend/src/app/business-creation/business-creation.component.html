@@ -1,7 +1,7 @@
 <main class="creation">
 	<div class="row">
 		<form [formGroup]="businessCreationForm" >
-		<div class="col-2-of-5 creation-left">
+		<div class="col-1-of-2 creation-left">
 				<input type="text" class="signin-input" formControlName="title" placeholder="Business name">
 				<select type="" class="signin-input" formControlName="category" placeholder="Choose category" (change)="onChangeCategory($event)">
 					<option value="Tech">Tech</option>
@@ -23,13 +23,9 @@
 				<input type="time" class="signin-input" formControlName="openingHour" placeholder="Opening Hour">
 				<input type="time" class="signin-input" formControlName="closingHour" placeholder="Closing Hour">
 			</div>
-			<div class="col-1-of-5 creation-mid">
-				<input type="button" (click)="onSubmit('silver')" value="Join Silver Plan" class="btn btn--green">
-				<input type="button" (click)="onSubmit('gold')" value="Join Gold Plan" class="btn btn--green">
-				<input type="button" (click)="onSubmit('platinum')" value="Join Platinum Plan" class="btn btn--green">
-			</div>
+			
 		</form>
-		<div class="col-2-of-5 creation-right">
+		<div class="col-1-of-2 creation-right">
 			<div class="creation-box">
 				<img src="assets/img/business.jpg" *ngIf="!thumbnail_path" class="creation-image">
 				<img [src]="thumbnail_path" *ngIf="thumbnail_path" class="creation-image">
@@ -39,4 +35,54 @@
 			</div>
 		</div>
 	</div>
+	<div class="row creation-mid">
+		<input type="button" *ngIf="!businessAlreadyCreated" (click)="onSubmit()" value="Create Business" class="btn btn--green">
+		<input type="button" *ngIf="businessAlreadyCreated" (click)="onUpdate()" value="Update Business" class="btn btn--green">
+		<a  href="/create#popup" *ngIf="!subscriptionPayed" (click)="onPay()" class="btn search-btn--notif">Pay Subscription</a>
+		
+	</div>
 </main>
+<section class="popup" id="popup">
+			<div class="popup__content">
+
+					<a href="/create" class="popup__close">&times;</a>
+					<div class="payement-box">
+						<h2 class="payement-title"> Choose your plan</h2>
+						<div class="payement-plans">
+							<div class="payement-offer">
+								<h4 class="payement-offer-title">Silver</h4>
+								<ul class="payement-offer-options">
+									<li class="payement-offer-option">Adding your business</li>
+									<li class="payement-offer-option">Multi criteria search</li>
+
+								</ul>
+								<button type="button" class="payement-offer-btn" (click)="onPay('silver')">Buy</button>
+							</div>
+							<div class="payement-offer">
+								<h4 class="payement-offer-title">Gold</h4>
+								<ul class="payement-offer-options">
+									<li class="payement-offer-option">Adding your business</li>
+									<li class="payement-offer-option">Multi criteria search</li>
+									<li class="payement-offer-option">Location based search</li>
+
+								</ul>
+								<button type="button" class="payement-offer-btn" (click)="onPay('gold')">Buy</button>
+
+							</div>
+							<div class="payement-offer">
+								<h4 class="payement-offer-title">Platnium</h4>
+								<ul class="payement-offer-options">
+									<li class="payement-offer-option">Adding your business</li>
+									<li class="payement-offer-option">Multi criteria search</li>
+									<li class="payement-offer-option">Location based search</li>
+									<li class="payement-offer-option">Optimised business marketing</li>
+								</ul>
+								<button type="button" class="payement-offer-btn" (click)="onPay('platinum')">Buy</button>
+
+							</div>
+
+						</div>
+					</div>
+
+			</div>
+		</section>

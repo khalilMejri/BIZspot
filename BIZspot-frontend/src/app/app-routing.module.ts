@@ -12,6 +12,7 @@ import { FeedComponent } from './feed/feed.component';
 import { BusinessDetailsComponent } from './business-details/business-details.component';
 import { BusinessComponent } from './business/business.component';
 import { SubscriptionsListComponent } from './subscriptions-list/subscriptions-list.component';
+import { LostComponent } from 'src/app/lost/lost.component';
 
 const routes: Routes = [
   { path: "", component: LandingComponent },
@@ -27,7 +28,9 @@ const routes: Routes = [
     path: "create",
     component: BusinessCreationComponent,
     canActivate: [AuthGuard]
-  }
+  },
+  {path:'**',component:LostComponent}
+
 ];
 
 @NgModule({

@@ -29,6 +29,7 @@ import { SubscriptionsListComponent } from './subscriptions-list/subscriptions-l
 import { ReviewComponent } from './review/review.component';
 import { ReviewListComponent } from './review-list/review-list.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { LostComponent } from './lost/lost.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import { NavbarComponent } from './navbar/navbar.component';
     ReviewComponent,
     ReviewListComponent,
     NavbarComponent,
-    RatingComponent
+    RatingComponent,
+    LostComponent
   ],
   imports: [
     BrowserModule,

@@ -8,6 +8,7 @@ import { Location } from '../models/location';
 import { Business } from '../models/business';
 import { countriesList } from '../models/countries';
 import { MapService } from '../services/map.service';
+import { Category } from 'src/app/models/category';
 
 declare var Stripe;
 @Component({
@@ -36,6 +37,13 @@ export class BusinessCreationComponent implements OnInit {
     openingHour: new FormControl('', Validators.required),
     closingHour: new FormControl('', Validators.required)
   });
+  // This component will be used to create or update a business
+  businessAlreadyCreated = false // If true then we pass to payement or updating
+  subscriptionPayed = false // if true the pass to payement, else updating
+  loadedBusiness: Business
+  loadedCategory: Category
+  loadedLocation: Location
+  userId: string
 
   location: Location;
   newBusiness: Business;
@@ -52,21 +60,73 @@ export class BusinessCreationComponent implements OnInit {
   };
 
   constructor(
-              private paiementService: PaiementService,
-              private router:ActivatedRoute,
-              private businessService: BusinessService,
-              private mapService: MapService
-              ) { }
+    private paiementService: PaiementService,
+    private router: ActivatedRoute,
+    private businessService: BusinessService,
+    private mapService: MapService
+  ) { }
 
-  ngOnInit() {
-
-      
+  async ngOnInit() {
     var hasSessionId = this.router.snapshot.queryParamMap.has('session_id');
+    // section id is result of redirection from payement   
     console.log('this is a redirection ? ', hasSessionId);
-    console.log(this.selectedCategory);
+    // we must check if the user alreaday have a business or not 
+    if(hasSessionId){
+      this.subscriptionPayed = true
+    }
+    this.loadBusiness(hasSessionId);
     this.countriesList = countriesList;
   }
 
+
+
+  loadBusiness(redirection=false) {
+    this.userId = localStorage.getItem("currentUserId")
+    this.businessService.getBusinessByOwnerId(this.userId)
+      .subscribe(
+      (business) => {
+        console.log('loaded business ', business);
+        this.loadedBusiness = business;
+        this.businessService.getBusinessCategory(business)
+          .subscribe(
+          category => {
+            this.loadedCategory = category
+            this.businessService.getBusinessLocation(this.loadedBusiness)
+              .subscribe(
+              location => {
+                this.loadedLocation = location
+                console.log(location);
+                this.businessAlreadyCreated = true;
+                this.subscriptionPayed = business['status'] == 'payed'
+                this.updateForm()
+                this.thumbnail_path = business.thumbnail;
+                if(redirection){
+                  this.finishPayment();
+                }
+              }
+              );
+          }
+          );
+      }, (error) => {
+        console.log("error loading business ", error)
+      })
+  }
+  updateForm() {
+    this.businessCreationForm.setValue({
+      'title': this.loadedBusiness.title,
+      'category': this.loadedCategory.name,
+      'description': this.loadedBusiness.about,
+      'number': this.loadedBusiness.number,
+      'locality': this.loadedLocation.locality,
+      'country': this.loadedLocation.country,
+      'postal_code': this.loadedLocation.postal_code,
+      'state': this.loadedLocation.state,
+      'email': this.loadedBusiness.email,
+      'openingHour': this.loadedBusiness.openingHours[0]['openingHour'],
+      'closingHour': this.loadedBusiness.openingHours[1]['closingHour'],
+    });
+
+  }
   onChangeCategory($event) {
     this.selectedCategory = $event.target.options[$event.target.options.selectedIndex].text;
   }
@@ -76,12 +136,12 @@ export class BusinessCreationComponent implements OnInit {
     this.selectedCountryName = $event.target.options[$event.target.options.selectedIndex].text;
     this.selectedCountry = countriesList.find(
       (country) => {
-        if(country.name == this.selectedCountryName) {
-          if(country.zip_pattern != "") {
+        if (country.name == this.selectedCountryName) {
+          if (country.zip_pattern != "") {
             this.businessCreationForm
               .get('postal_code')
               .setValidators(Validators.pattern(country.zip_pattern));
-            console.log("valid? ",this.businessCreationForm.valid);
+            console.log("valid? ", this.businessCreationForm.valid);
           }
           else {
             this.businessCreationForm
@@ -91,7 +151,7 @@ export class BusinessCreationComponent implements OnInit {
           this.businessCreationForm.get('postal_code').markAsTouched();
           // activating the change in validators
           this.businessCreationForm.updateValueAndValidity();
-          
+
           return country;
         }
       }
@@ -122,6 +182,7 @@ export class BusinessCreationComponent implements OnInit {
 
 
   storeBusiness(locationId: string) {
+
     this.newBusiness = {
       "locationId": locationId,
       "email": this.businessCreationForm.value.email,
@@ -129,8 +190,9 @@ export class BusinessCreationComponent implements OnInit {
       "number": this.businessCreationForm.value.number,
       "openingHours": [{ "openingHour": this.businessCreationForm.value.openingHour }, { "closingHour": this.businessCreationForm.value.closingHour }],
       "title": this.businessCreationForm.value.title,
-      "status": "Unverified",
+      "status": "validated",
       "categoryId": this.categoryId,
+      "creatorId": this.userId,
       "level": 0,
       "about": this.businessCreationForm.value.description,
       "thumbnail": this.thumbnail_path
@@ -138,7 +200,7 @@ export class BusinessCreationComponent implements OnInit {
   }
 
   createBusiness() {
-    this.businessService.createBusiness(this.newBusiness).subscribe(
+    this.businessService.createUserBusiness(this.newBusiness, this.userId).subscribe(
       (business) => {
         console.log("Business Created: \n", business);
       },
@@ -181,21 +243,22 @@ export class BusinessCreationComponent implements OnInit {
       var reader = new FileReader();
       reader.onload = (event: any) => {
         this.thumbnail_path = event.target.result;
-        console.log(this.thumbnail_path);
+        console.log("loaded image ", this.thumbnail_path);
       }
       reader.readAsDataURL(event.target.files[0]);
     }
   }
 
-  onSubmit(planName: string) {
+  onSubmit() {
+    // Called to create a business
+
     // stripping all characters except '+' and digits from our phone number
     this.strippedNumber = this.businessCreationForm.get('number').value;
     this.strippedNumber = this.strippedNumber.replace(/[^\d+]/g, '');
     this.businessCreationForm.get('number').setValue(this.strippedNumber);
 
     // now we can verify if our form is valid or not
-    if(this.businessCreationForm.valid)
-    {
+    if (this.businessCreationForm.valid) {
       this.mapService.geoCode({
         "street": this.businessCreationForm.value.locality,
         "number": this.businessCreationForm.value.postal_code,
@@ -216,11 +279,83 @@ export class BusinessCreationComponent implements OnInit {
         (error) => {
           console.log("Couldn't get coords! \n", error);
         }
-      );
+        );
     }
     // form invalid, we display the invalid controls
     else {
       console.log("Invalid Form!! \n", this.findInvalidControls());
     }
+  }
+  onUpdate(status:string=null) {
+    // Called to update an already existing (paied) business
+    let business = {
+      "id": this.loadedBusiness.id,
+      "locationId": this.loadedLocation.id,
+      "email": this.businessCreationForm.value.email,
+      "members": [{ "id": localStorage.getItem('currentUserId') }],
+      "number": this.businessCreationForm.value.number,
+      "openingHours": [{ "openingHour": this.businessCreationForm.value.openingHour }, { "closingHour": this.businessCreationForm.value.closingHour }],
+      "title": this.businessCreationForm.value.title,
+      "status": status ||this.loadedBusiness.status,
+      "categoryId": this.loadedCategory.id,
+      "creatorId": this.userId,
+      "level": this.loadedBusiness.level,
+      "about": this.businessCreationForm.value.description,
+      "thumbnail": this.thumbnail_path
+    };
+    this.businessService.updateBusiness(business.id, business)
+      .subscribe(
+      (business) => {
+        console.log("Update business result :", business);
+
+      },
+      (error) => {
+        console.log("error in updating the business ", business);
+      }
+      )
+  }
+  onPay(planName: string) {
+    // Called to pay and already created business
+    // using the selected planName
+    var stripe = Stripe(this.publicKey);
+    var planId;
+    switch (planName) {
+      case 'silver':
+        planId = this.planIdsKeys.silverPlan
+        break;
+      case 'gold':
+        planId = this.planIdsKeys.goldPlan
+        break;
+      case 'platinum':
+        planId = this.planIdsKeys.platinumPlan
+        break;
+    }
+    console.log('user choice is ', planName);
+    // here must load the paiement
+    console.log("current user id ", this.userId)
+    this.paiementService.createPaiementSession(planId)
+      .subscribe(sessionId => {
+        stripe.redirectToCheckout(
+          sessionId
+        ).then((result) => {
+          // handling error of redirecting
+          console.log('problem in redirecting to the checkout page');
+          console.log(result)
+        });
+      })
+  }
+  finishPayment(){
+    var sessionId = this.router.snapshot.queryParamMap.get('session_id');
+    this.paiementService.checkPaiementSession(sessionId)
+      .subscribe(
+        session => {
+          console.log("validated payment");
+          this.onUpdate('payed');
+          this.subscriptionPayed = true;
+        },
+        error => {
+          console.log("Payment not validated")
+        }
+      ) 
   }
 }
