@@ -19,7 +19,9 @@
             </div>
           </div>
           <!-- Notifications -->
-          <p-messages [(value)]="msgs"></p-messages>
+          <div *ngFor="let notif of notificationService.getNotifications()">
+              <app-notification [message]="notif.text" [type]="notif.type"></app-notification>
+            </div>
 
           <form
             [formGroup]="loginForm"

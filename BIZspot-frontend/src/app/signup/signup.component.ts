@@ -4,6 +4,7 @@ import { UserService } from "../services/user.service";
 import { Router } from "@angular/router";
 import { Message } from "primeng/api";
 import { User } from '../models/user';
+import { NotificationService } from 'src/app/services/notification.service';
 
 @Component({
   selector: "app-signup",
@@ -26,7 +27,7 @@ export class SignupComponent implements OnInit {
   profile_pic_path: string;
   newUser: User;
 
-  constructor(private userService: UserService, private router: Router) {}
+  constructor(private userService: UserService, private router: Router,private notificationService:NotificationService) {}
 
   ngOnInit() {}
 
@@ -47,11 +48,8 @@ export class SignupComponent implements OnInit {
           const token = localStorage.getItem("token");
           if (token === "") {
             console.log("You cannot connect now! server unavailable");
-            this.msgs.push({
-              severity: "error",
-              summary: "Error Message",
-              detail: "You cannot connect now! server unavailable"
-            });
+            this.notificationService.addNotification({"text": "Server problem, Try later","type":"danger"})
+            
           }
           this.router.navigateByUrl("profile");
         });
@@ -67,21 +65,19 @@ export class SignupComponent implements OnInit {
       response => {
         console.log("response: ", response);
         console.log("sign up completed, you will be logged in in a sec");
-        this.msgs.push({
-          severity: "info",
-          summary: "Message",
-          detail: "Sign up completed, you will be logged in in a sec"
-        });
+        
+        this.notificationService.addNotification({"text": "Sign up completed, wait redirection","type":"success"})
+
         // as soon as a user signs up he'll be logged in directly
-        this.loginUser();
+        setTimeout(() => {
+          this.loginUser();
+        }, 1000);
+        
       },
       error => {
         this.errorMessage = "Cannot connect to server";
-        this.msgs.push({
-          severity: "warn",
-          summary: "Warning Message",
-          detail: "Could not sign up! please verify your credentials"
-        });
+        this.notificationService.addNotification({"text": "Canno't sign up","type":"danger"})
+
 
         console.log("could not sign up");
         console.log(this.newUser);
@@ -121,7 +117,10 @@ export class SignupComponent implements OnInit {
       this.createUser();
     }
     else {
-      console.log("Signup form invalid!");
+      this.notificationService.addNotification({"text": "Invalid Form","type":"notify"})
     }
+  }
+  ngOnDestroy() {
+    this.notificationService.resetAll()
   }
 }

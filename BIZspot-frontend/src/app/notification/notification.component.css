@@ -1,0 +1,36 @@
+.notification {
+	position: relative;
+	font-size: 1.6rem;
+	color: #fff;
+	background-color: #999;
+	display: inline-block;
+	padding: 1rem 3.5rem 1rem 2rem;
+	margin: 1rem 2rem;
+	border-radius: 1rem;
+	min-height: 5rem;
+	min-width: 10rem; }
+	.notification-text {
+	  color: #fff;
+	  font-size: 1.6rem;
+	  font-weight: lighter; }
+	.notification-close, .notification-close:link, .notification-close:visited {
+	  color: #777;
+	  position: absolute;
+	  cursor: pointer;
+	  top: 2rem;
+	  right: 1rem;
+	  font-size: 3rem;
+	  text-decoration: none;
+	  display: inline-block;
+	  line-height: 1rem; }
+	.notification-close:hover {
+	  color: #f7f7f7; }
+	.notification--danger {
+	  background-color: #ed2227; }
+	.notification--notify {
+	  background-color: #faa91a; }
+	.notification--success {
+	  background-color: #5be89b; }
+	.notification--note {
+	  background-color: #2d3a71; }
+  

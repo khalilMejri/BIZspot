@@ -10,6 +10,7 @@ import { FormGroup, FormControl } from "@angular/forms";
 import { Review } from "../models/review";
 import { ReviewService } from "../services/review.service";
 import { User } from "../models/user";
+import { NotificationService } from 'src/app/services/notification.service';
 @Component({
   selector: "app-business-details",
   templateUrl: "./business-details.component.html",
@@ -21,7 +22,8 @@ export class BusinessDetailsComponent implements OnInit {
     private businessService: BusinessService,
     private usersService: UserService,
     private reviewService: ReviewService,
-    private router: Router
+    private router: Router,
+    private notificationService:NotificationService
   ) {}
   businessId: string;
   business: Business;
@@ -112,18 +114,20 @@ export class BusinessDetailsComponent implements OnInit {
       subscription => {
         console.log("Subscription created successfully: ", subscription);
         this.isSubscribed = true;
+        this.notificationService.addNotification({"text": "Subscribed Successfully! ","type":"success"})
       },
       error => {
         console.log("Couldn't create the subscription! ", error);
       }
     );
   }
-
+  
   onUnsubscribe() {
     this.usersService.deleteSubscription(this.currentSubscriptionId).subscribe(
       success => {
         console.log("Subscription deleted!");
         this.isSubscribed = false;
+        this.notificationService.addNotification({"text": "Unsubscribed Successfully! ","type":"success"})
       },
       error => {
         console.log("Couldn't delete subscription!");
@@ -232,5 +236,8 @@ export class BusinessDetailsComponent implements OnInit {
   getRate(rating) {
     this.rating = rating;
     console.log("rating = ", this.rating);
+  }
+  ngOnDestroy() {
+    this.notificationService.resetAll()
   }
 }

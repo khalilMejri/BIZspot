@@ -2,6 +2,7 @@ import { BusinessService } from "./../services/business.service";
 import { Component, OnInit } from "@angular/core";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { MapService } from "src/app/services/map.service";
+import { NotificationService } from 'src/app/services/notification.service';
 
 @Component({
   selector: "app-search",
@@ -26,7 +27,8 @@ export class SearchComponent implements OnInit {
   locationLng = null;
   constructor(
     private mapService: MapService,
-    private businessService: BusinessService
+    private businessService: BusinessService,
+    private notificationService:NotificationService
   ) {}
 
   ngOnInit() {}

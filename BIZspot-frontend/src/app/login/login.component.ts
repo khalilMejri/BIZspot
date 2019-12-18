@@ -5,6 +5,7 @@ import { UserService } from "./../services/user.service";
 import { Component, OnInit } from "@angular/core";
 import { FormGroup, FormControl } from "@angular/forms";
 import { catchError } from "rxjs/operators";
+import { NotificationService } from 'src/app/services/notification.service';
 
 @Component({
   selector: "app-login",
@@ -21,7 +22,7 @@ export class LoginComponent implements OnInit {
 
   msgs: Message[] = [];
 
-  constructor(private loginService: UserService, private router: Router) {
+  constructor(private loginService: UserService, private router: Router,private notificationService:NotificationService) {
     this.user = {
       email: "",
       password: "",
@@ -49,11 +50,8 @@ export class LoginComponent implements OnInit {
           const token = localStorage.getItem("token");
           if (token === "") {
             console.log("You cannot connect now! server unavailable");
-            this.msgs.push({
-              severity: "error",
-              summary: "Error Message",
-              detail: "You cannot connect now! server unavailable"
-            });
+           
+            this.notificationService.addNotification({"text": "Server problem, Try later","type":"danger"})
           }
           this.router.navigateByUrl("feed");
         });
@@ -62,23 +60,18 @@ export class LoginComponent implements OnInit {
         catchError(error);
         if (error.status === 401) {
           console.log(
-            "Unrecognized user, You can check your email first or contact our support"
+           
           );
-          this.msgs.push({
-            severity: "info",
-            summary: "Message",
-            detail:
-              "Unrecognized user, You can check your email first or contact our support"
-          });
+          this.notificationService.addNotification({"text": "Unrecognized user, Check your credentials","type":"notify"})
         } else {
           console.log("A problem occurred, try again later");
-          this.msgs.push({
-            severity: "error",
-            summary: "Error Message",
-            detail: "A problem occurred, try again later"
-          });
+          
+          this.notificationService.addNotification({"text": "Problem Occurred, Try later","type":"danger"})
         }
       }
     );
+  }
+  ngOnDestroy() {
+    this.notificationService.resetAll()
   }
 }

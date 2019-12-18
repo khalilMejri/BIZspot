@@ -3,6 +3,7 @@ import { FormGroup, FormControl, Validators} from '@angular/forms';
 import { UserService } from '../services/user.service';
 import { User } from '../models/user';
 import { Router } from '@angular/router';
+import { NotificationService } from 'src/app/services/notification.service';
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -31,7 +32,8 @@ export class ProfileComponent implements OnInit {
 
   constructor(
     private userService: UserService,
-    private router: Router
+    private router: Router,
+    private notificationService:NotificationService
   ) { }
 
   getUserById() {
@@ -69,10 +71,14 @@ export class ProfileComponent implements OnInit {
         this.router.navigate(link);
         */
         // we don't navigate to feed just reload the user
+        this.notificationService.addNotification({"text": "Profile updated successfully ","type":"success"})
+
         this.getUserById()
       },
       (error) => {
         console.log('no update, error');
+        this.notificationService.addNotification({"text": "Updating problem","type":"notify"})
+
       }
     );
   }
@@ -95,5 +101,8 @@ export class ProfileComponent implements OnInit {
       }
       reader.readAsDataURL(event.target.files[0]);
     }
+  }
+  ngOnDestroy() {
+    this.notificationService.resetAll()
   }
 }

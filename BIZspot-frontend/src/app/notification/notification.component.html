@@ -1,0 +1,4 @@
+<div *ngIf="!closed" class="notification" [ngClass]="cssClass">
+	<a class="notification-close" (click)="onClose()">&times;</a>
+	<p class="notification-text">{{message || 'dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco'}}</p>
+</div>

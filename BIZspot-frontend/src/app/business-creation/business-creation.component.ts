@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,OnDestroy  } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { PaiementService } from '../services/paiement.service';
 
@@ -9,6 +9,7 @@ import { Business } from '../models/business';
 import { countriesList } from '../models/countries';
 import { MapService } from '../services/map.service';
 import { Category } from 'src/app/models/category';
+import { NotificationService } from 'src/app/services/notification.service';
 
 declare var Stripe;
 @Component({
@@ -16,7 +17,7 @@ declare var Stripe;
   templateUrl: './business-creation.component.html',
   styleUrls: ['./business-creation.component.css']
 })
-export class BusinessCreationComponent implements OnInit {
+export class BusinessCreationComponent implements OnInit,OnDestroy  {
   planIdsKeys = {
     silverPlan: "plan_GHXGivpxPm68x1",
     goldPlan: "plan_GHXHK4Zy22LdzS",
@@ -63,7 +64,8 @@ export class BusinessCreationComponent implements OnInit {
     private paiementService: PaiementService,
     private router: ActivatedRoute,
     private businessService: BusinessService,
-    private mapService: MapService
+    private mapService: MapService,
+    private notificationService:NotificationService
   ) { }
 
   async ngOnInit() {
@@ -357,5 +359,8 @@ export class BusinessCreationComponent implements OnInit {
           console.log("Payment not validated")
         }
       ) 
+  }
+  ngOnDestroy() {
+    this.notificationService.resetAll()
   }
 }

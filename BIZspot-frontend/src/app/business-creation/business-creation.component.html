@@ -1,7 +1,11 @@
 <main class="creation">
 	<div class="row">
+
 		<form [formGroup]="businessCreationForm" >
 		<div class="col-1-of-2 creation-left">
+				<div *ngFor="let notif of notificationService.getNotifications()">
+						<app-notification [message]="notif.text" [type]="notif.type"></app-notification>
+					  </div>
 				<input type="text" class="signin-input" formControlName="title" placeholder="Business name">
 				<select type="" class="signin-input" formControlName="category" placeholder="Choose category" (change)="onChangeCategory($event)">
 					<option value="Tech">Tech</option>

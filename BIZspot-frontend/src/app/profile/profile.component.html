@@ -19,9 +19,9 @@
       <label for="file" class="profile-avatar-btn btn--green">
           Change Picture
         </label>
-      <div *ngIf="errorMessage" class="alert alert-danger">
-        {{errorMessage}}
-      </div>
+        <div *ngFor="let notif of notificationService.getNotifications()">
+            <app-notification [message]="notif.text" [type]="notif.type"></app-notification>
+        </div>
       <form [formGroup]="profileForm" class="profile-form" (submit)="onSubmit()">
         <input type="text" class="signin-input" placeholder="First Name" formControlName="fname" value="{{currentUser?.fname}}">
         <input type="text" class="signin-input" placeholder="Family Name" formControlName="lname" value="{{currentUser?.lname}}">
