@@ -4,10 +4,7 @@
 		<div class="col-1-of-2 creation-left">
 				<input type="text" class="signin-input" formControlName="title" placeholder="Business name">
 				<select type="" class="signin-input" formControlName="category" placeholder="Choose category" (change)="onChangeCategory($event)">
-					<option value="Tech">Tech</option>
-					<option value="Mechanical">Mechanical</option>
-					<option value="Doctor">Doctor</option>
-					<option value="Fast food">Fast Food </option>
+					<option *ngFor="let category of categories" [value]="category">{{category}}</option>
 				</select>
 				<input type="text" class="signin-input" formControlName="description" placeholder="Business Decription">
 				<input type="text" name="test" class="signin-input" formControlName="number" placeholder="Phone number" value = "{{selectedCountry?.phone_code}}">

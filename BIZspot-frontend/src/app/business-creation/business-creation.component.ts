@@ -58,6 +58,17 @@ export class BusinessCreationComponent implements OnInit {
     "lat": 0,
     "lon": 0
   };
+  categories = [
+    "Retailer",
+    "Health Practitioner", 
+    "Distributor (Finished Goods)", 
+    "Food Service", 
+    "Supplier/Raw Ingredient Distributor",
+    "Manufacturer",
+    "Business Services",
+    "Investor",
+    "Guest"
+  ];
 
   constructor(
     private paiementService: PaiementService,
