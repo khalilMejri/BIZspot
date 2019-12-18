@@ -13,13 +13,26 @@
         class="search-input search-input--main"
         formControlName="term"
       />
-      <input
+      <!-- <input
         type="text"
         value=""
         placeholder="Category"
         class="search-input"
         formControlName="category"
-      />
+      /> -->
+      <select
+        type=""
+        class="search-input"
+        formControlName="category"
+        placeholder="select category"
+      >
+        <option
+          *ngFor="let category of categories; let idx = index"
+          [value]="category"
+          [selected]="true"
+          >{{ category }}</option
+        >
+      </select>
       <input
         type="text"
         value=""
@@ -35,10 +48,7 @@
         formControlName="reviews"
       />
       <div class="search-form-actions">
-        <a
-          
-          class="search-btn search-btn--stroked"
-          (click)="popupClicked()"
+        <a class="search-btn search-btn--stroked" (click)="popupClicked()"
           >Choose location</a
         >
         <input type="submit" value="Search" class="search-btn" />

@@ -1,9 +1,10 @@
+import { LatLng } from "@agm/core";
 import { Business } from "./../models/business";
 import { BusinessService } from "./../services/business.service";
 import { Component, OnInit } from "@angular/core";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { MapService } from "src/app/services/map.service";
-import { NotificationService } from 'src/app/services/notification.service';
+import { NotificationService } from "src/app/services/notification.service";
 
 @Component({
   selector: "app-search",
@@ -24,10 +25,23 @@ export class SearchComponent implements OnInit {
     city: new FormControl("", Validators.required),
     country: new FormControl("")
   });
-  openedPopup=false;
+  openedPopup = false;
   locationFound = false;
   locationLat = null;
   locationLng = null;
+
+  categories = [
+    "Retailer",
+    "Health Practitioner",
+    "Distributor (Finished Goods)",
+    "Food Service",
+    "Supplier/Raw Ingredient Distributor",
+    "Manufacturer",
+    "Business Services",
+    "Investor",
+    "Guest",
+    "Select Category"
+  ];
 
   // styling purpouses
   Arr = Array; // Array type captured in a variable
@@ -37,7 +51,7 @@ export class SearchComponent implements OnInit {
   constructor(
     private mapService: MapService,
     private businessService: BusinessService,
-    private notificationService:NotificationService
+    private notificationService: NotificationService
   ) {}
 
   ngOnInit() {}
@@ -45,25 +59,39 @@ export class SearchComponent implements OnInit {
   onSearch() {
     console.log("This criteria was selected ", this.searchForm.value);
     // step 1 : filter with keywords
-    this.businessService
-      .searchByKeywords(this.searchForm.value.term || "")
-      .subscribe(
-        filteredBiz => {
-          // TODO: update search results view
-          this.filteredBusinesses = filteredBiz;
-          console.log(this.filteredBusinesses.matches);
-        },
-        err => {
-          console.log(err);
-        }
-      );
+    // this.businessService
+    //   .searchByKeywords(this.searchForm.value.term || "")
+    //   .subscribe(
+    //     filteredBiz => {
+    //       this.filteredBusinesses = filteredBiz;
+    //       console.log(this.filteredBusinesses.matches);
+    //       // TODO: add global search
+    //     },
+    //     err => {
+    //       console.log(err);
+    //     }
+    //   );
+
+    let coords = { lat: this.locationLat, lng: this.locationLng };
+    this.businessService.globalSearch(this.searchForm.value, coords).subscribe(
+      matches => {
+        this.filteredBusinesses = matches;
+        console.log(this.filteredBusinesses.matches);
+      },
+      err => {
+        console.log(err);
+      }
+    );
   }
-  openPopup(){
+
+  openPopup() {
     this.openedPopup = true;
   }
-  closePopup(){
+
+  closePopup() {
     this.openedPopup = false;
   }
+
   getRows() {
     let base = Math.round(this.filteredBusinesses.matches.length / 3);
     let rest = this.filteredBusinesses.matches.length % 3 ? 1 : 0;
@@ -110,7 +138,7 @@ export class SearchComponent implements OnInit {
 
   popupClicked() {
     // when user wants to add the location to search query
-    this.openPopup()
+    this.openPopup();
     this.mapService
       .getPosition()
       .then(res => {
