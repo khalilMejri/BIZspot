@@ -22,8 +22,10 @@ export class BusinessService {
     return this.httpClient.get<Business>(`${this.apiUrl}/${id}`);
   }
 
-  getBusinessByOwnerId(id :string){
-    return this.httpClient.get<Business>(`${this.baseUrl}/users/${id}/businesses`);
+  getBusinessByOwnerId(id: string) {
+    return this.httpClient.get<Business>(
+      `${this.baseUrl}/users/${id}/businesses`
+    );
   }
 
   getBusinessReviews(id: string) {
@@ -33,8 +35,11 @@ export class BusinessService {
   createBusiness(business: Business) {
     return this.httpClient.post<Business>(`${this.apiUrl}`, business);
   }
-  createUserBusiness(business: Business, id:string){
-    return this.httpClient.post<Business>(`${this.baseUrl}/users/${id}/businesses`,business);
+  createUserBusiness(business: Business, id: string) {
+    return this.httpClient.post<Business>(
+      `${this.baseUrl}/users/${id}/businesses`,
+      business
+    );
   }
   updateBusiness(id: string, business: Business) {
     return this.httpClient.put<Business>(`${this.apiUrl}/${id}`, business);
@@ -83,5 +88,12 @@ export class BusinessService {
 
   getTopBusiness() {
     return this.httpClient.get<Business>(`${this.apiUrl}?filter[order]=level DESC&filter[limit]=1`);
+  }
+
+  globalSearch(patterns: any, coords: any) {
+    return this.httpClient.post<any>(`${this.apiUrl}/globalSearch`, {
+      patterns: patterns,
+      location: coords
+    });
   }
 }

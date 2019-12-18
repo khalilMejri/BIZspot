@@ -48,4 +48,40 @@ module.exports = function (Business) {
         }
     }
     );
+
+    Business.globalSearch = function (config, cb) {
+        console.log(config)
+        // var keys = keywords.split(' '); // every word is considered seprately
+        // console.log(keys); // output keys
+        Business.find(function (err, results) { // consider adding search limit
+            if (err) return cb(err)
+            var matches = [];
+            Business.fetchByKeywords(config.patterns.term, function (err, rows) {
+                var k = 0;
+
+                return cb(null, rows);
+            });
+        });
+    };
+
+    Business.remoteMethod(
+        'globalSearch', {
+        http: {
+            path: '/globalSearch',
+            verb: 'post'
+        },
+        accepts:
+        {
+            arg: 'patterns',
+            type: 'any',
+            http: {
+                source: 'body'
+            }
+        },
+        returns: {
+            arg: 'matches',
+            type: 'array'
+        }
+    }
+    );
 };
