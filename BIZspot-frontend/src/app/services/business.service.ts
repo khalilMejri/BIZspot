@@ -66,7 +66,7 @@ export class BusinessService {
   }
 
   searchByKeywords(keywords: string) {
-    return this.httpClient.get<Business[]>(
+    return this.httpClient.get<any>(
       `${this.apiUrl}/fetchByKeywords/?keywords=${keywords}`
     );
   }

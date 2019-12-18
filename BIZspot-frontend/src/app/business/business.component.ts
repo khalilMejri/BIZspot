@@ -13,7 +13,7 @@ export class BusinessComponent implements OnInit {
   /*
     Principle : this component is the business card element used in search and feed 
     must pass business to show it 
-    Reviews are optional : getReviews = true to show them 
+    TODO // Reviews are optional : getReviews = true to show them 
     Details are optional : getDetails = true to show the link to details 
   */
   @Input() business: Business;
@@ -21,7 +21,7 @@ export class BusinessComponent implements OnInit {
   @Input() showDetails: boolean = true;
   isReviewsLoaded: boolean = false;
   reviews: Review[];
-
+  checkReviews: boolean = true;
   constructor(
     private businessService: BusinessService,
     private router: Router

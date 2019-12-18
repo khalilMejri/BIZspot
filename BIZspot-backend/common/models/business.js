@@ -44,7 +44,7 @@ module.exports = function (Business) {
         },
         returns: {
             arg: 'matches',
-            type: 'any'
+            type: 'array'
         }
     }
     );
