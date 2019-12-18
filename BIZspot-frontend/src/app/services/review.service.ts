@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Review } from '../models/review';
+import { Business } from '../models/business';
 
 @Injectable({
   providedIn: 'root'
@@ -27,6 +28,10 @@ export class ReviewService {
 
   getReviews() {
     return this.httpClient.get<Review[]>(`${this.apiUrl}`);
+  }
+
+  getRecentReviews(limit: number) {
+    return this.httpClient.get<Review[]>(`${this.apiUrl}?filter[order]=postedAt DESC&filter[limit]=${limit}`);
   }
   
 }

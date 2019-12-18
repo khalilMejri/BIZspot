@@ -43,7 +43,7 @@ export class FeedComponent implements OnInit {
   }
 
   getTopReviewer() {
-    this.userService.findTopReviewer().subscribe(
+    this.userService.findTopReviewers(1).subscribe(
       (topReviewer) => {
         this.topReviewer = topReviewer[0];
         console.log("Top Reviewer : ", this.topReviewer);

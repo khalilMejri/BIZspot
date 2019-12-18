@@ -76,4 +76,12 @@ export class BusinessService {
       `${this.apiUrl}/fetchByKeywords/?keywords=${keywords}`
     );
   }
+
+  getLatestReviews(businessId: string, limit: number) {
+    return this.httpClient.get<Review>(`${this.apiUrl}/${businessId}/reviews?filter[order]=postedAt DESC&filter[limit]=${limit}`);
+  }
+
+  getTopBusiness() {
+    return this.httpClient.get<Business>(`${this.apiUrl}?filter[order]=level DESC&filter[limit]=1`);
+  }
 }

@@ -30,84 +30,45 @@
 			</div>
 		</header>
 		<main>
-			<section id="top" class="section-top">
+			<section id="top" class="section-top" *ngIf="topReviewers">
 				<div class="row">
-					<div class="col-1-of-3">
+					<div class="col-1-of-3" *ngFor="let topReviewer of topReviewers; let i = index">
 						<div class="topspot">
 							<figure class="topspot__shape u-margin-bottom-small">
-								<img src="assets/img/face1.jpg" class="topspot__img" alt="person on tour">
+								<img [src]="topReviewer.profile_pic" class="topspot__img" alt="person on tour">
 							</figure>
 							<div class="topspot__text">
 								<h3 class="heading-tertiary ">
-									Mary smith
+									{{topReviewer.fname | titlecase}} {{topReviewer.lname | titlecase}}
 								</h3>
-								<span class="topspot__star">&#9733;</span>
-								<span class="topspot__star">&#9733;</span>
-								<span class="topspot__star">&#9733;</span>
 							</div>
-
-						</div>
-					</div>
-					<div class="col-1-of-3">
-						<div class="topspot">
-							<figure class="topspot__shape u-margin-bottom-small">
-								<img src="assets/img/face2.jpg" class="topspot__img" alt="person on tour">
-							</figure>
-							<div class="topspot__text">
-								<h3 class="heading-tertiary ">
-									Mary smith
-								</h3>
-								<span class="topspot__star">&#9733;</span>
-								<span class="topspot__star">&#9733;</span>
-								<span class="topspot__star">&#9733;</span>
-								<span class="topspot__star">&#9733;</span>
-								<span class="topspot__star">&#9733;</span>
-							</div>
-
-						</div>
-					</div>
-					<div class="col-1-of-3">
-						<div class="topspot">
-							<figure class="topspot__shape u-margin-bottom-small">
-								<img src="assets/img/face3.jpg" class="topspot__img" alt="person on tour">
-							</figure>
-							<div class="topspot__text">
-								<h3 class="heading-tertiary">
-									Mary smith
-								</h3>
-								<span class="topspot__star">&#9733;</span>
-								<span class="topspot__star">&#9733;</span>
-								<span class="topspot__star">&#9733;</span>
-								<span class="topspot__star">&#9733;</span>
-							</div>
-
 						</div>
 					</div>
 				</div>
 			</section>
-			<section id="story" class="section-story">
+			<section id="story" class="section-story" *ngIf="topBusiness">
 				<div class="row">
-
+			
 					<div class="col-2-of-3">
-						<div class="section-story__left">
+						<div class="section-story__left" *ngIf="latestReview">
 							<h3 class="heading-tertiary u-margin-bottom-small">
-								You're going to fall in love with nature
+								{{topBusiness.title}}
 							</h3>
 							<p class="paragraph">
-								Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti ad vitae, molestias atque, quam eum quos, totam eaque earum
-								error eligendi harum voluptatibus qui dolore. In, iste! Impedit, architecto vel!
+								{{topBusiness.about}}
 							</p>
 							<h3 class="heading-tertiary u-margin-bottom-small">
-								live adventure like you never have before
+								{{author.fname}} {{author.lname}}
 							</h3>
 							<p class="paragraph">
-								Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptate deleniti architecto ullam aliquid ut!
+								{{latestReview.content}}
 							</p>
-							<a href="#" class="btn  btn--blue">Learn more &nbsp; &rarr; </a>
 						</div>
 					</div>
 					<div class="col-1-of-3">
 						<div class="section-story__right">
+							<img *ngIf="topBusiness.thumbnail" [src]="topBusiness.thumbnail" alt="">
+							<img *ngIf="!topBusiness.thumbnail" src="assets/img/right_bg.jpg" alt="">
 							&nbsp;
 						</div>
 					</div>

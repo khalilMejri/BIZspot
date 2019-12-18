@@ -19,7 +19,7 @@ export class BusinessComponent implements OnInit {
   @Input() business: Business;
   @Input() getReviews: boolean = false;
   @Input() showDetails: boolean = true;
-  isReviewsLoaded: boolean = false;
+  @Input() isReviewsLoaded: boolean = false;
   reviews: Review[];
   checkReviews: boolean = true;
   constructor(
