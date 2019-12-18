@@ -2,12 +2,17 @@
 
 
   <main class="feed-main">
+    <div class="feed-element-box">
 
-    <div class="feed-element-box" >
-      <div *ngFor="let business of businesses">
-        <app-business [business]="business"></app-business>
-      </div>
-    </div>
+      <app-infinity-scroll  (scrolled)="onScroll()">
+        <div *ngFor="let business of businesses">
+          <app-business [business]="business"></app-business>
+        </div>
+        
+      </app-infinity-scroll>
+      
+    </div>  
+    
 
 
   </main>

@@ -31,6 +31,7 @@ import { ReviewListComponent } from './review-list/review-list.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { LostComponent } from './lost/lost.component';
 import { NotificationComponent } from './notification/notification.component';
+import { InfinityScrollComponent } from './infinity-scroll/infinity-scroll.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,8 @@ import { NotificationComponent } from './notification/notification.component';
     NavbarComponent,
     RatingComponent,
     LostComponent,
-    NotificationComponent
+    NotificationComponent,
+    InfinityScrollComponent
   ],
   imports: [
     BrowserModule,

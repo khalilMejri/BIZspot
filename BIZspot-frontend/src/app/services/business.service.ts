@@ -17,7 +17,11 @@ export class BusinessService {
   getBusinesses() {
     return this.httpClient.get<Business[]>(this.apiUrl);
   }
+  getLimitedBusinesses(limit:number=10,skip:number=0){
+    console.log('limit ',limit,'skip ',skip)
+    return this.httpClient.get<Business[]>(`${this.apiUrl}?filter[limit]=${limit}&filter[offset]=${skip}`);
 
+  }
   getBusinessById(id: string) {
     return this.httpClient.get<Business>(`${this.apiUrl}/${id}`);
   }

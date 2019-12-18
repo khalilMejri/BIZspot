@@ -11,19 +11,21 @@ import { User } from '../models/user';
 })
 export class FeedComponent implements OnInit {
 
-  businesses: Business[];
+  businesses: Business[]=[];
   topBusiness: Business = null;
   topReviewer: User = null;
-  
+  limit=2;
+  skip=0;
   constructor(
     private businessService: BusinessService,
     private userService: UserService
   ) { }
 
-  getBusinesses() {
-    this.businessService.getBusinesses().subscribe(
+  getBusinesses(limit,skip) {
+    this.businessService.getLimitedBusinesses(limit,skip).subscribe(
       (businesses) => {
-        this.businesses = businesses;
+        console.log("requested business",businesses)
+        this.businesses.push(...businesses) ;
       },
       (error) => {
         console.log("Couldn't get businesses! \n", error);
@@ -55,9 +57,15 @@ export class FeedComponent implements OnInit {
   }
   
   ngOnInit() {
-    this.getBusinesses();
+    //this.getBusinesses(this.limit,this.skip);
+    console.log("using ",this.limit,this.skip)
     this.getTopBusiness();
     this.getTopReviewer();
+  }
+  onScroll(){
+    console.log("user scrolled");
+    this.getBusinesses(this.limit,this.skip);
+    this.skip += this.limit
   }
 
 }
