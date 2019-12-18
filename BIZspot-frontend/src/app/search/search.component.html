@@ -1,34 +1,126 @@
 <main class="search">
   <div class="search-box-up">
-    <form id="searchForm" class="search-form" [formGroup]="searchForm" (submit)="onSearch()">
-      <input type="search" value="" placeholder="Search ..." class="search-input search-input--main" formControlName="term">
-      <input type="text" value="" placeholder="Category" class="search-input" formControlName="category">
-      <input type="text" value="" placeholder="Stars" class="search-input" formControlName="stars">
-      <input type="text" value="" placeholder="Reviews" class="search-input" formControlName="reviews">
+    <form
+      id="searchForm"
+      class="search-form"
+      [formGroup]="searchForm"
+      (submit)="onSearch()"
+    >
+      <input
+        type="search"
+        value=""
+        placeholder="Search ..."
+        class="search-input search-input--main"
+        formControlName="term"
+      />
+      <input
+        type="text"
+        value=""
+        placeholder="Category"
+        class="search-input"
+        formControlName="category"
+      />
+      <input
+        type="text"
+        value=""
+        placeholder="Stars"
+        class="search-input"
+        formControlName="stars"
+      />
+      <input
+        type="text"
+        value=""
+        placeholder="Reviews"
+        class="search-input"
+        formControlName="reviews"
+      />
       <div class="search-form-actions">
-        <a href="/search#popup" class="search-btn search-btn--stroked" (click)="popupClicked()">Choose location</a>
-        <input type="submit" value="Search" class="search-btn">
+        <a
+          href="/search#popup"
+          class="search-btn search-btn--stroked"
+          (click)="popupClicked()"
+          >Choose location</a
+        >
+        <input type="submit" value="Search" class="search-btn" />
       </div>
     </form>
   </div>
-  <div class="row search-box-down">
+  <!-- placeholder card -->
+  <div
+    class="row search-box-down"
+    *ngIf="filteredBusinesses.matches.length == 0"
+  >
     <div class="col-1-of-3">
-      <app-business [showDetails]="false"></app-business>
-      <app-business></app-business>
-      <app-business></app-business>
-      <app-business></app-business>
-      <app-business></app-business>
-      
+      <div class="business">
+        <div class="business-box">
+          <div class="business-picture">
+            <img src="assets/img/placeholder_0.jpg" alt="" />
+            <img src="business.thumbnail" alt="" />
+          </div>
+          <div class="business-data">
+            <h2 class="business-title"></h2>
+            <p class="business-description"></p>
+            <p class="business-description-md"></p>
+            <a class="business-btn">Details</a>
+          </div>
+        </div>
+        <div>
+          <app-review></app-review>
+          <a href="" class="review-btn">&#17;</a>
+        </div>
+      </div>
     </div>
     <div class="col-1-of-3">
-      <app-business></app-business>
-      <app-business></app-business>
-      <app-business></app-business>
+      <div class="business">
+        <div class="business-box">
+          <div class="business-picture">
+            <img src="assets/img/placeholder_0.jpg" alt="" />
+            <img src="business.thumbnail" alt="" />
+          </div>
+          <div class="business-data">
+            <h2 class="business-title"></h2>
+            <p class="business-description"></p>
+            <p class="business-description-md"></p>
+            <a class="business-btn">Details</a>
+          </div>
+        </div>
+        <div>
+          <app-review></app-review>
+          <a href="" class="review-btn">&#17;</a>
+        </div>
+      </div>
     </div>
     <div class="col-1-of-3">
-      <app-business></app-business>
-      <app-business></app-business>
-      <app-business></app-business>
+      <div class="business">
+        <div class="business-box">
+          <div class="business-picture">
+            <img src="assets/img/placeholder_0.jpg" alt="" />
+            <img src="business.thumbnail" alt="" />
+          </div>
+          <div class="business-data">
+            <h2 class="business-title"></h2>
+            <p class="business-description"></p>
+            <p class="business-description-md"></p>
+            <a class="business-btn">Details</a>
+          </div>
+        </div>
+        <div>
+          <app-review></app-review>
+          <a href="" class="review-btn">&#17;</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- maximum 3 biz cards in each row -->
+  <div
+    class="row search-box-down"
+    *ngFor="let row of Arr(getRows()).fill(1); let idx = index"
+  >
+    <div
+      class="col-1-of-3"
+      *ngFor="let biz of filteredBusinesses.matches | slice: idx * 3:idx + 3"
+    >
+      <app-business [business]="biz"></app-business>
     </div>
   </div>
 </main>
@@ -36,32 +128,70 @@
 <div class="popup" id="popup">
   <a href="/search" class="popup__close">&times;</a>
   <div class="popup__content">
-
-
-    <form class="popup__form" [formGroup]="locationForm" (submit)="onLocationSubmit()">
-      <input formControlName="number" type="text" placeholder="Number" class="search-input">
-      <input formControlName="street" type="text" value="" placeholder="Street Name" class="search-input">
-      <input formControlName="city" type="text" value="" placeholder="City" class="search-input">
-      <input formControlName="country" type="text" value="" placeholder="Country" class="search-input">
+    <form
+      class="popup__form"
+      [formGroup]="locationForm"
+      (submit)="onLocationSubmit()"
+    >
+      <input
+        formControlName="number"
+        type="text"
+        placeholder="Number"
+        class="search-input"
+      />
+      <input
+        formControlName="street"
+        type="text"
+        value=""
+        placeholder="Street Name"
+        class="search-input"
+      />
+      <input
+        formControlName="city"
+        type="text"
+        value=""
+        placeholder="City"
+        class="search-input"
+      />
+      <input
+        formControlName="country"
+        type="text"
+        value=""
+        placeholder="Country"
+        class="search-input"
+      />
       <!--<input type="text" value="" placeholder="Search address" class="search-input search-input--secondary">-->
       <div class="popup__form-actions">
-
-        <input type="submit" value="Search" class="search-btn search-btn--stroked">
-        <a href="/search" type="button"  class="search-btn" (click)="locationAccepted()">
+        <input
+          type="submit"
+          value="Search"
+          class="search-btn search-btn--stroked"
+        />
+        <a
+          href="/search"
+          type="button"
+          class="search-btn"
+          (click)="locationAccepted()"
+        >
           Accept Location
         </a>
-
       </div>
     </form>
 
-
-
-    <agm-map (mapClick)="mapLocationChanged($event)" class="business-page-map" [latitude]="locationLat" [longitude]="locationLng">
+    <agm-map
+      (mapClick)="mapLocationChanged($event)"
+      class="business-page-map"
+      [latitude]="locationLat"
+      [longitude]="locationLng"
+    >
       <div *ngIf="locationFound">
-
-        <agm-marker [latitude]="locationLat" [longitude]="locationLng" [label]="'M'"></agm-marker> `
+        <agm-marker
+          [latitude]="locationLat"
+          [longitude]="locationLng"
+          [label]="'M'"
+        ></agm-marker>
+        `
       </div>
     </agm-map>
-
   </div>
 </div>

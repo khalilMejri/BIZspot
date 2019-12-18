@@ -1,3 +1,4 @@
+import { Business } from "./../models/business";
 import { BusinessService } from "./../services/business.service";
 import { Component, OnInit } from "@angular/core";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
@@ -16,15 +17,23 @@ export class SearchComponent implements OnInit {
     stars: new FormControl(""),
     reviews: new FormControl("")
   });
+
   locationForm = new FormGroup({
     number: new FormControl("", Validators.required),
     street: new FormControl(""),
     city: new FormControl("", Validators.required),
     country: new FormControl("")
   });
+
   locationFound = false;
   locationLat = null;
   locationLng = null;
+
+  // styling purpouses
+  Arr = Array; // Array type captured in a variable
+
+  filteredBusinesses: any = { matches: [] };
+
   constructor(
     private mapService: MapService,
     private businessService: BusinessService,
@@ -35,18 +44,25 @@ export class SearchComponent implements OnInit {
 
   onSearch() {
     console.log("This criteria was selected ", this.searchForm.value);
-    // step1 : filter with keywords
+    // step 1 : filter with keywords
     this.businessService
       .searchByKeywords(this.searchForm.value.term || "")
       .subscribe(
         filteredBiz => {
-          console.log(filteredBiz);
           // TODO: update search results view
+          this.filteredBusinesses = filteredBiz;
+          console.log(this.filteredBusinesses.matches);
         },
         err => {
           console.log(err);
         }
       );
+  }
+
+  getRows() {
+    let base = Math.round(this.filteredBusinesses.matches.length / 3);
+    let rest = this.filteredBusinesses.matches.length % 3 ? 1 : 0;
+    return base + rest;
   }
 
   onLocationSubmit() {

@@ -1,0 +1,29 @@
+.business-picture {
+  height: 35vh;
+  overflow: hidden;
+  background: #888;
+}
+.business-title {
+  font-size: 0rem;
+  color: #5be89b;
+  height: 25px;
+  width: 180px;
+  background: #ccc;
+}
+
+.business-description,
+.business-description-md {
+  font-size: 0rem;
+  color: #000;
+  height: 22px;
+  margin-top: 12px;
+  background: #ccc;
+}
+
+.business-description-md {
+  width: 250px;
+}
+
+.search-box-down {
+  margin: 24px;
+}

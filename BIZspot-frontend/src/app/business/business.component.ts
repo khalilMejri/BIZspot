@@ -1,49 +1,48 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { BusinessService } from '../services/business.service';
-import { Review } from '../models/review';
-import { Business } from '../models/business';
-import { Router } from '@angular/router';
+import { Component, OnInit, Input } from "@angular/core";
+import { BusinessService } from "../services/business.service";
+import { Review } from "../models/review";
+import { Business } from "../models/business";
+import { Router } from "@angular/router";
 
 @Component({
-  selector: 'app-business',
-  templateUrl: './business.component.html',
-  styleUrls: ['./business.component.css']
+  selector: "app-business",
+  templateUrl: "./business.component.html",
+  styleUrls: ["./business.component.css"]
 })
 export class BusinessComponent implements OnInit {
   /*
-    Principle : this component is the business card element used in search and feed
-    must pass business to show it
-    Reviews are optional : getReviews = true to show them 
+    Principle : this component is the business card element used in search and feed 
+    must pass business to show it 
+    TODO // Reviews are optional : getReviews = true to show them 
     Details are optional : getDetails = true to show the link to details 
   */
   @Input() business: Business;
   @Input() getReviews: boolean = false;
   @Input() showDetails: boolean = true;
-  isReviewsLoaded:boolean = false;
+  isReviewsLoaded: boolean = false;
   reviews: Review[];
- 
+  checkReviews: boolean = true;
   constructor(
-    private businessService:BusinessService,
+    private businessService: BusinessService,
     private router: Router
-    ) { }
+  ) {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   goToDetails() {
     const link = [`business/${this.business.id}`];
     this.router.navigate(link);
   }
 
-  loadReviews(){
-    console.log('loading reviews');
+  loadReviews() {
+    console.log("loading reviews");
     /*this.businessService.getBusinessReviews(business.id)
       .subscribe(reviews => {
         this.reviews = reviews;
         this.isReviewsLoaded = true;
       })*/
   }
-  checkDetails(){
-    this.router.navigate(['/business',this.business.id]);
+  checkDetails() {
+    this.router.navigate(["/business", this.business.id]);
   }
 }
