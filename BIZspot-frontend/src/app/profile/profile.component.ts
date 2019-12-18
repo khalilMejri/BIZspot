@@ -25,7 +25,7 @@ export class ProfileComponent implements OnInit {
     language:new FormControl(''),
     
   })
-
+  openedPopup=false;
   currentUser: User;
   errorMessage: string;
   profile_pic_path: string;
@@ -35,7 +35,12 @@ export class ProfileComponent implements OnInit {
     private router: Router,
     private notificationService:NotificationService
   ) { }
-
+  openPopup(){
+    this.openedPopup = true;
+  }
+  closePopup(){
+    this.openedPopup = false;
+  }
   getUserById() {
     this.userService.getUserById(localStorage.getItem('currentUserId')).subscribe(
       (user) => {

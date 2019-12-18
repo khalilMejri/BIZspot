@@ -24,7 +24,7 @@ export class SearchComponent implements OnInit {
     city: new FormControl("", Validators.required),
     country: new FormControl("")
   });
-
+  openedPopup=false;
   locationFound = false;
   locationLat = null;
   locationLng = null;
@@ -58,7 +58,12 @@ export class SearchComponent implements OnInit {
         }
       );
   }
-
+  openPopup(){
+    this.openedPopup = true;
+  }
+  closePopup(){
+    this.openedPopup = false;
+  }
   getRows() {
     let base = Math.round(this.filteredBusinesses.matches.length / 3);
     let rest = this.filteredBusinesses.matches.length % 3 ? 1 : 0;
@@ -105,6 +110,7 @@ export class SearchComponent implements OnInit {
 
   popupClicked() {
     // when user wants to add the location to search query
+    this.openPopup()
     this.mapService
       .getPosition()
       .then(res => {

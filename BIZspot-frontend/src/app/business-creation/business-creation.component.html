@@ -39,14 +39,14 @@
 	<div class="row creation-mid">
 		<input type="button" *ngIf="!businessAlreadyCreated" (click)="onSubmit()" value="Create Business" class="btn btn--green">
 		<input type="button" *ngIf="businessAlreadyCreated" (click)="onUpdate()" value="Update Business" class="btn btn--green">
-		<a  href="/create#popup" *ngIf="!subscriptionPayed" (click)="onPay()" class="btn search-btn--notif">Pay Subscription</a>
+		<a  (click)="openPopup()" *ngIf="businessAlreadyCreated && !subscriptionPayed" (click)="onPay()" class="btn search-btn--notif">Pay Subscription</a>
 		
 	</div>
 </main>
-<section class="popup" id="popup">
+<section class="popup" id="popup" *ngIf="openedPopup">
 			<div class="popup__content">
 
-					<a href="/create" class="popup__close">&times;</a>
+					<a (click)="closePopup()" class="popup__close">&times;</a>
 					<div class="payement-box">
 						<h2 class="payement-title"> Choose your plan</h2>
 						<div class="payement-plans">

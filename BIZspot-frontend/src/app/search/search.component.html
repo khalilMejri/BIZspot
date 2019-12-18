@@ -36,7 +36,7 @@
       />
       <div class="search-form-actions">
         <a
-          href="/search#popup"
+          
           class="search-btn search-btn--stroked"
           (click)="popupClicked()"
           >Choose location</a
@@ -125,8 +125,8 @@
   </div>
 </main>
 <!-- The popup for getting the specified location -->
-<div class="popup" id="popup">
-  <a href="/search" class="popup__close">&times;</a>
+<div class="popup" id="popup" *ngIf="openedPopup">
+  <a (click)="closePopup()" class="popup__close">&times;</a>
   <div class="popup__content">
     <form
       class="popup__form"

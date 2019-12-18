@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
-
-const uuid = require('uuid');
+import {uuid} from 'uuid'
 interface Notification{
   id?:string
   "text":string,

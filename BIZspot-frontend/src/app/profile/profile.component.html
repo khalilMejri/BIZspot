@@ -35,7 +35,7 @@
       </form>
     </div>
     <div class="col-1-of-4 profile-right">
-		<a href="/profile#popup" >
+		<a (click)="openPopup()" >
 
 			<div class="profile-btn-box">
 				<div class="profile-btn"></div>
@@ -46,9 +46,9 @@
   </div>
 </main>
 <!-- popup for the settings -->
-<div class="popup" id="popup">
+<div class="popup" id="popup" *ngIf="openedPopup">
   <div class="popup__content">
-    <a href="/profile" class="popup__close">&times;</a>
+    <a (click)="closePopup()" class="popup__close">&times;</a>
 
 
     <form [formGroup]="settingsForm" class="settings__form" (submit)="onSettingSubmit()">

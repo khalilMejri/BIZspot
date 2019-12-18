@@ -1546,8 +1546,8 @@ body {
   left: 0;
   width: 100vw;
   height: 100vh;
-  opacity: 0;
-  visibility: hidden;
+  opacity: 1;
+  visibility: visible;
   transition: all 0.3s;
 }
 
@@ -1559,16 +1559,8 @@ body {
   }
 }
 
-.popup:target {
-  opacity: 1;
-  visibility: visible;
-}
 
-.popup:target .popup__content {
-  opacity: 1;
-  transform: translate(-50%, -50%) scale(1);
-}
-
+.popup__close,
 .popup__close:link,
 .popup__close:visited {
   color: #ed2227;
@@ -1592,10 +1584,10 @@ body {
   left: 50%;
   width: 75%;
   box-shadow: 0 2rem 4rem rgba(0, 0, 0, 0.2);
-  transform: translate(-50%, -50%) scale(0);
+  transform: translate(-50%, -50%) scale(1);
   border-radius: 0.3rem;
   display: table;
-  overflow: hidden;
+  
   opacity: 1;
   transition: all 0.2s ease-in-out 0.2s;
 }

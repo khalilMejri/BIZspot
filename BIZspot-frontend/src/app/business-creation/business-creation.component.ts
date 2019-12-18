@@ -46,6 +46,8 @@ export class BusinessCreationComponent implements OnInit,OnDestroy  {
   loadedLocation: Location
   userId: string
 
+  openedPopup = false;
+
   location: Location;
   newBusiness: Business;
   categoryId: string;
@@ -90,7 +92,12 @@ export class BusinessCreationComponent implements OnInit,OnDestroy  {
     this.loadBusiness(hasSessionId);
     this.countriesList = countriesList;
   }
-
+  openPopup(){
+    this.openedPopup = true;
+  }
+  closePopup(){
+    this.openedPopup = false;
+  }
 
 
   loadBusiness(redirection=false) {
