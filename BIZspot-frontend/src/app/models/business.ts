@@ -9,6 +9,7 @@ export interface Business {
 	members: Object[],
 	categoryId: string,
 	locationId: string,
+	creatorId: string,
 	about: string,
 	thumbnail: string
 }

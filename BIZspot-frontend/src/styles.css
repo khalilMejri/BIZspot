@@ -1369,11 +1369,72 @@ body {
 .creation-left {
   padding: 5rem 1rem;
 }
-
-.creation-mid {
-  padding-top: 80vh;
+.creation > .row{
+  margin-bottom: 0;
 }
+.creation-mid {
+  display: flex;
+		flex-direction: row;
+    justify-content: center;
+    
+}
+.payement-box {
+  padding: 1rem;
+  width: 100%;
+  height: 100%;
+  text-align: center; }
 
+.payement-title {
+  margin: 1rem 0;
+  color: #5be89b;
+  font-size: 3rem;
+  margin-bottom: 4.5rem; }
+
+.payement-plans {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  padding-bottom: 3rem; }
+
+.payement-offer {
+  position: relative;
+  height: 25rem;
+  border-radius: 2rem;
+  padding: 0 1.5rem;
+  text-align: center;
+  transition: margin 0.3s;
+  border: solid 0.3rem #777; }
+  .payement-offer-btn {
+    cursor: pointer;
+    border: none;
+    color: #fff;
+    background-color: #2d3a71;
+    padding: 0.5rem 2.5rem;
+    border-radius: 0.5rem;
+    transition: all 0.1s ease-in;
+    position: absolute;
+    bottom: 0;
+    transform: translate(-50%, 50%); }
+    .payement-offer-btn:hover {
+      background-color: #5be89b;
+      color: #252d2f; }
+  .payement-offer-title {
+    color: #2d3a71;
+    font-size: 1.9rem;
+    margin: 2rem 0; }
+  .payement-offer-options {
+    list-style: none;
+    width: 100%;
+    margin: 0 auto;
+    color: #000; }
+  .payement-offer-option {
+    text-align: center;
+    padding: 0.5rem; }
+    .payement-offer-option:not(:last-child) {
+      border-bottom: 1px solid #2d3a71; }
+  .payement-offer:hover {
+    border: solid 0.3rem #5be89b; }
 .business {
   margin-top: 8rem;
   cursor: pointer;

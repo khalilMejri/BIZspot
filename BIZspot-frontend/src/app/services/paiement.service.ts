@@ -15,8 +15,8 @@ export class PaiementService {
     return this.httpClient.post(`${this.apiUrl}/create-checkout-session`,body);
     
   }
-  checkPaiementSession(){
-    return this.httpClient.get(`${this.apiUrl}/checkout-session`);
+  checkPaiementSession(sessionId:string){
+    return this.httpClient.get(`${this.apiUrl}/checkout-session?sessionId=${sessionId}`);
   }
   getApiKeys(){
     return this.httpClient.get(`${this.apiUrl}/setup`);

@@ -9,10 +9,9 @@ var loopback = require('loopback');
 var boot = require('loopback-boot');
 var app = module.exports = loopback();
 const env = require('dotenv').config({
-  path: "../.env"
+  path: ".env"
 });
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
-
 
 // Fetch the Checkout Session to display the JSON result on the success page
 app.get("/api/checkout-session", (req, res) => {
@@ -22,7 +21,7 @@ app.get("/api/checkout-session", (req, res) => {
   stripe.checkout.sessions.retrieve(sessionId)
   .then((session, err) => {
     if (err) {
-      console.log(err);
+      
       return res.json({
         'error': 'error in retreiving the stripe session'
       });
@@ -97,7 +96,6 @@ boot(app, __dirname, function (err) {
   if (err) throw err;
   app.post("/api/create-checkout-session", (req, res) => {
     const domainURL = process.env.DOMAIN;
-    console.log('request session creation ',req);
     const {
       planId
     } = req.body;
@@ -117,7 +115,7 @@ boot(app, __dirname, function (err) {
       },
       // ?session_id={CHECKOUT_SESSION_ID} means the redirect will have the session ID set as a query param
       success_url: `${domainURL}/create?session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `${domainURL}/create?`
+      cancel_url: `${domainURL}/create`
     }).then((session, err) => {
       
       res.send({
