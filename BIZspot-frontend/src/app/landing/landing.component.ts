@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../services/user.service';
 import { Router } from '@angular/router';
+import { User } from '../models/user';
+import { Review } from '../models/review';
+import { Business } from '../models/business';
+import { BusinessService } from '../services/business.service';
 
 @Component({
   selector: 'app-landing',
@@ -9,12 +13,20 @@ import { Router } from '@angular/router';
 })
 export class LandingComponent implements OnInit {
 
+  topReviewers: User[] = [];
+  topBusiness: Business;
+  latestReview: Review;
+  author: User;
+  
   constructor(
     private userService: UserService,
-    private router: Router
+    private router: Router,
+    private businessService: BusinessService
   ) { }
 
   ngOnInit() {
+    this.getTopReviewers();
+    this.getTopBusiness();
   }
 
   isLogged() {
@@ -22,18 +34,56 @@ export class LandingComponent implements OnInit {
   }
 
   logout() {
-    // const token = localStorage.getItem('token');
-    // this.userService.logout().subscribe(
-    //   (response) => {
-    //     console.log('User logged out');
-    //     const link = ['login'];
-    //     this.router.navigate(link);
-    //   },
-    //   (error) => {
-    //     console.log('Could not log out: \n',error);
-    //   }
-    // );
     this.userService.logout();
+  }
+
+  getTopReviewers() {
+    this.userService.findTopReviewers(3).subscribe(
+      (topReviewers) => {
+        this.topReviewers = topReviewers;
+        console.log("Top Reviewers: \n", this.topReviewers);
+      },
+      (error) => {
+        console.log("Couldn't get top reviewers! \n", error);
+      }
+    );
+  }
+
+  getTopBusiness() {
+    this.businessService.getTopBusiness().subscribe(
+      (topBusiness) => {
+        this.topBusiness = topBusiness[0];
+        console.log("Top Business : ", this.topBusiness);
+        this.getLatestReview(this.topBusiness.id);
+      },
+      (error) => {
+        console.log("Couldn't get top business! \n", error);
+      }
+    );
+  }
+
+  getLatestReview(businessId: string) {
+    this.businessService.getLatestReviews(businessId, 1).subscribe(
+      (latestReview) => {
+        this.latestReview = latestReview[0];
+        console.log("Latest Review: ", this.latestReview);
+        this.getReviewAuthor();
+      },
+      (error) => {
+        console.log("Couldn't get the last review! \n", error); 
+      }
+    );
+  }
+
+  getReviewAuthor() {
+    this.userService.getUserById(this.latestReview.userId).subscribe(
+      (author) => {
+        this.author = author;
+      },
+      (error) => {
+        console.log("Couldn't get author! \n", error);
+      }
+    );
   }
 
 }
