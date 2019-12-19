@@ -2,6 +2,7 @@
   height: 35vh;
   overflow: hidden;
   background: #888;
+  margin-bottom: 24px;
 }
 .business-title {
   font-size: 0rem;
@@ -15,7 +16,7 @@
 .business-description-md {
   font-size: 0rem;
   color: #000;
-  height: 22px;
+  height: 20px;
   margin-top: 12px;
   background: #ccc;
 }

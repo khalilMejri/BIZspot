@@ -134,6 +134,7 @@ export class SearchComponent implements OnInit {
     // Called when user accept location and get back to search component(closing popup)
     console.log("Accepted location coords", this.locationLat, this.locationLng);
     console.log("Accepted location address", this.locationForm.value);
+    this.closePopup();
   }
 
   popupClicked() {

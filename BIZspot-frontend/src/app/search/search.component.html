@@ -40,13 +40,22 @@
         class="search-input"
         formControlName="stars"
       />
-      <input
+      <!-- <input
         type="text"
         value=""
         placeholder="Reviews"
         class="search-input"
         formControlName="reviews"
-      />
+      /> -->
+      <select
+        type=""
+        class="search-input"
+        formControlName="reviews"
+        value="top"
+      >
+        <option value="top" selected>Top Reviews</option>
+        <option value="worst">Worst Reviews</option>
+      </select>
       <div class="search-form-actions">
         <a class="search-btn search-btn--stroked" (click)="popupClicked()"
           >Choose location</a
@@ -60,74 +69,66 @@
     class="row search-box-down"
     *ngIf="filteredBusinesses.matches.length == 0"
   >
-    
-      <div class="business">
-        <div class="business-box">
-          <div class="business-picture">
-            <img src="assets/img/placeholder_0.jpg" alt="" />
-            <img src="business.thumbnail" alt="" />
-          </div>
-          <div class="business-data">
-            <h2 class="business-title"></h2>
-            <p class="business-description"></p>
-            <p class="business-description-md"></p>
-            <a class="business-btn">Details</a>
-          </div>
+    <div class="business">
+      <div class="business-box">
+        <div class="business-picture">
+          <img src="assets/img/placeholder_0.jpg" alt="" />
+          <img src="business.thumbnail" alt="" />
         </div>
-        <div>
-          <app-review></app-review>
-          <a href="" class="review-btn">&#17;</a>
+        <div class="business-data">
+          <h2 class="business-title"></h2>
+          <p class="business-description"></p>
+          <p class="business-description-md"></p>
+          <a class="business-btn">Details</a>
         </div>
       </div>
-    
-      <div class="business">
-        <div class="business-box">
-          <div class="business-picture">
-            <img src="assets/img/placeholder_0.jpg" alt="" />
-            <img src="business.thumbnail" alt="" />
-          </div>
-          <div class="business-data">
-            <h2 class="business-title"></h2>
-            <p class="business-description"></p>
-            <p class="business-description-md"></p>
-            <a class="business-btn">Details</a>
-          </div>
+      <div>
+        <app-review></app-review>
+        <a href="" class="review-btn">&#17;</a>
+      </div>
+    </div>
+
+    <div class="business">
+      <div class="business-box">
+        <div class="business-picture">
+          <img src="assets/img/placeholder_0.jpg" alt="" />
+          <img src="business.thumbnail" alt="" />
         </div>
-        <div>
-          <app-review></app-review>
-          <a href="" class="review-btn">&#17;</a>
+        <div class="business-data">
+          <h2 class="business-title"></h2>
+          <p class="business-description"></p>
+          <p class="business-description-md"></p>
+          <a class="business-btn">Details</a>
         </div>
       </div>
-    
-      <div class="business">
-        <div class="business-box">
-          <div class="business-picture">
-            <img src="assets/img/placeholder_0.jpg" alt="" />
-            <img src="business.thumbnail" alt="" />
-          </div>
-          <div class="business-data">
-            <h2 class="business-title"></h2>
-            <p class="business-description"></p>
-            <p class="business-description-md"></p>
-            <a class="business-btn">Details</a>
-          </div>
+      <div>
+        <app-review></app-review>
+        <a href="" class="review-btn">&#17;</a>
+      </div>
+    </div>
+
+    <div class="business">
+      <div class="business-box">
+        <div class="business-picture">
+          <img src="assets/img/placeholder_0.jpg" alt="" />
+          <img src="business.thumbnail" alt="" />
         </div>
-        <div>
-          <app-review></app-review>
-          <a href="" class="review-btn">&#17;</a>
+        <div class="business-data">
+          <h2 class="business-title"></h2>
+          <p class="business-description"></p>
+          <p class="business-description-md"></p>
+          <a class="business-btn">Details</a>
         </div>
       </div>
-    
+      <div>
+        <app-review></app-review>
+        <a href="" class="review-btn">&#17;</a>
+      </div>
+    </div>
   </div>
   <!-- maximum 3 biz cards in each row -->
-  <div
-    class="row search-box-down"
-    
-  >
-    <div
-    
-      *ngFor="let biz of filteredBusinesses.matches "
-    >
+  <div class="row search-box-down">
+    <div *ngFor="let biz of filteredBusinesses.matches">
       <app-business [business]="biz"></app-business>
     </div>
   </div>
@@ -176,7 +177,7 @@
           class="search-btn search-btn--stroked"
         />
         <a
-          href="/search"
+          href="javascript:void(0)"
           type="button"
           class="search-btn"
           (click)="locationAccepted()"
