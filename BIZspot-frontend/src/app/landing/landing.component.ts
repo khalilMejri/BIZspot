@@ -44,7 +44,7 @@ export class LandingComponent implements OnInit {
         console.log("Top Reviewers: \n", this.topReviewers);
       },
       (error) => {
-        console.log("Couldn't get top reviewers! \n", error);
+        console.log("Couldn't get top reviewers! \n");
       }
     );
   }
@@ -57,7 +57,7 @@ export class LandingComponent implements OnInit {
         this.getLatestReview(this.topBusiness.id);
       },
       (error) => {
-        console.log("Couldn't get top business! \n", error);
+        console.log("Couldn't get top business! \n");
       }
     );
   }
@@ -70,7 +70,7 @@ export class LandingComponent implements OnInit {
         this.getReviewAuthor();
       },
       (error) => {
-        console.log("Couldn't get the last review! \n", error); 
+        console.log("Couldn't get the last review! \n"); 
       }
     );
   }
