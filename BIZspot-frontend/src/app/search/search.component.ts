@@ -40,11 +40,13 @@ export class SearchComponent implements OnInit {
     "Business Services",
     "Investor",
     "Guest",
+    "Mechanical",
     "Select Category"
   ];
 
   // styling purpouses
   Arr = Array; // Array type captured in a variable
+  isLoading: boolean; // toggle loader
 
   filteredBusinesses: any = { matches: [] };
 
@@ -58,25 +60,16 @@ export class SearchComponent implements OnInit {
 
   onSearch() {
     console.log("This criteria was selected ", this.searchForm.value);
-    // step 1 : filter with keywords
-    // this.businessService
-    //   .searchByKeywords(this.searchForm.value.term || "")
-    //   .subscribe(
-    //     filteredBiz => {
-    //       this.filteredBusinesses = filteredBiz;
-    //       console.log(this.filteredBusinesses.matches);
-    //       // TODO: add global search
-    //     },
-    //     err => {
-    //       console.log(err);
-    //     }
-    //   );
-
-    let coords = { lat: this.locationLat, lng: this.locationLng };
+    this.isLoading = true;
+    // send search patterns
+    let coords = { lat: this.locationLat, lng: this.locationLng }; // position coords
     this.businessService.globalSearch(this.searchForm.value, coords).subscribe(
       matches => {
         this.filteredBusinesses = matches;
         console.log(this.filteredBusinesses.matches);
+        setTimeout(() => {
+          this.isLoading = false;
+        }, 1000);
       },
       err => {
         console.log(err);
