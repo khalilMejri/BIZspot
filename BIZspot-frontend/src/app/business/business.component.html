@@ -1,10 +1,10 @@
 <div class="business" (click)="checkDetails()">
   <div class="business-box">
-
     <div class="business-picture">
       <img *ngIf="!business?.thumbnail" src="assets/img/business.jpg" alt="">
       <img *ngIf="business?.thumbnail" [src]="business.thumbnail" alt="">
     </div>
+    <app-rating [rating]="business.level" [static]="true"></app-rating>
     <div class="business-data">
       <h2 class="business-title">
         {{business?.title || 'Testing Title'}}
@@ -13,7 +13,6 @@
         {{business?.about || 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis quibusdam, impedit quaerat ea
         nihil laborum quas magnam maxime maiores aliquam ducimus quidem enim atque culpa. Aut recusandae quam voluptate et.'}}
       </p>
-      <a class="business-btn" *ngIf="showDetails" (click)="goToDetails()">Details</a>
     </div>
   </div>
   <div *ngIf="isReviewsLoaded">

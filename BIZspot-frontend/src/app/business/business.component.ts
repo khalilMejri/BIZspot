@@ -27,12 +27,12 @@ export class BusinessComponent implements OnInit {
     private router: Router
   ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    console.log(this.business);
 
-  goToDetails() {
-    const link = [`business/${this.business.id}`];
-    this.router.navigate(link);
   }
+
+ 
 
   loadReviews() {
     console.log("loading reviews");

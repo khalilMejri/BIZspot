@@ -60,7 +60,7 @@
     class="row search-box-down"
     *ngIf="filteredBusinesses.matches.length == 0"
   >
-    <div class="col-1-of-3">
+    
       <div class="business">
         <div class="business-box">
           <div class="business-picture">
@@ -79,8 +79,7 @@
           <a href="" class="review-btn">&#17;</a>
         </div>
       </div>
-    </div>
-    <div class="col-1-of-3">
+    
       <div class="business">
         <div class="business-box">
           <div class="business-picture">
@@ -99,8 +98,7 @@
           <a href="" class="review-btn">&#17;</a>
         </div>
       </div>
-    </div>
-    <div class="col-1-of-3">
+    
       <div class="business">
         <div class="business-box">
           <div class="business-picture">
@@ -119,16 +117,16 @@
           <a href="" class="review-btn">&#17;</a>
         </div>
       </div>
-    </div>
+    
   </div>
   <!-- maximum 3 biz cards in each row -->
   <div
     class="row search-box-down"
-    *ngFor="let row of Arr(getRows()).fill(1); let idx = index"
+    
   >
     <div
-      class="col-1-of-3"
-      *ngFor="let biz of filteredBusinesses.matches | slice: idx * 3:idx + 3"
+    
+      *ngFor="let biz of filteredBusinesses.matches "
     >
       <app-business [business]="biz"></app-business>
     </div>
