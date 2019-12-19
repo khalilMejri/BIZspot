@@ -25,7 +25,10 @@ export class AuthInterceptor implements HttpInterceptor {
     req.headers.set("Access-Control-Allow-Methods", "GET");
     req.headers.set("Access-Control-Allow-Origin", "*");
     console.log(req);
-    if (req.url.includes("/login") || ( req.url.endsWith('/users') && req.method == "POST" )) {
+    if (
+      req.url.includes("/login") ||
+      (req.url.endsWith("/users") && req.method == "POST")
+    ) {
       let clonedReq = req.clone({
         headers: new HttpHeaders({
           "Access-Control-Allow-Headers": "Content-Type",
@@ -62,7 +65,7 @@ export class AuthInterceptor implements HttpInterceptor {
           tap(
             succ => {},
             err => {
-              if (err.status === 401) {
+              if (err.status === 500) {
                 this.router.navigateByUrl("/login");
                 // remove authentication storage
                 localStorage.removeItem("token");
@@ -72,7 +75,7 @@ export class AuthInterceptor implements HttpInterceptor {
           )
         );
     } else {
-      this.router.navigateByUrl("/login");
+      // this.router.navigateByUrl("/login");
     }
   }
 }
