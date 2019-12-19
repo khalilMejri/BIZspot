@@ -129,7 +129,7 @@
     </div>
   </div>
   <!-- maximum 3 biz cards in each row -->
-  <div class="row search-box-down">
+  <div class="row search-box-down" *ngIf="filteredBusinesses.matches.length != 0">
     <div *ngFor="let biz of filteredBusinesses.matches">
       <app-business [business]="biz"></app-business>
     </div>

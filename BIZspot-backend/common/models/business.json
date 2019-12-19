@@ -75,6 +75,19 @@
       "principalType": "ROLE",
       "principalId": "$unauthenticated",
       "permission": "DENY"
+    },
+    {
+      "accessType": "READ",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "ALLOW"
+    },
+    {
+    
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "ALLOW",
+      "property":"__get__reviews"
     }
   ],
   "methods": {}
