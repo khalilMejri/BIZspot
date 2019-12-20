@@ -44,7 +44,7 @@ export class AuthInterceptor implements HttpInterceptor {
           "Access-Control-Allow-Origin": "*"
         })
       });
-
+      
       return next
         .handle(clonedreq)
         .pipe(
@@ -57,15 +57,18 @@ export class AuthInterceptor implements HttpInterceptor {
               localStorage.removeItem("token");
               localStorage.removeItem("currentUser");
             } else {
+              console.log(error);
               return throwError(error);
             }
           })
         )
         .pipe(
           tap(
-            succ => {},
+            succ => {console.log("succ ",succ)},
             err => {
+              console.log(err);
               if (err.status === 500) {
+              
                 this.router.navigateByUrl("/login");
                 // remove authentication storage
                 localStorage.removeItem("token");
@@ -75,6 +78,7 @@ export class AuthInterceptor implements HttpInterceptor {
           )
         );
     } else {
+      return next.handle(req);
       // this.router.navigateByUrl("/login");
       return next.handle(req);
     }
