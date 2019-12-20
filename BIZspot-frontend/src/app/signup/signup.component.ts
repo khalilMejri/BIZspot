@@ -18,7 +18,7 @@ export class SignupComponent implements OnInit {
     age: new FormControl("", Validators.required),
     email: new FormControl("", [Validators.required, Validators.email]),
     password: new FormControl("", Validators.required),
-    description: new FormControl(""),
+    description: new FormControl("",Validators.required),
     profile_pic: new FormControl("")
   });
 
@@ -63,25 +63,17 @@ export class SignupComponent implements OnInit {
   createUser() {
     this.userService.signup(this.newUser).subscribe(
       response => {
-        console.log("response: ", response);
-        console.log("sign up completed, you will be logged in in a sec");
-        
-        this.notificationService.addNotification({"text": "Sign up completed, wait redirection","type":"success"})
 
-        // as soon as a user signs up he'll be logged in directly
+        this.notificationService.addNotification({"text": "Sign up completed","type":"success"})
+
+        // as soon as a user signs up he'll be redirected to log in
         setTimeout(() => {
-          this.loginUser();
+          this.router.navigate(['/login']);
         }, 1000);
         
       },
       error => {
-        this.errorMessage = "Cannot connect to server";
         this.notificationService.addNotification({"text": "Canno't sign up","type":"danger"})
-
-
-        console.log("could not sign up");
-        console.log(this.newUser);
-        console.log(error);
       }
     );
   }
@@ -110,14 +102,16 @@ export class SignupComponent implements OnInit {
   }
 
   onSubmit() {
+    console.log("submited");
     if(this.signupForm.valid) {
       console.log("Signup submited ", this.signupForm.value);
       if (this.profile_pic_path == undefined) this.profile_pic_path = "../assets/img/avatar.jpg";
       this.storeUser();
+      console.log(this.signupForm.value)
       this.createUser();
     }
     else {
-      this.notificationService.addNotification({"text": "Invalid Form","type":"notify"})
+      this.notificationService.addNotification({"text": "Invalid Form","type":"notify"});
     }
   }
   ngOnDestroy() {

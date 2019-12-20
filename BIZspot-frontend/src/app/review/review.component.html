@@ -4,9 +4,9 @@
 		<img [src]="this.author?.profile_pic" *ngIf="this.author?.profile_pic" class="review-avatar">
 		<h3 class="review-name"> {{this.author.fname | titlecase}} {{this.author.lname | titlecase}} </h3>
 		<app-rating [rating]="review.rating" [static]="true"></app-rating>
+		<button class="review-delete" *ngIf="this.isAllowedToDelete" (click)="deleteReview()">X</button>
 	</div>
 	<p class="review-text">
 		{{this.review.content}}
 	</p>
-	<button class="btn-danger" *ngIf="this.isAllowedToDelete" (click)="deleteReview()">X</button>
 </div>

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {uuid} from 'uuid'
+const uuidv1 = require('uuid/v1');
 interface Notification{
   id?:string
   "text":string,
@@ -14,8 +14,8 @@ export class NotificationService {
 
   constructor() { }
   addNotification(notif:Notification){
-    notif['id'] = uuid()
-    console.log("added notif ",notif)
+    notif.id= uuidv1()
+  
     this.notifications.push(notif);
     setTimeout(() => {
       this.notifications= this.notifications.filter(nf => {return (nf.id !=notif.id)});

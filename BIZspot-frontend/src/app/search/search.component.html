@@ -28,6 +28,7 @@
         formControlName="category"
         placeholder="select category"
       >
+
         <option
           *ngFor="let category of categories; let idx = index"
           [value]="category"
@@ -55,7 +56,8 @@
         formControlName="reviews"
         value="top"
       >
-        <option value="top" selected>With Top Reviews</option>
+        
+        <option value="top" selected >With Top Reviews</option>
         <option value="worst">With Latest Reviews</option>
       </select>
       <div class="search-form-actions">

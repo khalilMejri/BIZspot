@@ -7,19 +7,25 @@
 						<app-notification [message]="notif.text" [type]="notif.type"></app-notification>
 					  </div>
 				<input type="text" class="signin-input" formControlName="title" placeholder="Business name">
+				<input type="text" class="signin-input" formControlName="description" placeholder="Business Decription">
 				<select type="" class="signin-input" formControlName="category" placeholder="Choose category" (change)="onChangeCategory($event)">
+					<option value="" disabled selected>Select your Category</option>
 					<option *ngFor="let category of categories" [value]="category">{{category}}</option>
 				</select>
-				<input type="text" class="signin-input" formControlName="description" placeholder="Business Decription">
-				<input type="text" name="test" class="signin-input" formControlName="number" placeholder="Phone number" value = "{{selectedCountry?.phone_code}}">
-				<input type="text" class="signin-input" formControlName="locality" placeholder="Locality">
 				<select class="signin-input" formControlName="country" placeholder="Country" (change)="onChangeCountry($event)">
+					<option value="" disabled selected>Select your country</option>
 					<option [value]="country.name" *ngFor="let country of this.countriesList"> {{country.name}}</option>
 				</select>
-				<input type="text" class="signin-input" formControlName="postal_code" placeholder="Postal Code">
 				<select class="signin-input" formControlName="state" placeholder="State">
+						<option value="" disabled selected>Select your State</option>
 					<option [value]="state" *ngFor="let state of selectedCountry?.states"> {{state}}</option>
 				</select>
+				<input type="text" class="signin-input" formControlName="locality" placeholder="Locality">
+
+				
+				<input type="text"  class="signin-input" formControlName="number" placeholder="Phone number" value = "{{selectedCountry?.phone_code}}">
+				<input type="text" class="signin-input" formControlName="postal_code" placeholder="Postal Code">
+				
 				<input type="email" class="signin-input" formControlName="email" placeholder="Email">
 				<input type="time" class="signin-input" formControlName="openingHour" placeholder="Opening Hour">
 				<input type="time" class="signin-input" formControlName="closingHour" placeholder="Closing Hour">
@@ -57,6 +63,7 @@
 									<li class="payement-offer-option">Multi criteria search</li>
 
 								</ul>
+								<h2 class="payement-offer-price">$15</h2>
 								<button type="button" class="payement-offer-btn" (click)="onPay('silver')">Buy</button>
 							</div>
 							<div class="payement-offer">
@@ -67,6 +74,7 @@
 									<li class="payement-offer-option">Location based search</li>
 
 								</ul>
+								<h2 class="payement-offer-price">$30</h2>
 								<button type="button" class="payement-offer-btn" (click)="onPay('gold')">Buy</button>
 
 							</div>
@@ -78,6 +86,7 @@
 									<li class="payement-offer-option">Location based search</li>
 									<li class="payement-offer-option">Optimised business marketing</li>
 								</ul>
+								<h2 class="payement-offer-price">$50</h2>
 								<button type="button" class="payement-offer-btn" (click)="onPay('platinum')">Buy</button>
 
 							</div>

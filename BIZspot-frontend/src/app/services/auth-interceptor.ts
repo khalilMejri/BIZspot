@@ -80,7 +80,7 @@ export class AuthInterceptor implements HttpInterceptor {
     } else {
       return next.handle(req);
       // this.router.navigateByUrl("/login");
-      return next.handle(req);
+      
     }
   }
 }

@@ -13,16 +13,16 @@
         <div class="col-1-of-3 signin-right">
           <div class="signin-right-textbox">
             <h1 class="signin-heading">Log In</h1>
-            <div class="signin-account-box">
+           <!-- <div class="signin-account-box">
               <div class="signin-avatar"></div>
               <p class="signin-add"></p>
-            </div>
+            </div>-->
           </div>
           <!-- Notifications -->
           <div *ngFor="let notif of notificationService.getNotifications()">
               <app-notification [message]="notif.text" [type]="notif.type"></app-notification>
             </div>
-
+          
           <form
             [formGroup]="loginForm"
             (submit)="onSubmit()"
@@ -33,14 +33,14 @@
               placeholder="jobs@bizspot.com"
               class="signin-input"
               formControlName="email"
-              [(ngModel)]="user.email"
+            
             />
             <input
               type="password"
               placeholder="**********"
               class="signin-input"
               formControlName="password"
-              [(ngModel)]="user.password"
+              
             />
             <input type="submit" value="Log in" class="btn btn--green " />
           </form>
