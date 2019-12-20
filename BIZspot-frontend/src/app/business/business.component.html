@@ -1,5 +1,5 @@
-<div class="business" (click)="checkDetails()">
-  <div class="business-box">
+<div class="business" >
+  <div class="business-box" (click)="checkDetails()">
     <div class="business-picture">
       <img *ngIf="!business?.thumbnail" src="assets/img/business.jpg" alt="">
       <img *ngIf="business?.thumbnail" [src]="business.thumbnail" alt="">
@@ -15,9 +15,14 @@
       </p>
     </div>
   </div>
-  <div *ngIf="isReviewsLoaded">
+  <div *ngIf="isReviewsLoaded && loadReview">
+    <div *ngFor="let review of reviews">
 
-    <app-review></app-review>
-    <a href="" class="review-btn" *ngIf="checkReviews">&#17;</a>
+      <app-review  [review]="review"></app-review>
+    </div>
   </div>
+  <a  class="review-btn" (click)="toggleReview()" *ngIf="getReviews">
+      <i *ngIf="btn_value" class="fa fa-arrow-down"></i>
+      <i *ngIf="!btn_value" class="fa fa-arrow-up"></i>
+  </a>
 </div>

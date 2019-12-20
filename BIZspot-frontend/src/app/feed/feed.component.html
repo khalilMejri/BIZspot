@@ -6,7 +6,7 @@
 
       <app-infinity-scroll  (scrolled)="onScroll()">
         <div *ngFor="let business of businesses">
-          <app-business [business]="business"></app-business>
+          <app-business [business]="business" [getReviews]="true"></app-business>
         </div>
         
       </app-infinity-scroll>

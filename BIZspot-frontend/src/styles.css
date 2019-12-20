@@ -1433,6 +1433,7 @@ only screen and (hover: none) {
 
 .business-box {
   background-color: #f7f7f7;
+  border-bottom: 1px solid  #5be89b;
 }
 
 .business-picture {
@@ -1487,6 +1488,8 @@ only screen and (hover: none) {
   background-color: #5be89b;
   height: 1rem;
   text-align: center;
+
+  
   color: #2d3a71;
 }
 .review-delete{
