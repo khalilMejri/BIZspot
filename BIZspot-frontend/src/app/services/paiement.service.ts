@@ -1,24 +1,29 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { EnvService } from "./../env.service";
+import { Injectable } from "@angular/core";
+import { HttpClient } from "@angular/common/http";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root"
 })
 export class PaiementService {
-  apiUrl = "http://localhost:3000/api"
-  constructor(private httpClient:HttpClient) { }
+  // apiUrl = "http://localhost:3000/api"
+  constructor(private httpClient: HttpClient, private envService: EnvService) {}
 
-  createPaiementSession(planId){
-    var body ={
-      planId:planId
-    }
-    return this.httpClient.post(`${this.apiUrl}/create-checkout-session`,body);
-    
+  createPaiementSession(planId) {
+    var body = {
+      planId: planId
+    };
+    return this.httpClient.post(
+      `${this.envService.apiUrl}/create-checkout-session`,
+      body
+    );
   }
-  checkPaiementSession(sessionId:string){
-    return this.httpClient.get(`${this.apiUrl}/checkout-session?sessionId=${sessionId}`);
+  checkPaiementSession(sessionId: string) {
+    return this.httpClient.get(
+      `${this.envService.apiUrl}/checkout-session?sessionId=${sessionId}`
+    );
   }
-  getApiKeys(){
-    return this.httpClient.get(`${this.apiUrl}/setup`);
+  getApiKeys() {
+    return this.httpClient.get(`${this.envService.apiUrl}/setup`);
   }
 }

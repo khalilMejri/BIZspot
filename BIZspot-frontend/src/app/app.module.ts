@@ -1,3 +1,5 @@
+import { EnvServiceProvider } from "./env.service.provider";
+import { EnvService } from "./env.service";
 import { AuthInterceptor } from "./services/auth-interceptor";
 import { UserService } from "./services/user.service";
 import { AuthGuard } from "./services/auth-guard";
@@ -24,14 +26,14 @@ import { MessageModule } from "primeng/message";
 
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { AgmCoreModule, GoogleMapsAPIWrapper } from "@agm/core";
-import { SubscriptionComponent } from './subscription/subscription.component';
-import { SubscriptionsListComponent } from './subscriptions-list/subscriptions-list.component';
-import { ReviewComponent } from './review/review.component';
-import { ReviewListComponent } from './review-list/review-list.component';
-import { NavbarComponent } from './navbar/navbar.component';
-import { LostComponent } from './lost/lost.component';
-import { NotificationComponent } from './notification/notification.component';
-import { InfinityScrollComponent } from './infinity-scroll/infinity-scroll.component';
+import { SubscriptionComponent } from "./subscription/subscription.component";
+import { SubscriptionsListComponent } from "./subscriptions-list/subscriptions-list.component";
+import { ReviewComponent } from "./review/review.component";
+import { ReviewListComponent } from "./review-list/review-list.component";
+import { NavbarComponent } from "./navbar/navbar.component";
+import { LostComponent } from "./lost/lost.component";
+import { NotificationComponent } from "./notification/notification.component";
+import { InfinityScrollComponent } from "./infinity-scroll/infinity-scroll.component";
 
 @NgModule({
   declarations: [
@@ -71,6 +73,8 @@ import { InfinityScrollComponent } from './infinity-scroll/infinity-scroll.compo
     AuthGuard,
     LogoutGuard,
     UserService,
+    EnvServiceProvider,
+    // EnvService,
     AuthInterceptor,
     {
       provide: HTTP_INTERCEPTORS,
