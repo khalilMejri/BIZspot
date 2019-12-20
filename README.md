@@ -1,6 +1,6 @@
 [![Build Status](https://travis-ci.org/IBM/innovate-digital-bank.svg?branch=master)]("")
 
-# Building A Local Business Recommendation Platform with Loopback.io, MySQL, MongoDB & Angular
+# Building A Local Business Recommendation Platform with Loopback.io, MongoDB & Angular v8
 
 [BIZspot]("") is a web application that serves as a network of prospect users and business owners in order to ease their business access to the community.
 
@@ -44,17 +44,16 @@ When thinking of business capabilities, our elegant application you will need th
 
 ## Included components
 
-* [Component 1](https://console.bluemix.net/docs/containers/): Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam
-* [Component 2](https://www.ibm.com/us-en/marketplace/microclimate): Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam
-* [Component 3](https://www.ibm.com/cloud/watson-assistant/): Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam
+* [Component 1](https://loopback.io/doc/en/lb3/): Web API powered by Loopback.io that runs our backend server.
+* [Component 2](https://angular.io/): Packaged front-end application built using Angular v8. 
+* [Component 3](https://cloud.mongodb.com/): MongoDB NoSQL database hosted on Mongo Atlas - created with 3 replicats (Primary - Secondary - Default)
 
 ## Featured technologies
 
-* [Microservices](https://developer.ibm.com/technologies/microservices/): Collection of fine-grained, loosely coupled services using a lightweight protocol to provide building blocks in modern application composition in the cloud.
+* [Stripe Integration](https://stripe.com/docs/api): Integrate online payments using the Stripe APIs and client-side libraries..
 * [Node.js](https://nodejs.org/): An open-source JavaScript run-time environment for executing server-side JavaScript code.
-* [Containers](https://developer.ibm.com/technologies/containers/): Virtual software objects that include all the elements that an app needs to run.
-* [Databases](https://developer.ibm.com/technologies/databases/): Repository for storing and managing collections of data.
-* [Hybrid Cloud](https://developer.ibm.com/depmodels/hybrid/): Enabling customers to draw on the capabilities of public cloud service providers while using private cloud deployment for sensitive applications and data.
+* [Google Maps](https://developers.google.com/maps/documentation/javascript/tutorial): The Maps JavaScript API lets you customize maps with your own content and imagery for display on web pages and mobile devices. The Maps JavaScript API features four basic map types (roadmap, satellite, hybrid, and terrain) which you can modify using layers and styles, controls and events, and various services and libraries.
+* [Heroku](https://dashboard.heroku.com/apps): Heroku is a platform as a service (PaaS) that enables developers to build, run, and operate applications entirely in the cloud.
 
 ## Watch the Video
 
@@ -66,7 +65,7 @@ You have multiple options to setup your own instance:
 
 * [Run it locally](#run-locally)
 
-## Run Locally
+## Run Locally [UPDATED]
 
 ### 1. Clone the repo
 
@@ -82,17 +81,68 @@ This code pattern depends on MongoDB as a session and data store. From the [Mong
 
 **Get your mongo connection string. Almost all your microservices need it; keep it safe!**
 
-### 3. Configure your environment variables
-MongoDB
+### 3. Project Structure
+Our application would have the following folder structure:
 ```bash
-$ cp .env.example .env
+ BIZspot/
+   └── code/
+     ├── BIZspot-backend/
+     ├── BIZspot-frontend/
+     ├── LICENCE.TXT
+     ├── README.md
+     └── dbs_mongo
+```
+
+### 3. Project Structure [UPDATED]
+Our application would have the following folder structure:
+```bash
+ BIZspot/
+   └── code/
+     └── source
+        ├── client
+        ├── server
+	├── package.json
+        ├── main.js
+        ├── env
+        └── ..
+     ├── LICENCE.TXT
+     ├── README.md
+     └── dbs_mongo
+```
+
+
+**Installation**
+
+```bash
+# install node modules for the API
+$ cd source
+$ npm install
+
+# install node modules for angular app
+$ cd source/client
+$ npm install
 ```
 ### 4. Run
 
-Finally, navigate to each microservice folder, and start it. Make sure you run the 3 microservice in 3 separate terminals.
+Finally, navigate to each microservice folder, and start it. Make sure you run the 2 microservice in 2 separate terminals.
 
 ```bash
+# start API server
+$ cd source
 $ npm start
+
+# start angular app
+$ cd source/client
+$ ng serve -o
 ```
 
-You can now visit `localhost:3100` to access the portal
+You can now visit `localhost:4200` to access the portal
+
+### 4. Deploy
+
+The application now is `live` on Heroku you can check it out using the link below: <br/>
+[Link](https://github.com/khalilMejri/BIZspot/issues)
+**Note** We already use automatic deployement with Heroku CI connected to [this](https://github.com/khalilmejri/bizspot.git) github repo. 
+
+## Contact information
+For personal feedback or questions feel free to contact us via the mail address, which is mentioned on my `Github profile`. If you have found any bugs or want to post a feature request please use the [bugtracker](https://github.com/khalilMejri/BIZspot/issues) to report them.

@@ -3,6 +3,7 @@
 module.exports = function (Business) {
     // make biz title unique
     Business.validatesUniquenessOf('title');
+    // require instance of loopback server
     var app = require("../../server/server");
 
     /**
@@ -28,7 +29,6 @@ module.exports = function (Business) {
                         break;
                     }
             }
-            // // // console.log(matches);
             return cb(null, matches);
         });
     };

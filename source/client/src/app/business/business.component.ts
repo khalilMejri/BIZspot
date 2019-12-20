@@ -1,9 +1,8 @@
 import { Component, OnInit, Input } from "@angular/core";
 import { BusinessService } from "../services/business.service";
-import {  } from "../models/";
 import { Business } from "../models/business";
 import { Router } from "@angular/router";
-import { Review } from 'src/app/models/review';
+import { Review } from "src/app/models/review";
 
 @Component({
   selector: "app-business",
@@ -20,39 +19,35 @@ export class BusinessComponent implements OnInit {
   @Input() business: Business;
   @Input() getReviews: boolean = false;
 
-  reviews:Review[];
+  reviews: Review[];
   isReviewsLoaded: boolean = false;
-  loadReview:boolean=false;
-  btn_value=true;
+  loadReview: boolean = false;
+  btn_value = true;
   constructor(
     private businessService: BusinessService,
     private router: Router
   ) {}
 
-  ngOnInit() {
-  }
-
- 
+  ngOnInit() {}
 
   loadReviews() {
-        this.businessService.getBusinessReviews(this.business.id)
+    this.businessService
+      .getBusinessReviews(this.business.id)
       .subscribe(reviews => {
-      
         this.reviews = reviews;
-     
+
         this.isReviewsLoaded = true;
-      })
+      });
   }
-  toggleReview(){
-        this.loadReview = ! this.loadReview;
-    if(this.loadReview){
-      
-      this.btn_value=false
-      if(!this.isReviewsLoaded){
+  toggleReview() {
+    this.loadReview = !this.loadReview;
+    if (this.loadReview) {
+      this.btn_value = false;
+      if (!this.isReviewsLoaded) {
         this.loadReviews();
       }
-    }else{
-      this.btn_value=true
+    } else {
+      this.btn_value = true;
     }
   }
   checkDetails() {
