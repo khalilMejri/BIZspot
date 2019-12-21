@@ -11,7 +11,6 @@ module.exports = function (Business) {
      **/
     Business.fetchByKeywords = function (keywords, cb) {
         var keys = keywords.split(' '); // every word is considered seprately
-        // console.log(keys); // output keys
         Business.find(function (err, results) { // consider adding search limit
             if (err) return cb(err)
             var matches = [];
@@ -57,8 +56,6 @@ module.exports = function (Business) {
      * @POST request to fetch all businesses by multiple creterias
      **/
     Business.globalSearch = function (config, cb) {
-        // console.log(config)
-        // var keys = keywords.split(' '); // every word is considered seprately
         // // console.log(keys); // output keys
         Business.find(function (err, all) { // consider adding search limit
             if (err) return cb(err)
@@ -77,9 +74,7 @@ module.exports = function (Business) {
                                         return cb(null, rows); // return no data to match
                                     else
                                         Business.fetchByLocation(rows, config.location, function (err, rows) {
-                                            // console.log(rows.length)
                                             return cb(null, rows); // return result matched
-
                                         });
                                 });
                         });
@@ -114,19 +109,14 @@ module.exports = function (Business) {
     * @Model [PROTOTYPE] method to fetch all businesses by category
     **/
     Business.fetchByCategory = function (rows, category, cb) {
-        // console.log("rows.length", rows.length); // output keys
-        // console.log(category); // output keys
         if (category != "") {
             var matches = [];
             rows.filter((biz, index) => {
                 app.models.category.findOne({ where: { id: biz.categoryId } }, function (err, first) {
-                    // console.log(biz.categoryId); // output keys
-                    // console.log(first); // output keys
                     if (err) return false;
                     if (first.name == category) {
                         matches.push(biz);
                     }
-                    // console.log("matches.length", matches.length); // output keys
                     if (index == rows.length - 1) return cb(null, matches)
                     return true;
                 })
@@ -140,11 +130,8 @@ module.exports = function (Business) {
      * @Model [PROTOTYPE] method to fetch all businesses by level
      **/
     Business.fetchByLevel = function (rows, level, cb) {
-        // console.log("rows.length", rows.length); // output keys
-        // console.log(level); // output keys
         if (level != "") {
             var matches = rows.filter((row) => { return row.level == level });
-            // console.log(matches.length);
             return cb(null, matches);
         }
         return cb(null, rows);
@@ -154,8 +141,6 @@ module.exports = function (Business) {
      * @Model [PROTOTYPE] method to fetch all businesses by reviews pattern
      **/
     Business.fetchByReviews = function (rows, reviews, cb) {
-        // console.log("reviews", rows.length); // output keys
-        // console.log(reviews); // output keys
         var matches = [];
         if (reviews == "") return cb(null, rows)
         if (reviews == "top") { // top rated
@@ -164,12 +149,10 @@ module.exports = function (Business) {
                 biz.reviews.find({ where: { 'rating': { gt: 2 } } }, function (err, results) { // greater than 2 stars
                     if (results.length > 0) matches.push(biz)
                     if (index == rows.length - 1) {
-                        // console.log("top length", matches.length);
                         return cb(null, matches);
                     }
                 })
             }
-            // // console.log(matches);
         }
         else { // least rated
             for (let index = 0; index < rows.length; index++) {
@@ -177,7 +160,6 @@ module.exports = function (Business) {
                 biz.reviews.find({ where: { 'rating': { lt: 3 } } }, function (err, results) { // greater than 2 stars
                     if (results.length > 0) matches.push(biz)
                     if (index == rows.length - 1) {
-                        // console.log("worst length", matches.length);
                         return cb(null, matches);
                     }
                 })
@@ -190,8 +172,6 @@ module.exports = function (Business) {
      * @Model [PROTOTYPE] method to fetch all businesses by location coords
      **/
     Business.fetchByLocation = function (rows, location, cb) {
-        // console.log("location", rows.length); // output keys
-        // console.log(location); // output keys
         var matches = [];
         if (location.lat != null & location.lng != null) { // match location if exists
             for (let index = 0; index < rows.length; index++) {
@@ -200,28 +180,19 @@ module.exports = function (Business) {
                     let roundedLat = Math.round(location.lat * 10) / 10
                     let roundedLng = Math.round(location.lng * 10) / 10
 
-                    // console.log("location", bizLocaltion); // output keys
-
                     let roundedBizLat = Math.round(bizLocaltion.latitude * 10) / 10
                     let roundedBizLng = Math.round(bizLocaltion.longitude * 10) / 10
-
-                    // console.log("location", roundedBizLat); // output keys
-                    // console.log("location", roundedBizLng); // output keys
-                    // console.log("location", roundedLat); // output keys
-                    // console.log("location", roundedLng); // output keys
 
                     if (roundedBizLat == roundedLat && roundedBizLng == roundedLng)
                         matches.push(biz)
 
                     if (index == rows.length - 1) {
-                        // console.log("location res", matches.length);
                         return cb(null, matches);
                     }
                 })
             }
         }
         else {
-            // console.log("location res", rows.length);
             return cb(null, rows);
         }
     };

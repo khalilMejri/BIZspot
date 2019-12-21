@@ -13,7 +13,6 @@ module.exports = function (Review) {
             for (let index = 0; index < reviews.length; index++) {
                 totalScore += reviews[index].rating
             }
-            console.log(totalScore)
             // update biz level
             Business.findOne({ where: { id: review.businessId } }, function (err, mBusiness) {
                 // calculate new level
