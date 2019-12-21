@@ -34,16 +34,18 @@
   "auth": {},
   "parse": {
     "body-parser#json": {},
-    "body-parser#urlencoded": {"params": { "extended": true }}
+    "body-parser#urlencoded": { "params": { "extended": true } }
   },
   "routes": {
     "loopback#rest": {
-      "paths": [
-        "${restApiRoot}"
-      ]
+      "paths": ["${restApiRoot}"]
     }
   },
-  "files": {},
+  "files": {
+    "loopback#static": {
+      "params": "$!../client/dist/BIZspot-frontend"
+    }
+  },
   "final": {
     "loopback#urlNotFound": {}
   },
