@@ -72,7 +72,7 @@ export class BusinessCreationComponent implements OnInit, OnDestroy {
     "Supplier/Raw Ingredient Distributor",
     "Manufacturer",
     "Business Services",
-    "Investor",
+    "Investor"
   ];
 
   constructor(
@@ -80,10 +80,10 @@ export class BusinessCreationComponent implements OnInit, OnDestroy {
     private router: ActivatedRoute,
     private businessService: BusinessService,
     private mapService: MapService,
-    private notificationService: NotificationService
+    public notificationService: NotificationService
   ) {}
 
-   ngOnInit() {
+  ngOnInit() {
     var hasSessionId = this.router.snapshot.queryParamMap.has("session_id");
     // section id is result of redirection from payement
     console.log("this is a redirection ? ", hasSessionId);
@@ -226,13 +226,17 @@ export class BusinessCreationComponent implements OnInit, OnDestroy {
           //console.log("Business Created: \n", business);
           this.businessAlreadyCreated = true;
           this.loadedBusiness = business;
-          this.notificationService.addNotification({"text":"Business Created Successfully","type":"success"});
-
+          this.notificationService.addNotification({
+            text: "Business Created Successfully",
+            type: "success"
+          });
         },
         error => {
           //console.log("Couldn't create business: ", error);
-          this.notificationService.addNotification({"text":"Canno't create business try later","type":"danger"});
-
+          this.notificationService.addNotification({
+            text: "Canno't create business try later",
+            type: "danger"
+          });
         }
       );
   }
@@ -248,7 +252,7 @@ export class BusinessCreationComponent implements OnInit, OnDestroy {
         this.businessService.findCategory(this.selectedCategory).subscribe(
           category => {
             this.categoryId = category.id;
-            this.loadedCategory= category;
+            this.loadedCategory = category;
             console.log("category id: ", this.categoryId);
             // now category id is set up, we send location id ;)
             this.storeBusiness(location.id);
@@ -258,12 +262,18 @@ export class BusinessCreationComponent implements OnInit, OnDestroy {
           },
           error => {
             console.log("error, couldn't get category id: ", error);
-            this.notificationService.addNotification({"text":"Undefined Category","type":"notify"});
+            this.notificationService.addNotification({
+              text: "Undefined Category",
+              type: "notify"
+            });
           }
         );
       },
       error => {
-        this.notificationService.addNotification({"text":"Server Problem , try later","type":"danger"});
+        this.notificationService.addNotification({
+          text: "Server Problem , try later",
+          type: "danger"
+        });
         //console.log("couldn't create location : ", error);
       }
     );
@@ -312,15 +322,20 @@ export class BusinessCreationComponent implements OnInit, OnDestroy {
           },
           error => {
             //console.log("Couldn't get coords! \n", error);
-            this.notificationService.addNotification({"text":"Location not found","type":"notify"});
+            this.notificationService.addNotification({
+              text: "Location not found",
+              type: "notify"
+            });
           }
         );
     }
     // form invalid, we display the invalid controls
     else {
       //console.log("Invalid Form!! \n", this.findInvalidControls());
-      this.notificationService.addNotification({"text":"Invlaid Form!","type":"notify"});
-
+      this.notificationService.addNotification({
+        text: "Invlaid Form!",
+        type: "notify"
+      });
     }
   }
   onUpdate(status: string = null) {
@@ -345,13 +360,18 @@ export class BusinessCreationComponent implements OnInit, OnDestroy {
     };
     this.businessService.updateBusiness(business.id, business).subscribe(
       business => {
-       // console.log("Update business result :", business);
-        this.notificationService.addNotification({"text":"Business updated successfuly","type":"success"});
+        // console.log("Update business result :", business);
+        this.notificationService.addNotification({
+          text: "Business updated successfuly",
+          type: "success"
+        });
       },
       error => {
-       // console.log("error in updating the business ", business);
-        this.notificationService.addNotification({"text":"Problem in updating business","type":"notify"});
-
+        // console.log("error in updating the business ", business);
+        this.notificationService.addNotification({
+          text: "Problem in updating business",
+          type: "notify"
+        });
       }
     );
   }
@@ -386,16 +406,20 @@ export class BusinessCreationComponent implements OnInit, OnDestroy {
     var sessionId = this.router.snapshot.queryParamMap.get("session_id");
     this.paiementService.checkPaiementSession(sessionId).subscribe(
       session => {
-        this.notificationService.addNotification({"text":"Payment accepted","type":"success"});
+        this.notificationService.addNotification({
+          text: "Payment accepted",
+          type: "success"
+        });
         //console.log("validated payment");
         this.onUpdate("payed");
         this.subscriptionPayed = true;
-
       },
       error => {
         console.log("Payment not validated");
-        this.notificationService.addNotification({"text":"Payment not accepted","type":"notify"});
-
+        this.notificationService.addNotification({
+          text: "Payment not accepted",
+          type: "notify"
+        });
       }
     );
   }

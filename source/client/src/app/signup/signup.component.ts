@@ -3,8 +3,8 @@ import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { UserService } from "../services/user.service";
 import { Router } from "@angular/router";
 import { Message } from "primeng/api";
-import { User } from '../models/user';
-import { NotificationService } from 'src/app/services/notification.service';
+import { User } from "../models/user";
+import { NotificationService } from "src/app/services/notification.service";
 
 @Component({
   selector: "app-signup",
@@ -18,7 +18,7 @@ export class SignupComponent implements OnInit {
     age: new FormControl("", Validators.required),
     email: new FormControl("", [Validators.required, Validators.email]),
     password: new FormControl("", Validators.required),
-    description: new FormControl("",Validators.required),
+    description: new FormControl("", Validators.required),
     profile_pic: new FormControl("")
   });
 
@@ -27,7 +27,11 @@ export class SignupComponent implements OnInit {
   profile_pic_path: string;
   newUser: User;
 
-  constructor(private userService: UserService, private router: Router,private notificationService:NotificationService) {}
+  constructor(
+    private userService: UserService,
+    private router: Router,
+    public notificationService: NotificationService
+  ) {}
 
   ngOnInit() {}
 
@@ -48,14 +52,16 @@ export class SignupComponent implements OnInit {
           const token = localStorage.getItem("token");
           if (token === "") {
             console.log("You cannot connect now! server unavailable");
-            this.notificationService.addNotification({"text": "Server problem, Try later","type":"danger"})
-            
+            this.notificationService.addNotification({
+              text: "Server problem, Try later",
+              type: "danger"
+            });
           }
           this.router.navigateByUrl("profile");
         });
       },
       error => {
-        console.log("Couldn't login :( ",error);
+        console.log("Couldn't login :( ", error);
       }
     );
   }
@@ -63,17 +69,21 @@ export class SignupComponent implements OnInit {
   createUser() {
     this.userService.signup(this.newUser).subscribe(
       response => {
-
-        this.notificationService.addNotification({"text": "Sign up completed","type":"success"})
+        this.notificationService.addNotification({
+          text: "Sign up completed",
+          type: "success"
+        });
 
         // as soon as a user signs up he'll be redirected to log in
         setTimeout(() => {
-          this.router.navigate(['/login']);
+          this.router.navigate(["/login"]);
         }, 1000);
-        
       },
       error => {
-        this.notificationService.addNotification({"text": "Canno't sign up","type":"danger"})
+        this.notificationService.addNotification({
+          text: "Canno't sign up",
+          type: "danger"
+        });
       }
     );
   }
@@ -84,37 +94,40 @@ export class SignupComponent implements OnInit {
       reader.onload = (event: any) => {
         this.profile_pic_path = event.target.result;
         console.log(this.profile_pic_path);
-      }
+      };
       reader.readAsDataURL(event.target.files[0]);
     }
   }
 
   storeUser() {
     this.newUser = {
-      "fname": this.signupForm.value.fname,
-      "lname": this.signupForm.value.lname,
-      "age": this.signupForm.value.age,
-      "email": this.signupForm.value.email,
-      "password": this.signupForm.value.password,
-      "profile_pic": this.profile_pic_path,
-      "nb_reviews": 0
-    }
+      fname: this.signupForm.value.fname,
+      lname: this.signupForm.value.lname,
+      age: this.signupForm.value.age,
+      email: this.signupForm.value.email,
+      password: this.signupForm.value.password,
+      profile_pic: this.profile_pic_path,
+      nb_reviews: 0
+    };
   }
 
   onSubmit() {
     console.log("submited");
-    if(this.signupForm.valid) {
+    if (this.signupForm.valid) {
       console.log("Signup submited ", this.signupForm.value);
-      if (this.profile_pic_path == undefined) this.profile_pic_path = "../assets/img/avatar.jpg";
+      if (this.profile_pic_path == undefined)
+        this.profile_pic_path = "../assets/img/avatar.jpg";
       this.storeUser();
-      console.log(this.signupForm.value)
+      console.log(this.signupForm.value);
       this.createUser();
-    }
-    else {
-      this.notificationService.addNotification({"text": "Invalid Form","type":"notify"});
+    } else {
+      this.notificationService.addNotification({
+        text: "Invalid Form",
+        type: "notify"
+      });
     }
   }
   ngOnDestroy() {
-    this.notificationService.resetAll()
+    this.notificationService.resetAll();
   }
 }
