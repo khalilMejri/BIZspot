@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "server/server.js",
   "engines": {
-    "node": ">=6",
+    "node": "10.15.1",
     "npm": "6.4.1"
   },
   "scripts": {
@@ -12,7 +12,7 @@
     "start": "set DEVELOPMENT=true && node .",
     "prod": "set PRODUCTION=true && nodemon .",
     "posttest": "npm run lint && npm audit",
-    "postinstall": "cd client && ng build — aot — prod"
+    "postinstall": "cd client && npm i && ng build — aot — prod"
   },
   "dependencies": {
     "compression": "^1.0.3",
