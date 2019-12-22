@@ -12,7 +12,7 @@
     "start": "set DEVELOPMENT=true && node .",
     "prod": "set PRODUCTION=true && nodemon .",
     "posttest": "npm run lint && npm audit",
-    "postinstall": "cd client && npm i && ng build — aot — prod"
+    "postinstall": "cd client && npm i && ng build --aot --prod"
   },
   "dependencies": {
     "compression": "^1.0.3",
