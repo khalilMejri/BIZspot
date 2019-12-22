@@ -12,7 +12,7 @@
     "start": "set DEVELOPMENT=true && node .",
     "prod": "set PRODUCTION=true && nodemon .",
     "posttest": "npm run lint && npm audit",
-    "postinstall": "cd client && cd && npm i && ng build --aot --prod"
+    "postinstall": "cd client && npm i && cd client && ng build --aot --prod"
   },
   "dependencies": {
     "@angular-devkit/build-angular": "~0.803.19",
@@ -23,7 +23,6 @@
     "@angular/animations": "^8.2.14",
     "@angular/common": "^8.2.14",
     "@angular/compiler": "^8.2.14",
-    "@angular/core": "^8.2.14",
     "compression": "^1.0.3",
     "cors": "^2.5.2",
     "dotenv": "^8.2.0",
@@ -35,8 +34,7 @@
     "nodemon": "^2.0.1",
     "serve-favicon": "^2.0.1",
     "stripe": "^7.14.0",
-    "strong-error-handler": "^3.0.0",
-    "typescript": "~3.5.0"
+    "strong-error-handler": "^3.0.0"
   },
   "devDependencies": {
     "eslint": "^3.17.1",
