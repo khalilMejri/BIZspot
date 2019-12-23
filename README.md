@@ -4,6 +4,9 @@
 
 [BIZspot]("") is a web application that serves as a network of prospect users and business owners in order to ease their business access to the community.
 
+![release Tag](https://i.ibb.co/cvSXMFz/Annotation-2019-12-23-153431.png)
+
+
 ## Learning objectives
 
 When we've completed this Code Pattern, you will understand how to:
@@ -93,7 +96,7 @@ Our application would have the following folder structure:
      └── dbs_mongo
 ```
 
-### 3. Project Structure [UPDATED]
+### Project Structure [UPDATED]
 Our application would have the following folder structure:
 ```bash
  BIZspot/
@@ -141,8 +144,10 @@ You can now visit `localhost:4200` to access the portal
 ### 4. Deploy
 
 The application now is `live` on Heroku you can check it out using the link below: <br/>
-[Link](https://github.com/khalilMejri/BIZspot/issues)
-**Note** We already use automatic deployement with Heroku CI connected to [this](https://github.com/khalilmejri/bizspot.git) github repo. 
+[https://biz-spot.herokuapp.com/](https://biz-spot.herokuapp.com/)
+<br/>
+<br/>
+**Note:** We already use automatic deployement with Heroku CI connected to [this](https://github.com/khalilMejri/BIZspot/deployments) github repo on the remote branch `with-heroku-prod`. 
 
 ## Contact information
 For personal feedback or questions feel free to contact us via the mail address, which is mentioned on my `Github profile`. If you have found any bugs or want to post a feature request please use the [bugtracker](https://github.com/khalilMejri/BIZspot/issues) to report them.
