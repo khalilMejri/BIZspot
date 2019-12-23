@@ -3,7 +3,7 @@
 
     // API url
     // window.__env.apiUrl = 'http://localhost:13500/api';
-    window.__env.apiUrl = 'http://localhost:3000/api';
+    window.__env.apiUrl = 'https://biz-spot.herokuapp.com/api';
     // window.__env.baseUrl = 'http://192.168.0.57:13500/api';
     // window.__env.apiUrl = 'https://4bacb7e4.ngrok.io/api';
     // Logger url
