@@ -1,205 +1,218 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Bizspot</title>
+  </head>
 
-	<head>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<meta http-equiv="X-UA-Compatible" content="ie=edge">
-		<title>Bizspot</title>
-	</head>
+  <body>
+    <header class="header">
+      <div class="bg-video">
+        <video class="bg-video__content" autoplay muted loop>
+          <source src="assets/img/video.mp4" type="video/mp4" />
+        </video>
+      </div>
+      <div class="header__text-box">
+        <h1 class="heading-primary">
+          <span class="heading-primary--main">Bizspot</span>
+          <span class="heading-primary--sub">making your life easier</span>
+        </h1>
+        <a
+          *ngIf="!isLogged()"
+          routerLink="/signup"
+          class="btn btn--white btn--animated"
+        >
+          Sign Up!
+        </a>
+      </div>
+    </header>
+    <main>
+      <section id="top" class="section-top" *ngIf="topReviewers">
+        <h2 class="heading no-top-margin">Top Reviewers</h2>
+        <div class="row">
+          <div
+            class="col-1-of-3"
+            *ngFor="let topReviewer of topReviewers; let i = index"
+          >
+            <div class="topspot">
+              <img
+                [src]="topReviewer.profile_pic"
+                class="avatar"
+                alt="person on tour"
+              />
+              <div class="topspot__text">
+                <h3 class="heading-tertiary ">
+                  {{ topReviewer.fname | titlecase }}
+                  {{ topReviewer.lname | titlecase }}
+                </h3>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <h2 class="heading">Find the Best Businesses in Town</h2>
+      <section id="story" class="section-story" *ngIf="topBusiness">
+        <div class="row">
+          <div class="col-2-of-3">
+            <div class="section-story__left" *ngIf="latestReview">
+              <h3 class="heading-tertiary u-margin-bottom-small">
+                {{ topBusiness.title }}
+              </h3>
+              <p class="paragraph">
+                {{ topBusiness.about }}
+              </p>
+              <h3 class="heading-tertiary u-margin-bottom-small">
+                {{ author.fname }} {{ author.lname }}
+              </h3>
+              <p class="paragraph">
+                {{ latestReview.content }}
+              </p>
+            </div>
+          </div>
+          <div class="col-1-of-3">
+            <div class="section-story__right">
+              <img
+                *ngIf="topBusiness.thumbnail"
+                [src]="topBusiness.thumbnail"
+                alt=""
+              />
+              <img
+                *ngIf="!topBusiness.thumbnail"
+                src="assets/img/right_bg.jpg"
+                alt=""
+              />
+              &nbsp;
+            </div>
+          </div>
+        </div>
+      </section>
+      <section id="pricing" class="section-pricing">
+        <h2 class="heading">Find out our plans</h2>
 
-	<body>
-		
-		<header class="header">
-			<div class="bg-video">
-				<video class="bg-video__content" autoplay muted loop>
-					<source src="assets/img/video.mp4" type="video/mp4">
-				</video>
-			</div>
-			<div class="header__text-box">
-
-				<h1 class="heading-primary">
-					<span class="heading-primary--main">Bizspot</span>
-					<span class="heading-primary--sub">making your life easier</span>
-				</h1>
-				<a *ngIf="!isLogged()" 
-					routerLink='/signup' 
-					class="btn btn--white btn--animated">
-					Sign Up!
-				</a>
-			</div>
-		</header>
-		<main>
-			<section id="top" class="section-top" *ngIf="topReviewers">
-				<div class="row">
-					<div class="col-1-of-3" *ngFor="let topReviewer of topReviewers; let i = index">
-						<div class="topspot">
-							<figure class="topspot__shape u-margin-bottom-small">
-								<img [src]="topReviewer.profile_pic" class="topspot__img" alt="person on tour">
-							</figure>
-							<div class="topspot__text">
-								<h3 class="heading-tertiary ">
-									{{topReviewer.fname | titlecase}} {{topReviewer.lname | titlecase}}
-								</h3>
-							</div>
-						</div>
-					</div>
-				</div>
-			</section>
-			<section id="story" class="section-story" *ngIf="topBusiness">
-				<div class="row">
-			
-					<div class="col-2-of-3">
-						<div class="section-story__left" *ngIf="latestReview">
-							<h3 class="heading-tertiary u-margin-bottom-small">
-								{{topBusiness.title}}
-							</h3>
-							<p class="paragraph">
-								{{topBusiness.about}}
-							</p>
-							<h3 class="heading-tertiary u-margin-bottom-small">
-								{{author.fname}} {{author.lname}}
-							</h3>
-							<p class="paragraph">
-								{{latestReview.content}}
-							</p>
-						</div>
-					</div>
-					<div class="col-1-of-3">
-						<div class="section-story__right">
-							<img *ngIf="topBusiness.thumbnail" [src]="topBusiness.thumbnail" alt="">
-							<img *ngIf="!topBusiness.thumbnail" src="assets/img/right_bg.jpg" alt="">
-							&nbsp;
-						</div>
-					</div>
-				</div>
-			</section>
-			<section id="pricing" class="section-pricing">
-				<div class="row">
-					<div class="col-1-of-3">
-						<div class="card">
-							<div class="card__side card__side--front card__side--front-1">
-
-								<h4 class="card__heading">
-									<span class="card__heading-span ">
-										Silver
-									</span>
-								</h4>
-								<div class="card__details">
-									<ul>
-										<li>3 day tours</li>
-										<li>Up to 30 people</li>
-									</ul>
-								</div>
-							</div>
-							<div class="card__side card__side--back card__side--back-1">
-								<div class="card__cta">
-									<div class="card__price-box">
-										<p class="card__price-only">
-											only
-										</p>
-										<p class="card__price-value">
-											15$
-										</p>
-									</div>
-									<a href="#popup" class="btn btn--white">details</a>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="col-1-of-3">
-						<div class="card">
-							<div class="card__side card__side--front card__side--front-2">
-
-								<h4 class="card__heading">
-									<span class="card__heading-span ">
-										Gold
-									</span>
-								</h4>
-								<div class="card__details">
-									<ul>
-										<li>3 day tours</li>
-										<li>Up to 30 people</li>
-										<li>2 tour guides</li>
-
-									</ul>
-								</div>
-							</div>
-							<div class="card__side card__side--back card__side--back-2">
-								<div class="card__cta">
-									<div class="card__price-box">
-										<p class="card__price-only">
-											only
-										</p>
-										<p class="card__price-value">
-											30$
-										</p>
-									</div>
-									<a href="#popup" class="btn btn--white">details</a>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="col-1-of-3">
-						<div class="card">
-							<div class="card__side card__side--front card__side--front-3">
-
-								<h4 class="card__heading">
-									<span class="card__heading-span ">
-										Platinum
-									</span>
-								</h4>
-								<div class="card__details">
-									<ul>
-										<li>3 day tours</li>
-										<li>Up to 30 people</li>
-										<li>2 tour guides</li>
-										<li>Sleep in cozy hotel</li>
-										<li>Level easy</li>
-									</ul>
-								</div>
-							</div>
-							<div class="card__side card__side--back card__side--back-3">
-								<div class="card__cta">
-									<div class="card__price-box">
-										<p class="card__price-only">
-											only
-										</p>
-										<p class="card__price-value">
-											50$
-										</p>
-									</div>
-									<a href="#popup" class="btn btn--white">details</a>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</section>
-		</main>
-		<footer class="footer">
-
-			<div class="footer__navigation">
-				<ul class="footer__list">
-					<li class="footer__item">
-						<a href="#" class="footer__link">Top</a>
-					</li>
-					<li class="footer__item">
-						<a href="#" class="footer__link">Story</a>
-					</li>
-					<li class="footer__item">
-						<a href="#" class="footer__link">Pricing</a>
-					</li>
-					<li class="footer__item">
-						<a href="#" class="footer__link">Contact</a>
-					</li>
-				</ul>
-			</div>
-			<p class="footer__copyright">
-					Copyrights &copy; Bizsop , All rights are reserved ! 
-			</p>
-
-		</footer>
-	</body>
-
+        <div class="row">
+          <div class="col-1-of-3">
+            <div class="card">
+              <div class="card__side card__side--front card__side--front-1">
+                <h4 class="card__heading">
+                  <span class="card__heading-span ">
+                    Silver
+                  </span>
+                </h4>
+                <div class="card__details">
+                  <ul>
+                    <li>15 days promotion</li>
+                    <li>Up to 30 people</li>
+                    <li>Only 1 project</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="card__side card__side--back card__side--back-1">
+                <div class="card__cta">
+                  <div class="card__price-box">
+                    <p class="card__price-only">
+                      only
+                    </p>
+                    <p class="card__price-value">
+                      15$
+                    </p>
+                  </div>
+                  <a href="#popup" class="btn btn--white">details</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-1-of-3">
+            <div class="card">
+              <div class="card__side card__side--front card__side--front-2">
+                <h4 class="card__heading">
+                  <span class="card__heading-span ">
+                    Gold
+                  </span>
+                </h4>
+                <div class="card__details">
+                  <ul>
+                    <li>60 day promotions</li>
+                    <li>Up to 30 people</li>
+                    <li>Up to 3 projects</li>
+                    <li>Intelligent Recommendations</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="card__side card__side--back card__side--back-2">
+                <div class="card__cta">
+                  <div class="card__price-box">
+                    <p class="card__price-only">
+                      only
+                    </p>
+                    <p class="card__price-value">
+                      30$
+                    </p>
+                  </div>
+                  <a href="#popup" class="btn btn--white">details</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-1-of-3">
+            <div class="card">
+              <div class="card__side card__side--front card__side--front-3">
+                <h4 class="card__heading">
+                  <span class="card__heading-span ">
+                    Platinum
+                  </span>
+                </h4>
+                <div class="card__details">
+                  <ul>
+                    <li>full year promotions</li>
+                    <li>Up to 30 people</li>
+                    <li>Unlimited projects</li>
+                    <li>Intelligent Recommendations</li>
+                    <li>Level easy</li>
+                    <li>Custom attribution</li>
+                    <li>Daily feeds included (one / week)</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="card__side card__side--back card__side--back-3">
+                <div class="card__cta">
+                  <div class="card__price-box">
+                    <p class="card__price-only">
+                      only
+                    </p>
+                    <p class="card__price-value">
+                      120$
+                    </p>
+                  </div>
+                  <a href="#popup" class="btn btn--white">details</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer class="footer">
+      <div class="footer__navigation">
+        <ul class="footer__list">
+          <li class="footer__item">
+            <a href="#" class="footer__link">Top</a>
+          </li>
+          <li class="footer__item">
+            <a href="#" class="footer__link">Story</a>
+          </li>
+          <li class="footer__item">
+            <a href="#" class="footer__link">Pricing</a>
+          </li>
+          <li class="footer__item">
+            <a href="#" class="footer__link">Contact</a>
+          </li>
+        </ul>
+      </div>
+      <p class="footer__copyright">
+        Copyrights &copy; Bizsop , All rights are reserved !
+      </p>
+    </footer>
+  </body>
 </html>

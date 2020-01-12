@@ -21,7 +21,12 @@ $breakpoint argument choices:
 @font-face {
   font-family: "AktivGrotesk";
   src: url("assets/font/AktivGrotesk-Medium.eot");
-  src: url("assets/font/AktivGrotesk-Medium.eot?#iefix") format("embedded-opentype"), url("assets/font/AktivGrotesk-Medium.svg#AktivGrotesk-Medium") format("svg"), url("assets/font/AktivGrotesk-Medium.ttf") format("truetype"), url("assets/font/AktivGrotesk-Medium.woff") format("woff"), url("assets/font/AktivGrotesk-Medium.woff2") format("woff2");
+  src: url("assets/font/AktivGrotesk-Medium.eot?#iefix")
+      format("embedded-opentype"),
+    url("assets/font/AktivGrotesk-Medium.svg#AktivGrotesk-Medium") format("svg"),
+    url("assets/font/AktivGrotesk-Medium.ttf") format("truetype"),
+    url("assets/font/AktivGrotesk-Medium.woff") format("woff"),
+    url("assets/font/AktivGrotesk-Medium.woff2") format("woff2");
 }
 
 *,
@@ -268,7 +273,11 @@ body {
 
 .header {
   min-height: 85vh;
-  background-image: linear-gradient( to top, rgba(91, 232, 155, 0.6), rgba(45, 58, 113, 0.6));
+  background-image: linear-gradient(
+    to top,
+    rgba(91, 232, 155, 0.6),
+    rgba(45, 58, 113, 0.6)
+  );
   position: relative;
   /*@supports (clip-path: polygon(0 0)) or (-webkit-clip-path: polygon(0 0)){
 		-webkit-clip-path: polygon(0 0,100% 0, 100% 80%, 0 100%);
@@ -278,9 +287,14 @@ body {
 }
 
 @media only screen and (min-resolution: 192dpi) and (min-width: 37.5em),
-(min-width: 125em) {
+  (min-width: 125em) {
   .header {
-    background-image: linear-gradient( to top, rgba(91, 232, 155, 0.8), rgba(45, 58, 113, 0.8)), url(assets/img/background.jpg);
+    background-image: linear-gradient(
+        to top,
+        rgba(91, 232, 155, 0.8),
+        rgba(45, 58, 113, 0.8)
+      ),
+      url(assets/img/background.jpg);
   }
 }
 
@@ -768,15 +782,30 @@ body {
 }
 
 .card__side--front-1 {
-  background-image: linear-gradient( to bottom, rgba(0, 0, 0, 0.3), rgba(91, 232, 155, 0.8)), url(assets/img/map1.jpg);
+  background-image: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.3),
+      rgba(91, 232, 155, 0.8)
+    ),
+    url(assets/img/map1.jpg);
 }
 
 .card__side--front-2 {
-  background-image: linear-gradient( to bottom, rgba(0, 0, 0, 0.3), rgba(91, 232, 155, 0.8)), url(assets/img/map2.jpg);
+  background-image: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.3),
+      rgba(91, 232, 155, 0.8)
+    ),
+    url(assets/img/map2.jpg);
 }
 
 .card__side--front-3 {
-  background-image: linear-gradient( to bottom, rgba(0, 0, 0, 0.3), rgba(91, 232, 155, 0.8)), url(assets/img/map3.jpg);
+  background-image: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.3),
+      rgba(91, 232, 155, 0.8)
+    ),
+    url(assets/img/map3.jpg);
 }
 
 .card__side--back {
@@ -784,15 +813,27 @@ body {
 }
 
 .card__side--back-1 {
-  background-image: linear-gradient( to bottom, rgba(0, 0, 0, 0.8), rgba(238, 238, 238, 0.8));
+  background-image: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.8),
+    rgba(238, 238, 238, 0.8)
+  );
 }
 
 .card__side--back-2 {
-  background-image: linear-gradient( to bottom, rgba(0, 0, 0, 0.8), rgba(250, 169, 26, 0.8));
+  background-image: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.8),
+    rgba(250, 169, 26, 0.8)
+  );
 }
 
 .card__side--back-3 {
-  background-image: linear-gradient( to bottom, rgba(0, 0, 0, 0.8), rgba(45, 58, 113, 0.8));
+  background-image: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.8),
+    rgba(45, 58, 113, 0.8)
+  );
 }
 
 .card:hover .card__side--front {
@@ -878,8 +919,7 @@ body {
   font-weight: 100;
 }
 
-@media only screen and (max-width: 56.25rem),
-only screen and (hover: none) {
+@media only screen and (max-width: 56.25rem), only screen and (hover: none) {
   .card {
     height: auto;
     border-radius: 0.3rem;
@@ -941,12 +981,19 @@ only screen and (hover: none) {
   width: 15rem;
   height: 15rem;
   border-radius: 50%;
-  overflow: hidden;
+  /* overflow: hidden; */
   margin: 0 auto;
 }
 
+.avatar {
+  vertical-align: middle;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  margin: 0 0 20px 64px;
+}
 .topspot__img {
-  height: 150%;
+  /* height: 150%; */
 }
 
 .topspot__text {
@@ -1026,7 +1073,7 @@ only screen and (hover: none) {
   transition: all 0.3s ease-out;
 }
 
-.form__input:placeholder-shown+.form__label {
+.form__input:placeholder-shown + .form__label {
   visibility: hidden;
   opacity: 0;
   transform: translateY(-4rem);
@@ -1086,7 +1133,7 @@ only screen and (hover: none) {
   transition: opactiy 0.2s;
 }
 
-.form__radio-input:checked~.form__radio-label>.form__radio-button::after {
+.form__radio-input:checked ~ .form__radio-label > .form__radio-button::after {
   opacity: 1;
 }
 
@@ -1098,7 +1145,12 @@ only screen and (hover: none) {
 
 .signin-left {
   min-height: 100vh;
-  background-image: linear-gradient( to bottom, rgba(45, 58, 113, 0.5), rgba(91, 232, 155, 0.5)), url(assets/img/worker.jpg);
+  background-image: linear-gradient(
+      to bottom,
+      rgba(45, 58, 113, 0.5),
+      rgba(91, 232, 155, 0.5)
+    ),
+    url(assets/img/worker.jpg);
   background-size: 100%;
   margin: 0;
 }
@@ -1185,7 +1237,12 @@ only screen and (hover: none) {
   margin: 0;
   height: 100vh;
   width: 100vw;
-  background-image: linear-gradient( to bottom, rgba(45, 58, 113, 0.5), rgba(91, 232, 155, 0.5)), url(assets/img/background.jpg);
+  background-image: linear-gradient(
+      to bottom,
+      rgba(45, 58, 113, 0.5),
+      rgba(91, 232, 155, 0.5)
+    ),
+    url(assets/img/background.jpg);
   background-size: cover;
   background-repeat: no-repeat;
 }
@@ -1236,7 +1293,7 @@ only screen and (hover: none) {
   overflow: hidden;
 }
 
-.profile-avatar>img {
+.profile-avatar > img {
   width: 100%;
   height: auto;
 }
@@ -1330,7 +1387,7 @@ only screen and (hover: none) {
   padding: 5rem 1rem;
 }
 
-.creation>.row {
+.creation > .row {
   margin-bottom: 0;
 }
 
@@ -1390,7 +1447,7 @@ only screen and (hover: none) {
   font-size: 2rem;
   position: absolute;
   bottom: 3rem;
-  margin: 0 3.5rem
+  margin: 0 3.5rem;
 }
 
 .payement-offer-btn:hover {
@@ -1433,18 +1490,18 @@ only screen and (hover: none) {
 
 .business-box {
   background-color: #f7f7f7;
-  border-bottom: 1px solid  #5be89b;
+  border-bottom: 1px solid #5be89b;
 }
 
 .business-picture {
-  height: 35vh;
+  width: 100%;
+  height: 50vh;
   overflow: hidden;
 }
 
-.business-picture>img {
-  width: 100%;
+.business-picture > img {
+  min-width: 100%;
   height: auto;
-  object-fit: cover;
 }
 
 .business-data {
@@ -1476,7 +1533,6 @@ only screen and (hover: none) {
 }
 
 .review {
- 
   padding: 1.5rem 3rem;
   border-bottom: 2px solid #2d3a71;
   width: 100%;
@@ -1489,14 +1545,13 @@ only screen and (hover: none) {
   height: 1rem;
   text-align: center;
 
-  
   color: #2d3a71;
 }
-.review-delete{
+.review-delete {
   border: 0;
   background-color: #ed2227;
-  color:#fff;
-  padding:0.5rem;
+  color: #fff;
+  padding: 0.5rem;
   border-radius: 5px;
   margin-left: 1rem;
   cursor: pointer;
@@ -1507,9 +1562,8 @@ only screen and (hover: none) {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  
 }
-.review-header > *:not(:first-child){
+.review-header > *:not(:first-child) {
   margin-left: 1rem;
 }
 
@@ -1775,7 +1829,7 @@ only screen and (hover: none) {
   grid-column-gap: 3rem;
 }
 
-.search-box-down>div {
+.search-box-down > div {
   width: 100%;
 }
 
@@ -1802,7 +1856,7 @@ only screen and (hover: none) {
   overflow: hidden;
 }
 
-.subscription-image>img {
+.subscription-image > img {
   max-width: 100%;
   max-height: auto;
 }
@@ -1829,7 +1883,7 @@ only screen and (hover: none) {
   width: 100%;
 }
 
-.settings__form>* {
+.settings__form > * {
   margin: 2rem 0;
 }
 
@@ -1898,7 +1952,9 @@ only screen and (hover: none) {
   transition: opactiy 0.2s;
 }
 
-.settings__radio-input:checked~.settings__radio-label>.settings__radio-button::after {
+.settings__radio-input:checked
+  ~ .settings__radio-label
+  > .settings__radio-button::after {
   opacity: 1;
 }
 
@@ -1914,7 +1970,7 @@ only screen and (hover: none) {
 }
 
 .section-story {
-  height: 100vh;
+  height: 80vh;
   padding: 10rem 0;
   position: relative;
   display: block;
@@ -1935,20 +1991,24 @@ only screen and (hover: none) {
   min-height: 75vh;
   width: 100%;
   position: relative;
-  right: -12rem;
+  right: -2rem;
   border-radius: 1rem;
   overflow: hidden;
 }
 
-.section-story__right>img {
+.section-story__right > img {
   width: 100%;
   height: auto;
   background-size: cover;
-  background-color: linear-gradient( to bottom, rgba(91, 232, 155, 0), rgba(91, 232, 155, 0.8));
+  background-color: linear-gradient(
+    to bottom,
+    rgba(91, 232, 155, 0),
+    rgba(91, 232, 155, 0.8)
+  );
 }
 
 .section-pricing {
-  height: 100vh;
+  height: 120vh;
   background-color: #f7f7f7;
   padding: 10rem 0 15rem 0;
 }
@@ -1974,7 +2034,11 @@ only screen and (hover: none) {
 .section-book {
   height: 100vh;
   padding: 15rem 0;
-  background-image: linear-gradient( to top, rgba(91, 232, 155, 0.8), rgba(45, 58, 113, 0.8));
+  background-image: linear-gradient(
+    to top,
+    rgba(91, 232, 155, 0.8),
+    rgba(45, 58, 113, 0.8)
+  );
 }
 
 @media only screen and (max-width: 56.25em) {
@@ -2017,7 +2081,7 @@ only screen and (hover: none) {
   border-radius: 50%;
 }
 
-.feed-user-avatar>img {
+.feed-user-avatar > img {
   width: 100%;
   height: auto;
 }
@@ -2035,7 +2099,7 @@ only screen and (hover: none) {
   border: 0.2rem solid #5be89b;
 }
 
-.feed-top-avatar>img {
+.feed-top-avatar > img {
   width: 100%;
   height: auto;
 }
@@ -2112,7 +2176,7 @@ only screen and (hover: none) {
   margin: 0 auto;
 }
 
-.business-page-review-form>input {
+.business-page-review-form > input {
   border: none;
   box-shadow: none;
   height: 100%;
@@ -2132,12 +2196,12 @@ only screen and (hover: none) {
   background-color: #252d2f;
 }
 
-.business-page-pictures>img {
+.business-page-pictures > img {
   height: 10rem;
   width: auto;
 }
 
-.business-page-pictures>img:not(:last-child) {
+.business-page-pictures > img:not(:last-child) {
   margin-right: 2rem;
 }
 
@@ -2158,7 +2222,7 @@ only screen and (hover: none) {
   list-style: none;
 }
 
-.business-page-data>li {
+.business-page-data > li {
   list-style: none;
 }
 
@@ -2239,7 +2303,7 @@ only screen and (hover: none) {
   overflow: hidden;
 }
 
-.business-page-map>img {
+.business-page-map > img {
   background-size: cover;
   margin: 0 auto;
   display: block;

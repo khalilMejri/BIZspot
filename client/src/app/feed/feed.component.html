@@ -1,41 +1,43 @@
 <div class="feed">
-
-
   <main class="feed-main">
     <div class="feed-element-box">
-
-      <app-infinity-scroll  (scrolled)="onScroll()">
+      <app-infinity-scroll (scrolled)="onScroll()">
         <div *ngFor="let business of businesses">
-          <app-business [business]="business" [getReviews]="true"></app-business>
+          <app-business
+            [business]="business"
+            [getReviews]="true"
+          ></app-business>
         </div>
-        
       </app-infinity-scroll>
-      
-    </div>  
-    
-
-
+      <div style="margin-top: 56px;"></div>
+    </div>
   </main>
   <section class="feed-section-right" *ngIf="topReviewer">
-		<h3 class="feed-section-left-title">Top Reviewer</h3>
+    <h3 class="feed-section-left-title">Top Reviewer</h3>
     <div class="feed-user">
       <div class="feed-user-avatar">
-        <img *ngIf="!topReviewer?.profile_pic" src="assets/img/avatar.jpg" alt="">
-        <img *ngIf="topReviewer.profile_pic" [src]="topReviewer.profile_pic" alt="">
+        <img
+          *ngIf="!topReviewer?.profile_pic"
+          src="assets/img/avatar.jpg"
+          alt=""
+        />
+        <img
+          *ngIf="topReviewer.profile_pic"
+          [src]="topReviewer.profile_pic"
+          alt=""
+        />
       </div>
-
     </div>
     <div class="feed-section-right-text">
-      <h4>{{topReviewer.lname | titlecase}}</h4>
-      <h5>{{topReviewer.fname | titlecase}}</h5>
+      <h4>{{ topReviewer.lname | titlecase }}</h4>
+      <h5>{{ topReviewer.fname | titlecase }}</h5>
     </div>
   </section>
   <section class="feed-section-left">
     <h3 class="feed-section-left-title">Top Rated</h3>
     <div class="feed-top">
       <div class="feed-top-avatar">
-
-        <img src="assets/img/worker1.jpg" alt="">
+        <img src="assets/img/worker1.jpg" alt="" />
       </div>
     </div>
     <div class="feed-section-left-text">

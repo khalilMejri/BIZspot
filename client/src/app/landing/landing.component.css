@@ -1,0 +1,14 @@
+.heading {
+  position: relative;
+  display: block;
+  width: 40%;
+  font-size: 3rem;
+  margin: 24px auto;
+  color: rgb(0, 74, 158);
+  text-align: center;
+}
+
+.no-top-margin {
+  margin-top: -50px !important;
+  margin-bottom: 50px !important;
+}
