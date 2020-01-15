@@ -33,9 +33,6 @@ app.get("/api/checkout-session", (req, res) => {
 
 });
 
-app.use('*', (req, res, next) => {
-  res.sendFile(path.resolve(__dirname, '../client/dist/BIZspot-frontend/index.html'));
-});
 
 app.get("/api/setup", (req, res) => {
   res.send({
@@ -131,3 +128,7 @@ boot(app, __dirname, function (err) {
   if (require.main === module)
     app.start();
 });
+
+// app.use('/*', (req, res, next) => {
+//   res.sendFile(path.resolve(__dirname, '../client/dist/BIZspot-frontend/index.html'));
+// });
