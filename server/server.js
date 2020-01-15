@@ -7,7 +7,6 @@
 
 var loopback = require('loopback');
 var boot = require('loopback-boot');
-var path = require('path');
 var axios = require('axios')
 var app = module.exports = loopback();
 const env = require('dotenv').config({
