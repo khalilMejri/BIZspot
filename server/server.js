@@ -7,6 +7,8 @@
 
 var loopback = require('loopback');
 var boot = require('loopback-boot');
+var path = require('path');
+
 var app = module.exports = loopback();
 const env = require('dotenv').config({
   path: ".env"
@@ -32,7 +34,7 @@ app.get("/api/checkout-session", (req, res) => {
 });
 
 app.use('*', (req, res, next) => {
-  res.sendFile(path.join(__dirname, '../client/dist/BIZspot-frontend/index.html'));
+  res.sendFile(path.resolve(__dirname, '../client/dist/BIZspot-frontend/index.html'));
 });
 
 app.get("/api/setup", (req, res) => {
