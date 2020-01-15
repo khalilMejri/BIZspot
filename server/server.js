@@ -19,19 +19,21 @@ app.get("/api/checkout-session", (req, res) => {
     sessionId
   } = req.query;
   stripe.checkout.sessions.retrieve(sessionId)
-  .then((session, err) => {
-    if (err) {
-      
-      return res.json({
-        'error': 'error in retreiving the stripe session'
-      });
-    }
-    res.json(session);
-  })
-  
+    .then((session, err) => {
+      if (err) {
+
+        return res.json({
+          'error': 'error in retreiving the stripe session'
+        });
+      }
+      res.json(session);
+    })
+
 });
 
-
+app.use('*', (req, res, next) => {
+  res.sendFile(path.join(__dirname, '../client/dist/BIZspot-frontend/index.html'));
+});
 
 app.get("/api/setup", (req, res) => {
   res.send({
@@ -78,12 +80,12 @@ app.get("/api/setup", (req, res) => {
   res.sendStatus(200);
 });*/
 app.start = function () {
-// start the web server
-return app.listen(function () {
-  app.emit('started');
-  var baseUrl = app.get('url').replace(/\/$/, '');
-  console.log('Web server listening at: %s', baseUrl);
-  if (app.get('loopback-component-explorer')) {
+  // start the web server
+  return app.listen(function () {
+    app.emit('started');
+    var baseUrl = app.get('url').replace(/\/$/, '');
+    console.log('Web server listening at: %s', baseUrl);
+    if (app.get('loopback-component-explorer')) {
       var explorerPath = app.get('loopback-component-explorer').mountPath;
       console.log('Browse your REST API at %s%s', baseUrl, explorerPath);
     }
@@ -99,7 +101,7 @@ boot(app, __dirname, function (err) {
     const {
       planId
     } = req.body;
-    
+
     // Create new Checkout Session for the order
     // Other optional params include:
     // [billing_address_collection] - to display billing address details on the page
@@ -117,7 +119,7 @@ boot(app, __dirname, function (err) {
       success_url: `${domainURL}/create?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${domainURL}/create`
     }).then((session, err) => {
-      
+
       res.send({
         sessionId: session.id
       });
