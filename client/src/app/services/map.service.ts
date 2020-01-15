@@ -8,8 +8,8 @@ import { HttpClient, HttpParams, HttpHeaders } from "@angular/common/http";
 export class MapService {
   location: Location;
   token = "7aeaca53bde648";
-  geoUrl = "https://eu1.locationiq.com/v1/search.php";
-  reverseUrl = "https://eu1.locationiq.com/v1/reverse.php";
+  geoUrl = "https://biz-spot.herokuapp.com/api/geocode";
+  reverseUrl = "https://biz-spot.herokuapp.com/api/georeverse";
 
   constructor(private http: HttpClient) {}
 

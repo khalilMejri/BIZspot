@@ -8,7 +8,7 @@
 var loopback = require('loopback');
 var boot = require('loopback-boot');
 var path = require('path');
-
+var axios = require('axios')
 var app = module.exports = loopback();
 const env = require('dotenv').config({
   path: ".env"
@@ -128,6 +128,38 @@ boot(app, __dirname, function (err) {
   if (require.main === module)
     app.start();
 });
+
+app.get("/api/geocode", (req, res) => {
+  const url = 'https://eu1.locationiq.com/v1/search.php'
+  const { key, q, format } = req.query;
+  axios.get(url, {
+    params: {
+      key, q, format
+    }
+  })
+    .then(response => {
+
+      res.json(response.data)
+    })
+    .catch(err => {
+      res.status(404).json({ 'error': 'location not found' })
+    })
+})
+app.get("/api/georeverse", (req, res) => {
+  const url = 'https://eu1.locationiq.com/v1/reverse.php'
+  const { key, lat, lon, format } = req.query;
+  axios.get(url, {
+    params: {
+      key, lat, lon, format
+    }
+  })
+    .then(response => {
+      res.json(response.data)
+    })
+    .catch(err => {
+      res.status(404).json({ 'error': 'location not found' })
+    })
+})
 
 // app.use('/*', (req, res, next) => {
 //   res.sendFile(path.resolve(__dirname, '../client/dist/BIZspot-frontend/index.html'));

@@ -17,10 +17,11 @@
   "dependencies": {
     "@angular-devkit/build-angular": "~0.803.19",
     "@angular/cli": "~8.3.19",
-    "@angular/compiler-cli": "^8.2.14",
-    "@angular/language-service": "^8.2.14",
     "@angular/common": "^8.2.14",
     "@angular/compiler": "^8.2.14",
+    "@angular/compiler-cli": "^8.2.14",
+    "@angular/language-service": "^8.2.14",
+    "axios": "^0.19.1",
     "compression": "^1.0.3",
     "cors": "^2.5.2",
     "dotenv": "^8.2.0",
