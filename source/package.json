@@ -20,7 +20,7 @@
     "loopback-boot": "^2.6.5",
     "loopback-component-explorer": "^6.2.0",
     "loopback-connector-mongodb": "^5.2.1",
-    "nodemon": "^2.0.1",
+    "nodemon": "^2.0.22",
     "serve-favicon": "^2.0.1",
     "stripe": "^7.14.0",
     "strong-error-handler": "^3.0.0"
